@@ -13,6 +13,31 @@ from bttr.model.pos_enc import WordPosEnc, WordRotaryEmbed
 from bttr.utils import Hypothesis, to_tgt_output
 
 
+def TransformerDecoderLayerMulti(TransformerDecoderLayer):
+    def __init__(self, *args, **kwargs):
+        super(self).__init__(*args, **kwargs)
+    
+    def forward(self, tgt, memory1, memory2, tgt_mask=None, memory1_mask=None, memory2_mask=None, tgt_key_padding_mask=None, memory_key_padding_mask=None):
+        tgt2 = self.self_attn(tgt, tgt, tgt, attn_mask=tgt_mask,
+                              key_padding_mask=tgt_key_padding_mask)[0]
+        tgt = tgt + self.dropout1(tgt2)
+        tgt = self.norm1(tgt)
+
+        tgt2_1 = self.multihead_attn(tgt, memory1, memory1, attn_mask=memory1_mask,
+                                   key_padding_mask=memory_key_padding_mask)[0]
+
+        tgt2_2 = self.multihead_attn(tgt, memory2, memory2, attn_mask=memory2_mask,
+                                      key_padding_mask=memory_key_padding_mask)[0]
+        
+
+        tgt = tgt + self.dropout2(tgt2_1) + self.dropout2(tgt2_2)
+
+        tgt = self.norm2(tgt)
+        tgt2 = self.linear2(self.dropout(self.activation(self.linear1(tgt))))
+        tgt = tgt + self.dropout3(tgt2)
+        tgt = self.norm3(tgt)
+        return tgt    
+
 def _build_transformer_decoder(
     d_model: int,
     nhead: int,
@@ -32,7 +57,7 @@ def _build_transformer_decoder(
     -------
     nn.TransformerDecoder
     """
-    decoder_layer = nn.TransformerDecoderLayer(
+    decoder_layer = TransformerDecoderLayerMulti(
         d_model=d_model,
         nhead=nhead,
         dim_feedforward=dim_feedforward,
