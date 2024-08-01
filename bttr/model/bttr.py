@@ -28,7 +28,10 @@ class BTTR(pl.LightningModule):
         self.encoder = Encoder(
             d_model=d_model, growth_rate=growth_rate, num_layers=num_layers
         )
-        self.decoder = Decoder1(
+        self.encoder2 = Encoder(
+            d_model=d_model, growth_rate=growth_rate, num_layers=num_layers
+        )
+        self.decoder = Decoder(
             d_model=d_model,
             nhead=nhead,
             num_decoder_layers=num_decoder_layers,
@@ -37,7 +40,7 @@ class BTTR(pl.LightningModule):
         )
 
     def forward(
-        self, img: FloatTensor, img_mask: LongTensor, tgt: LongTensor
+        self, img: FloatTensor, img_mask: LongTensor, sequence_feature, sequence_feature_mask, tgt: LongTensor
     ) -> FloatTensor:
         """run img and bi-tgt
 
@@ -57,15 +60,18 @@ class BTTR(pl.LightningModule):
         """
         feature, mask = self.encoder(img, img_mask)  # [b, t, d]
         feature = torch.cat((feature, feature), dim=0)  # [2b, t, d]
+
+        feature2, mask2 = self.encoder2(sequence_feature, sequence_feature_mask) 
+
         mask = torch.cat((mask, mask), dim=0)
         tgt_pad_mask = tgt == vocab.PAD_IDX
 
-        out = self.decoder(feature, mask, tgt,tgt_pad_mask)
+        out = self.decoder(feature, feature2, mask, mask2, tgt,tgt_pad_mask)
 
         return out
 
     def beam_search(
-        self, img: LongTensor, img_mask: LongTensor, beam_size: int, max_len: int
+        self, img: LongTensor, img_mask: LongTensor, sequence_feature, sequence_feature_mask, beam_size: int, max_len: int
     ) -> List[Hypothesis]:
         """run bi-direction beam search for given img
 
@@ -83,4 +89,5 @@ class BTTR(pl.LightningModule):
         List[Hypothesis]
         """
         feature, mask = self.encoder(img, img_mask)  # [1, t, d]
-        return self.decoder.beam_search(feature, mask, beam_size, max_len)
+        feature2, mask2 = self.encoder2(sequence_feature, sequence_feature_mask)  
+        return self.decoder.beam_search(feature, feature2, mask, mask2, beam_size, max_len)

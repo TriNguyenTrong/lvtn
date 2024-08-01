@@ -66,7 +66,7 @@ def _build_transformer_decoder(
 
     decoder = TransformerDecoder(decoder_layer, num_decoder_layers)
     return decoder
-
+  
 
 class Decoder(pl.LightningModule):
     def __init__(
@@ -105,7 +105,7 @@ class Decoder(pl.LightningModule):
         return mask
 
     def forward(
-        self, src: FloatTensor, src_mask: LongTensor, tgt: LongTensor
+        self, src: FloatTensor, src2: FloatTensor, src_mask: LongTensor, src_mask2: LongTensor, tgt: LongTensor
     ) -> FloatTensor:
         """generate output for tgt
 
@@ -136,9 +136,11 @@ class Decoder(pl.LightningModule):
         out = self.model(
             tgt=tgt,
             memory=src,
+            memory2=src2,
             tgt_mask=tgt_mask,
             tgt_key_padding_mask=tgt_pad_mask,
-            memory_key_padding_mask=src_mask,
+            memory1_mask=src_mask,
+            memory2_mask=src_mask2, 
         )
 
         out = rearrange(out, "l b d -> b l d")

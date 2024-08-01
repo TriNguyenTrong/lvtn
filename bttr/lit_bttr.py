@@ -48,7 +48,7 @@ class LitBTTR(pl.LightningModule):
         self.exprate_recorder = ExpRateRecorder()
 
     def forward(
-        self, img: FloatTensor, img_mask: LongTensor, tgt: LongTensor
+        self, img: FloatTensor, img_mask: LongTensor, sequence_feature, sequence_feature_mask, tgt: LongTensor
     ) -> FloatTensor:
         """run img and bi-tgt
 
@@ -66,7 +66,7 @@ class LitBTTR(pl.LightningModule):
         FloatTensor
             [2b, l, vocab_size]
         """
-        return self.bttr(img, img_mask, tgt)
+        return self.bttr(img, img_mask,sequence_feature, sequence_feature_mask, tgt)
 
     def beam_search(
         self,
@@ -93,14 +93,14 @@ class LitBTTR(pl.LightningModule):
         str
             LaTex string
         """
-        assert img.dim() == 3
-        img1 = img.to(torch.int64)
-        assert False, f'test {img1.dtype}'
+        # assert img.dim() == 3
+        # img1 = img.to(torch.int64)
+        # assert False, f'test {img1.dtype}'
 
-        img_mask = torch.zeros_like(img1, dtype=torch.long)  # squeeze channel
-        # img_mask = torch.zeros_like(img, dtype=torch.bool)  # squeeze channel
+        # img_mask = torch.zeros_like(img1, dtype=torch.long)  # squeeze channel
+        img_mask = torch.zeros_like(img, dtype=torch.bool)  # squeeze channel
         # img_mask = torch.zeros_like(img, dtype=torch.float)  # squeeze channel
-        hyps = self.bttr.beam_search(img1.unsqueeze(0), img_mask, beam_size, max_len)
+        hyps = self.bttr.beam_search(img.unsqueeze(0), img_mask, beam_size, max_len)
         best_hyp = max(hyps, key=lambda h: h.score / (len(h) ** alpha))
         return vocab.indices2label(best_hyp.seq)
 
@@ -126,7 +126,7 @@ class LitBTTR(pl.LightningModule):
             prog_bar=True,
             sync_dist=True,
         )
-
+    
         # hyps = self.bttr.beam_search(
         #     batch.imgs, batch.mask, self.hparams.beam_size, self.hparams.max_len
         # )
