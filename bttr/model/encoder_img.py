@@ -140,7 +140,7 @@ class DenseNet(nn.Module):
         return out, out_mask
 
 
-class Encoder(pl.LightningModule):
+class ImgEncoder(pl.LightningModule):
     def __init__(self, d_model: int, growth_rate: int, num_layers: int):
         super().__init__()
 
