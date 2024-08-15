@@ -5,9 +5,10 @@ import torch
 import torch.optim as optim
 from torch import FloatTensor, LongTensor
 
-from bttr.datamodule import Batch, vocab
+from bttr.datamodule import Batch
+from bttr.datamodule.vocab import CROHMEVocab
 from bttr.model.bttr import BTTR
-from bttr.utils import ExpRateRecorder, Hypothesis, ce_loss, to_bi_tgt_out
+from bttr.utils import ExpRateRecorder, Hypothesis, ce_loss
 from einops import rearrange, repeat
 
 
@@ -19,6 +20,7 @@ class LitBTTR(pl.LightningModule):
         # encoder
         growth_rate: int,
         num_layers: int,
+        num_encoder_layers: int, # seq encoder
         # decoder
         nhead: int,
         num_decoder_layers: int,
@@ -31,15 +33,23 @@ class LitBTTR(pl.LightningModule):
         # training
         learning_rate: float,
         patience: int,
+        vocab_enc: str = "vocab/crohme_seq_vocab.txt",
+        vocab_dec: str = "vocab/dictionary.txt",
     ):
         super().__init__()
         self.save_hyperparameters()
 
+        self.vocab_enc = CROHMEVocab(vocab_enc)
+        self.vocab_dec = CROHMEVocab(vocab_dec)
+
         self.bttr = BTTR(
+            vocab_size_enc=len(self.vocab_enc),
+            vocab_size_dec=len(self.vocab_dec),
             d_model=d_model,
             growth_rate=growth_rate,
             num_layers=num_layers,
             nhead=nhead,
+            num_encoder_layers=num_encoder_layers,
             num_decoder_layers=num_decoder_layers,
             dim_feedforward=dim_feedforward,
             dropout=dropout,
@@ -105,19 +115,20 @@ class LitBTTR(pl.LightningModule):
         return vocab.indices2label(best_hyp.seq)
 
     def training_step(self, batch: Batch, _):
-        tgt, out = to_bi_tgt_out(batch.indices, self.device)
-        out_hat = self(batch.imgs, batch.mask, tgt)
-
-        loss = ce_loss(out_hat, out)
+        tgt, out = self.vocab_dec.to_bi_tgt_out(batch.indices, self.device)
+        seq, seq_mask = self.vocab_enc.to_src(batch.seq_indices, self.device)
+        out_hat = self(batch.imgs, batch.mask, seq, seq_mask, tgt)
+        loss = ce_loss(out_hat, out, self.vocab_dec.PAD_IDX)
         self.log("train_loss", loss, on_step=False, on_epoch=True, sync_dist=True, )
 
         return loss
 
     def validation_step(self, batch: Batch, _):
-        tgt, out = to_bi_tgt_out(batch.indices, self.device)
-        out_hat = self(batch.imgs, batch.mask, tgt)
+        tgt, out = self.vocab_dec.to_bi_tgt_out(batch.indices, self.device)
+        seq, seq_mask = self.vocab_enc.to_src(batch.seq_indices, self.device)
+        out_hat = self(batch.imgs, batch.mask, seq, seq_mask, tgt)
 
-        loss = ce_loss(out_hat, out)
+        loss = ce_loss(out_hat, out, self.vocab_dec.PAD_IDX)
         self.log(
             "val_loss",
             loss,

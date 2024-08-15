@@ -9,7 +9,6 @@ from bttr.utils import Hypothesis
 from .decoder import Decoder
 from .encoder_img import ImgEncoder
 from .encoder_seq import SeqEncoder
-from bttr.datamodule import vocab, vocab_size
 
 
 class BTTR(pl.LightningModule):

@@ -1,5 +1,5 @@
 from pytorch_lightning import Trainer
-from bttr.datamodule import CROHMEDatamodule, vocab
+from bttr.datamodule import CROHMEDatamodule
 from bttr.lit_bttr import LitBTTR
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint, EarlyStopping
 
@@ -33,6 +33,7 @@ if __name__ == "__main__":
     nhead= 8,
     dim_feedforward= 1024,
     dropout= 0.3,
+    num_encoder_layers = 3,
     num_decoder_layers= 3,
     beam_size= 10,
     max_len= 200,
@@ -46,7 +47,7 @@ if __name__ == "__main__":
 
 
     trainer = Trainer(
-        default_root_dir='lightning_logs/crohme',
+        default_root_dir='lightning_logs/crohme_onoff',
         enable_checkpointing=True,
         callbacks = [
             EarlyStopping(monitor="val_ExpRate", mode="max"),

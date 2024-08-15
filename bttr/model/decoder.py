@@ -7,9 +7,8 @@ import torch.nn.functional as F
 from einops import rearrange, repeat
 from torch import FloatTensor, LongTensor, Tensor
 
-from bttr.datamodule import vocab, vocab_size
 from bttr.model.pos_enc import WordPosEnc, WordRotaryEmbed
-from bttr.utils import Hypothesis, to_tgt_output
+from bttr.utils import Hypothesis
 
 class TransformerDecoderLayerMulti(nn.TransformerDecoderLayer):
     def __init__(self, d_model: int, nhead: int, dim_feedforward: int = 2048, dropout: float = 0.1,
@@ -128,6 +127,7 @@ class Decoder(pl.LightningModule):
         num_decoder_layers: int,
         dim_feedforward: int,
         dropout: float,
+        pad_idx: int = 0,
     ):
         super().__init__()
 
@@ -146,6 +146,7 @@ class Decoder(pl.LightningModule):
         )
 
         self.proj = nn.Linear(d_model, vocab_size)
+        self.PAD_IDX = pad_idx
 
     def _build_attention_mask(self, length):
         # lazily create causal attention mask, with full attention between the vision tokens
@@ -177,7 +178,7 @@ class Decoder(pl.LightningModule):
         """
         _, l = tgt.size()
         tgt_mask = self._build_attention_mask(l)
-        tgt_pad_mask = tgt == vocab.PAD_IDX
+        tgt_pad_mask = (tgt == self.PAD_IDX)
 
         tgt = self.word_embed(tgt)  # [b, l, d]
         tgt = self.pos_enc(tgt)  # [b, l, d]

@@ -1,5 +1,4 @@
 !
-'
 (
 )
 +
@@ -66,7 +65,6 @@ Y
 \beta
 \cap
 \cdot
-\cdots
 \circ
 \cos
 \cup
@@ -85,13 +83,10 @@ Y
 \infty
 \int
 \lambda
-\ldots
 \leq
 \leqq
 \lim
-\limits
 \log
-\mu
 \mid
 \mod
 \mp
@@ -157,5 +152,4 @@ x
 y
 z
 {
-|
 }
