@@ -8,7 +8,7 @@ from torch import FloatTensor, LongTensor
 from bttr.datamodule import Batch
 from bttr.datamodule.vocab import CROHMEVocab
 from bttr.model.bttr import BTTR
-from bttr.utils import ExpRateRecorder, Hypothesis, ce_loss
+from bttr.utils import ExpRateRecorder, Hypothesis, ce_loss, to_src, to_bi_tgt_out
 from einops import rearrange, repeat
 
 
@@ -81,6 +81,7 @@ class LitBTTR(pl.LightningModule):
     def beam_search(
         self,
         img: FloatTensor,
+        sequence_feature:FloatTensor,
         beam_size: int = 10,
         max_len: int = 200,
         alpha: float = 1.0,
@@ -103,20 +104,15 @@ class LitBTTR(pl.LightningModule):
         str
             LaTex string
         """
-        # assert img.dim() == 3
-        # img1 = img.to(torch.int64)
-        # assert False, f'test {img1.dtype}'
-
-        # img_mask = torch.zeros_like(img1, dtype=torch.long)  # squeeze channel
         img_mask = torch.zeros_like(img, dtype=torch.bool)  # squeeze channel
-        # img_mask = torch.zeros_like(img, dtype=torch.float)  # squeeze channel
-        hyps = self.bttr.beam_search(img.unsqueeze(0), img_mask, beam_size, max_len)
+        seq_mask = torch.zeros_like(sequence_feature, dtype=torch.bool)
+        hyps = self.bttr.beam_search(img.unsqueeze(0), img_mask, sequence_feature, seq_mask, beam_size, max_len)
         best_hyp = max(hyps, key=lambda h: h.score / (len(h) ** alpha))
-        return vocab.indices2label(best_hyp.seq)
+        return self.vocab_dec.indices2label(best_hyp.seq)
 
     def training_step(self, batch: Batch, _):
-        tgt, out = self.vocab_dec.to_bi_tgt_out(batch.indices, self.device)
-        seq, seq_mask = self.vocab_enc.to_src(batch.seq_indices, self.device)
+        tgt, out = to_bi_tgt_out(batch.indices, self.device)
+        seq, seq_mask = to_src(batch.seq_indices, self.device)
         out_hat = self(batch.imgs, batch.mask, seq, seq_mask, tgt)
         loss = ce_loss(out_hat, out, self.vocab_dec.PAD_IDX)
         self.log("train_loss", loss, on_step=False, on_epoch=True, sync_dist=True, )
@@ -124,8 +120,8 @@ class LitBTTR(pl.LightningModule):
         return loss
 
     def validation_step(self, batch: Batch, _):
-        tgt, out = self.vocab_dec.to_bi_tgt_out(batch.indices, self.device)
-        seq, seq_mask = self.vocab_enc.to_src(batch.seq_indices, self.device)
+        tgt, out = to_bi_tgt_out(batch.indices, self.device)
+        seq, seq_mask = to_src(batch.seq_indices, self.device)
         out_hat = self(batch.imgs, batch.mask, seq, seq_mask, tgt)
 
         loss = ce_loss(out_hat, out, self.vocab_dec.PAD_IDX)
@@ -153,13 +149,16 @@ class LitBTTR(pl.LightningModule):
         # )
 
     def test_step(self, batch: Batch, _):
+        seq, seq_mask = to_src(batch.seq_indices, self.device)
+
         hyps = self.bttr.beam_search(
-            batch.imgs, batch.mask, self.hparams.beam_size, self.hparams.max_len
+            batch.imgs, batch.mask, seq, seq_mask, self.hparams.beam_size, self.hparams.max_len
         )
+
         best_hyp = max(hyps, key=lambda h: h.score / (len(h) ** self.hparams.alpha))
         self.exprate_recorder(best_hyp.seq, batch.indices[0])
 
-        return batch.img_bases[0], vocab.indices2label(best_hyp.seq)
+        return batch.img_bases[0], self.vocab_dec.indices2label(best_hyp.seq)
 
     def test_epoch_end(self, test_outputs) -> None:
         exprate = self.exprate_recorder.compute()

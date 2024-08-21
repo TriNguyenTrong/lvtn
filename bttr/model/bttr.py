@@ -82,7 +82,8 @@ class BTTR(pl.LightningModule):
         return out
 
     def beam_search(
-        self, img: LongTensor, img_mask: LongTensor, sequence_feature, sequence_feature_mask, beam_size: int, max_len: int
+        self, img: FloatTensor, img_mask: LongTensor, sequence_feature:FloatTensor, sequence_feature_mask: LongTensor,
+        beam_size: int, max_len: int
     ) -> List[Hypothesis]:
         """run bi-direction beam search for given img
 
@@ -92,6 +93,7 @@ class BTTR(pl.LightningModule):
             [1, 1, h', w']
         img_mask: LongTensor
             [1, h', w']
+        
         beam_size : int
         max_len : int
 
@@ -99,6 +101,8 @@ class BTTR(pl.LightningModule):
         -------
         List[Hypothesis]
         """
-        feature, mask = self.encoder(img, img_mask)  # [1, t, d]
-        feature2, mask2 = self.encoder2(sequence_feature, sequence_feature_mask)  
-        return self.decoder.beam_search(feature, feature2, mask, mask2, beam_size, max_len)
+        feature_offline, img_feature_mask = self.encoder_img(img, img_mask)  # [b, t, d]
+
+        feature_online = self.encoder_seq(sequence_feature, sequence_feature_mask) 
+
+        return self.decoder.beam_search(feature_offline, feature_online, img_feature_mask, sequence_feature_mask, beam_size, max_len)

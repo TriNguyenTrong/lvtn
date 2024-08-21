@@ -50,20 +50,20 @@ if __name__ == "__main__":
         default_root_dir='lightning_logs/crohme_onoff',
         enable_checkpointing=True,
         callbacks = [
-            EarlyStopping(monitor="val_ExpRate", mode="max"),
+            EarlyStopping(monitor="val_loss", mode="min"),
             LearningRateMonitor(logging_interval='epoch'), 
             ModelCheckpoint(            
-                save_top_k=1,
-                monitor= 'val_ExpRate',
-                mode='max',
-                filename='{epoch}-{step}-{val_ExpRate:.4f}',
+                save_top_k=10,
+                monitor= 'val_loss',
+                mode='min',
+                filename='{epoch}-{step}-{val_loss:.4f}',
                 save_weights_only=True,
             )
         ], 
         check_val_every_n_epoch=2,
         max_epochs=50,
         gpus=1, 
-        fast_dev_run=True,
+        fast_dev_run=False,
     )
     trainer.fit(model, dm)
 

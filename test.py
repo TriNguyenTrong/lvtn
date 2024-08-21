@@ -4,7 +4,7 @@ from bttr.datamodule import CROHMEDatamodule
 from bttr.lit_bttr import LitBTTR
 
 test_year = "2014"
-ckp_path = r"lightning_logs\crohme\lightning_logs\version_1\checkpoints\epoch=23-step=27360-val_ExpRate=0.3706.ckpt"
+ckp_path = r"lightning_logs/crohme_onoff/lightning_logs/version_1/checkpoints/epoch=49-step=56950-val_loss=0.1534.ckpt"
 
 if __name__ == "__main__":
     trainer = Trainer(logger=False, gpus=1)

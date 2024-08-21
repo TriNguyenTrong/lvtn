@@ -8,7 +8,7 @@ from einops import rearrange, repeat
 from torch import FloatTensor, LongTensor, Tensor
 
 from bttr.model.pos_enc import WordPosEnc, WordRotaryEmbed
-from bttr.utils import Hypothesis
+from bttr.utils import Hypothesis, to_tgt_output
 
 class TransformerDecoderLayerMulti(nn.TransformerDecoderLayer):
     def __init__(self, d_model: int, nhead: int, dim_feedforward: int = 2048, dropout: float = 0.1,
@@ -127,6 +127,8 @@ class Decoder(pl.LightningModule):
         num_decoder_layers: int,
         dim_feedforward: int,
         dropout: float,
+        sos_idx: int = 1,
+        eos_idx: int = 2,
         pad_idx: int = 0,
     ):
         super().__init__()
@@ -147,6 +149,9 @@ class Decoder(pl.LightningModule):
 
         self.proj = nn.Linear(d_model, vocab_size)
         self.PAD_IDX = pad_idx
+        self.SOS_IDX = sos_idx
+        self.EOS_IDX = eos_idx
+        self.vocab_size = vocab_size
 
     def _build_attention_mask(self, length):
         # lazily create causal attention mask, with full attention between the vision tokens
@@ -204,8 +209,7 @@ class Decoder(pl.LightningModule):
 
     def _beam_search(
         self,
-        src: FloatTensor,
-        mask: LongTensor,
+        src1: FloatTensor, src2: FloatTensor, src1_mask: LongTensor, src2_mask: LongTensor,
         direction: str,
         beam_size: int,
         max_len: int,
@@ -229,19 +233,19 @@ class Decoder(pl.LightningModule):
         """
         assert direction in {"l2r", "r2l"}
         assert (
-            src.size(0) == 1 and mask.size(0) == 1
-        ), f"beam search should only have single source, encounter with batch_size: {src.size(0)}"
+            src1.size(0) == 1 and src1_mask.size(0) == 1 and src2.size(0) == 1 and src2_mask.size(0) == 1
+        ), f"beam search should only have single source, encounter with batch_size: {src1.size(0)}"
 
         if direction == "l2r":
-            start_w = vocab.SOS_IDX
-            stop_w = vocab.EOS_IDX
+            start_w = self.SOS_IDX
+            stop_w = self.EOS_IDX
         else:
-            start_w = vocab.EOS_IDX
-            stop_w = vocab.SOS_IDX
+            start_w = self.EOS_IDX
+            stop_w = self.SOS_IDX
 
         hypotheses = torch.full(
             (1, max_len + 1),
-            fill_value=vocab.PAD_IDX,
+            fill_value=self.PAD_IDX,
             dtype=torch.long,
             device=self.device,
         )
@@ -255,21 +259,24 @@ class Decoder(pl.LightningModule):
             hyp_num = hypotheses.size(0)
             assert hyp_num <= beam_size, f"hyp_num: {hyp_num}, beam_size: {beam_size}"
 
-            exp_src = repeat(src.squeeze(0), "s e -> b s e", b=hyp_num)
-            exp_mask = repeat(mask.squeeze(0), "s -> b s", b=hyp_num)
+            exp_src1 = repeat(src1.squeeze(0), "s e -> b s e", b=hyp_num)
+            exp_mask1 = repeat(src1_mask.squeeze(0), "s -> b s", b=hyp_num)
 
-            decode_outputs = self(exp_src, exp_mask, hypotheses)[:, t, :]
+            exp_src2 = repeat(src2.squeeze(0), "s e -> b s e", b=hyp_num)
+            exp_mask2 = repeat(src2_mask.squeeze(0), "s -> b s", b=hyp_num)
+
+            decode_outputs = self(exp_src1, exp_src2, exp_mask1, exp_mask2, hypotheses)[:, t, :]
             log_p_t = F.log_softmax(decode_outputs, dim=-1)
 
             live_hyp_num = beam_size - len(completed_hypotheses)
-            exp_hyp_scores = repeat(hyp_scores, "b -> b e", e=vocab_size)
+            exp_hyp_scores = repeat(hyp_scores, "b -> b e", e=self.vocab_size)
             continuous_hyp_scores = rearrange(exp_hyp_scores + log_p_t, "b e -> (b e)")
             top_cand_hyp_scores, top_cand_hyp_pos = torch.topk(
                 continuous_hyp_scores, k=live_hyp_num
             )
 
-            prev_hyp_ids = top_cand_hyp_pos // vocab_size
-            hyp_word_ids = top_cand_hyp_pos % vocab_size
+            prev_hyp_ids = top_cand_hyp_pos // self.vocab_size
+            hyp_word_ids = top_cand_hyp_pos % self.vocab_size
 
             t += 1
             new_hypotheses = []
@@ -316,8 +323,7 @@ class Decoder(pl.LightningModule):
 
     def _cross_rate_score(
         self,
-        src: FloatTensor,
-        mask: LongTensor,
+        src1: FloatTensor, src2: FloatTensor, src1_mask: LongTensor, src2_mask: LongTensor,
         hypotheses: List[Hypothesis],
         direction: str,
     ) -> None:
@@ -337,15 +343,19 @@ class Decoder(pl.LightningModule):
         tgt, output = to_tgt_output(indices, direction, self.device)
 
         b = tgt.size(0)
-        exp_src = repeat(src.squeeze(0), "s e -> b s e", b=b)
-        exp_mask = repeat(mask.squeeze(0), "s -> b s", b=b)
 
-        output_hat = self(exp_src, exp_mask, tgt)
+        exp_src1 = repeat(src1.squeeze(0), "s e -> b s e", b=b)
+        exp_mask1 = repeat(src1_mask.squeeze(0), "s -> b s", b=b)
+
+        exp_src2 = repeat(src2.squeeze(0), "s e -> b s e", b=b)
+        exp_mask2 = repeat(src2_mask.squeeze(0), "s -> b s", b=b)
+
+        output_hat = self(exp_src1, exp_src2, exp_mask1, exp_mask2, tgt)
 
         flat_hat = rearrange(output_hat, "b l e -> (b l) e")
         flat = rearrange(output, "b l -> (b l)")
         loss = F.cross_entropy(
-            flat_hat, flat, ignore_index=vocab.PAD_IDX, reduction="none"
+            flat_hat, flat, ignore_index=self.PAD_IDX, reduction="none"
         )
 
         loss = rearrange(loss, "(b l) -> b l", b=b)
@@ -356,7 +366,9 @@ class Decoder(pl.LightningModule):
             hypotheses[i].score += score
 
     def beam_search(
-        self, src: FloatTensor, mask: LongTensor, beam_size: int, max_len: int
+        self, 
+        src1: FloatTensor, src2: FloatTensor, src1_mask: LongTensor, src2_mask: LongTensor,
+        beam_size: int, max_len: int
     ) -> List[Hypothesis]:
         """run beam search for src img
 
@@ -373,10 +385,10 @@ class Decoder(pl.LightningModule):
         -------
         List[Hypothesis]
         """
-        l2r_hypos = self._beam_search(src, mask, "l2r", beam_size, max_len)
-        self._cross_rate_score(src, mask, l2r_hypos, direction="r2l")
+        l2r_hypos = self._beam_search(src1, src2, src1_mask, src2_mask, "l2r", beam_size, max_len)
+        self._cross_rate_score(src1, src2, src1_mask, src2_mask, l2r_hypos, direction="r2l")
 
-        r2l_hypos = self._beam_search(src, mask, "r2l", beam_size, max_len)
-        self._cross_rate_score(src, mask, r2l_hypos, direction="l2r")
+        r2l_hypos = self._beam_search(src1, src2, src1_mask, src2_mask, "r2l", beam_size, max_len)
+        self._cross_rate_score(src1, src2, src1_mask, src2_mask, r2l_hypos, direction="l2r")
         return l2r_hypos + r2l_hypos
 
