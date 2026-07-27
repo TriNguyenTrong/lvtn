@@ -130,3 +130,18 @@ MNIST
 .DS_Store
 versions.md
 result.zip
+
+# === Giai doan luan van (2026-07-16) ===
+# PDF tai lieu tham khao co ban quyen — KHONG push, chi giu INDEX
+references/*
+!references/INDEX.txt
+# tai lieu on tap ca nhan + config phien lam viec
+ghi_chu/
+.claude/
+# backup va file tam cua thesis
+thesis/_backup*/
+thesis/_writetest.txt
+*.tmp_new
+.~lock*
+command.txt
+result.zip

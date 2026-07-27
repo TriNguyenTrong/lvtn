@@ -14,7 +14,7 @@ def to_src(seq_indices, device):
     seq_mask = torch.zeros((1, len(seq_indices)), dtype=torch.bool, device=device)
     return seq, seq_mask
 
-def predict(image_name="2014/18_em_1.bmp", from_zip=True, folder_path=None):
+def predict(image_name="2014/18_em_1.bmp"):
     # 1. Load model từ file best.ckpt
     print("Loading model...")
     model = LitBTTR.load_from_checkpoint("best.ckpt", strict=False)
@@ -28,17 +28,10 @@ def predict(image_name="2014/18_em_1.bmp", from_zip=True, folder_path=None):
     img_name_only = os.path.splitext(os.path.basename(image_name))[0]
     file_name_with_ext = image_name if image_name.endswith(".bmp") else f"{image_name}.bmp"
     
-    if from_zip:
-        print(f"Loading image {image_name} from data.zip...")
-        with zipfile.ZipFile("data.zip") as archive:
-            with archive.open(file_name_with_ext, "r") as f:
-                img = Image.open(f).copy()
-    else:
-        full_path = file_name_with_ext
-        if folder_path:
-            full_path = os.path.join(folder_path, os.path.basename(file_name_with_ext))
-        print(f"Loading image {full_path} from folder...")
-        img = Image.open(full_path).copy()
+    print(f"Loading image {image_name} from data.zip...")
+    with zipfile.ZipFile("data.zip") as archive:
+        with archive.open(file_name_with_ext, "r") as f:
+            img = Image.open(f).copy()
     
     img_tensor = transforms.ToTensor()(img).unsqueeze(0).to(model.device) # [1, 1, H, W]
     img_mask = torch.zeros((1, img_tensor.shape[2], img_tensor.shape[3]), dtype=torch.bool, device=model.device)
@@ -87,5 +80,5 @@ if __name__ == "__main__":
     # predict(image_name, from_zip=True)
     
     # Đọc từ file/folder bất kỳ:
-    path = "images_bmp/test2.bmp"
-    predict(path, from_zip=False)
+    path = "example/18_em_1.bmp"
+    predict()

@@ -1,4 +1,4 @@
-from pytorch_lightning import Trainer
+from pytorch_lightning import Trainer, seed_everything
 from bttr.datamodule import CROHMEDatamodule
 from bttr.lit_bttr import LitBTTR
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint, EarlyStopping
@@ -27,6 +27,16 @@ def test():
 # test()
 
 if __name__ == "__main__":
+    # Fix the seed so every ablation variant trains under identical conditions (fair comparison)
+    seed_everything(7)
+
+    # --- Ablation switches (Section 4): change these per run ---
+    FUSION = "dual_shared"        # dual_shared (Ours) | offline | online | concat | cascaded
+    BIDIRECTIONAL = True       # True (Ours, L2R+R2L) | False (L2R only)
+    # Each variant is saved to its OWN folder so checkpoints never overwrite another model's.
+    run_name = FUSION + ("" if BIDIRECTIONAL else "_uni")
+    out_dir = f"lightning_logs/abl_{run_name}"
+
     model = LitBTTR(d_model=256,
     growth_rate=24,
     num_layers=16,
@@ -40,6 +50,8 @@ if __name__ == "__main__":
     alpha= 1.0,
     learning_rate= 1.0,
     patience= 20,
+    fusion= FUSION,
+    bidirectional= BIDIRECTIONAL,
     )
     # .load_from_checkpoint(r"lightning_logs\crohme\lightning_logs\version_14\checkpoints\epoch=19-step=22800-val_ExpRate=0.4355.ckpt")
 
@@ -47,7 +59,7 @@ if __name__ == "__main__":
 
 
     trainer = Trainer(
-        default_root_dir='lightning_logs/crohme_onoff',
+        default_root_dir=out_dir,
         enable_checkpointing=True,
         callbacks = [
             EarlyStopping(monitor="val_loss", mode="min"),
@@ -65,5 +77,6 @@ if __name__ == "__main__":
         gpus=1, 
         fast_dev_run=False,
     )
+    print(f"[ablation] variant = {run_name}  ->  saving checkpoints under {out_dir}")
     trainer.fit(model, dm)
 
