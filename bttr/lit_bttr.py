@@ -8,7 +8,7 @@ from torch import FloatTensor, LongTensor
 from bttr.datamodule import Batch
 from bttr.datamodule.vocab import CROHMEVocab
 from bttr.model.bttr import BTTR
-from bttr.utils import ExpRateRecorder, Hypothesis, ce_loss, to_src, to_bi_tgt_out
+from bttr.utils import ExpRateRecorder, Hypothesis, ce_loss, to_src, to_bi_tgt_out, to_tgt_output
 from einops import rearrange, repeat
 
 
@@ -33,6 +33,9 @@ class LitBTTR(pl.LightningModule):
         # training
         learning_rate: float,
         patience: int,
+        # ablation switches
+        fusion: str = "dual_shared",      # dual_shared | offline | online | concat | cascaded
+        bidirectional: bool = True,       # True = L2R+R2L (Ours); False = L2R only
         vocab_enc: str = "vocab/crohme_seq_vocab.txt",
         vocab_dec: str = "vocab/dictionary.txt",
     ):
@@ -53,6 +56,8 @@ class LitBTTR(pl.LightningModule):
             num_decoder_layers=num_decoder_layers,
             dim_feedforward=dim_feedforward,
             dropout=dropout,
+            fusion=fusion,
+            bidirectional=bidirectional,
         )
 
         self.exprate_recorder = ExpRateRecorder()
@@ -111,7 +116,10 @@ class LitBTTR(pl.LightningModule):
         return self.vocab_dec.indices2label(best_hyp.seq)
 
     def training_step(self, batch: Batch, _):
-        tgt, out = to_bi_tgt_out(batch.indices, self.device)
+        if self.hparams.bidirectional:
+            tgt, out = to_bi_tgt_out(batch.indices, self.device)
+        else:
+            tgt, out = to_tgt_output(batch.indices, "l2r", self.device)
         seq, seq_mask = to_src(batch.seq_indices, self.device)
         out_hat = self(batch.imgs, batch.mask, seq, seq_mask, tgt)
         loss = ce_loss(out_hat, out, self.vocab_dec.PAD_IDX)
@@ -120,7 +128,10 @@ class LitBTTR(pl.LightningModule):
         return loss
 
     def validation_step(self, batch: Batch, _):
-        tgt, out = to_bi_tgt_out(batch.indices, self.device)
+        if self.hparams.bidirectional:
+            tgt, out = to_bi_tgt_out(batch.indices, self.device)
+        else:
+            tgt, out = to_tgt_output(batch.indices, "l2r", self.device)
         seq, seq_mask = to_src(batch.seq_indices, self.device)
         out_hat = self(batch.imgs, batch.mask, seq, seq_mask, tgt)
 

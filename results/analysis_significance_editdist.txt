@@ -1,0 +1,35 @@
+== SANITY ==
+abl_offline 47.61 47.78 45.74 micro=47.00
+abl_online 67.72 64.69 65.03 micro=65.71
+abl_concat 77.66 73.32 76.88 micro=75.89
+abl_cascaded 74.62 71.14 74.87 micro=73.51
+abl_dual_shared 77.06 72.62 73.29 micro=74.17
+abl_uni 64.67 62.69 63.36 micro=63.51
+
+== WILSON 95% CI (micro) ==
+abl_offline       47.00%  [45.31, 48.69]
+abl_online        65.71%  [64.08, 67.30]
+abl_concat        75.89%  [74.40, 77.31]
+abl_cascaded      73.51%  [71.99, 74.98]
+abl_dual_shared   74.17%  [72.66, 75.63]
+abl_uni           63.51%  [61.86, 65.13]
+
+== McNEMAR exact 2-sided (pooled n=3330) ==
+abl_dual_shared vs abl_concat: b=132 c=189 p=1.731e-03
+abl_dual_shared vs abl_cascaded: b=175 c=153 p=2.462e-01
+abl_concat vs abl_cascaded: b=232 c=153 p=6.658e-05
+abl_dual_shared vs abl_online: b=367 c=85 p=8.308e-43
+abl_dual_shared vs abl_uni: b=455 c=100 p=4.651e-55
+
+== ExpRate <=1/<=2 (abl_dual_shared) ==
+2014: 77.06 | <=1 84.26 | <=2 87.21
+2016: 72.62 | <=1 79.16 | <=2 83.96
+2019: 73.29 | <=1 80.13 | <=2 85.31
+micro: 74.17 | <=1 81.02 | <=2 85.41
+
+== PHAN LOAI 860 LOI (abl_dual_shared) ==
+{'structural': 544, 'symbol': 52, 'insdel_other': 264}
+1-10  :   7.8% (98/1261)
+11-20 :  20.4% (208/1022)
+21-30 :  40.2% (248/617)
+>30   :  71.2% (306/430)

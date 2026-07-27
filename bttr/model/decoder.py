@@ -14,9 +14,10 @@ class TransformerDecoderLayerMulti(nn.TransformerDecoderLayer):
     def __init__(self, d_model: int, nhead: int, dim_feedforward: int = 2048, dropout: float = 0.1,
                  activation: Union[str, Callable[[Tensor], Tensor]] = F.relu,
                  layer_norm_eps: float = 1e-5, batch_first: bool = False, norm_first: bool = False,
-                 device=None, dtype=None) -> None:
+                 device=None, dtype=None, fusion: str = "dual_shared") -> None:
         super(TransformerDecoderLayerMulti, self).__init__(d_model, nhead, dim_feedforward, dropout, activation, layer_norm_eps, batch_first, norm_first, device, dtype)
-    
+        self.fusion = fusion
+
     def forward(self, tgt: Tensor, memory1: Tensor, memory2: Tensor, 
                 tgt_mask: Optional[Tensor] = None, 
                 memory_mask: Optional[Tensor] = None,
@@ -39,16 +40,22 @@ class TransformerDecoderLayerMulti(nn.TransformerDecoderLayer):
         # see Fig. 1 of https://arxiv.org/pdf/2002.04745v1.pdf
 
         x = tgt
-        if self.norm_first:
-            x_q = x + self._sa_block(self.norm1(x), tgt_mask, tgt_key_padding_mask)
+        fusion = getattr(self, "fusion", "dual_shared")
+        x_q = x + self._sa_block(self.norm1(x), tgt_mask, tgt_key_padding_mask)
+        if fusion == "offline":
+            x = x + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
+        elif fusion == "online":
+            x = x + self._mha_block(self.norm2(x_q), memory2, memory_mask, memory2_key_padding_mask)
+        elif fusion == "concat":
+            # memory1 already holds concat(offline, online); memory2 is ignored
+            x = x + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
+        elif fusion == "cascaded":
+            x1 = x_q + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
+            x = x1 + self._mha_block(self.norm2(x1), memory2, memory_mask, memory2_key_padding_mask)
+        else:  # "dual_shared" (Ours): both cross-attentions share the query x_q
             x = x + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
             x = x + self._mha_block(self.norm2(x_q), memory2, memory_mask, memory2_key_padding_mask)
-            x = x + self._ff_block(self.norm3(x))
-        else:
-            x_q = x + self._sa_block(self.norm1(x), tgt_mask, tgt_key_padding_mask)
-            x = x + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
-            x = x + self._mha_block(self.norm2(x_q), memory2, memory_mask, memory2_key_padding_mask)
-            x = x + self._ff_block(self.norm3(x))
+        x = x + self._ff_block(self.norm3(x))
 
         return x
 
@@ -94,6 +101,7 @@ def _build_transformer_decoder(
     num_decoder_layers: int,
     dim_feedforward: int,
     dropout: float,
+    fusion: str = "dual_shared",
 ) -> TransformerDecoderMulti:
     """build transformer decoder with params
     Parameters
@@ -112,6 +120,7 @@ def _build_transformer_decoder(
         nhead=nhead,
         dim_feedforward=dim_feedforward,
         dropout=dropout,
+        fusion=fusion,
     )
 
     decoder = TransformerDecoderMulti(decoder_layer, num_decoder_layers)
@@ -127,11 +136,15 @@ class Decoder(pl.LightningModule):
         num_decoder_layers: int,
         dim_feedforward: int,
         dropout: float,
+        fusion: str = "dual_shared",
+        bidirectional: bool = True,
         sos_idx: int = 1,
         eos_idx: int = 2,
         pad_idx: int = 0,
     ):
         super().__init__()
+
+        self.bidirectional = bidirectional
 
         self.word_embed = nn.Sequential(
             nn.Embedding(vocab_size, d_model), nn.LayerNorm(d_model)
@@ -145,6 +158,7 @@ class Decoder(pl.LightningModule):
             num_decoder_layers=num_decoder_layers,
             dim_feedforward=dim_feedforward,
             dropout=dropout,
+            fusion=fusion,
         )
 
         self.proj = nn.Linear(d_model, vocab_size)
@@ -386,6 +400,9 @@ class Decoder(pl.LightningModule):
         List[Hypothesis]
         """
         l2r_hypos = self._beam_search(src1, src2, src1_mask, src2_mask, "l2r", beam_size, max_len)
+        if not getattr(self, "bidirectional", True):
+            # unidirectional ablation: only left-to-right, no cross rescoring
+            return l2r_hypos
         self._cross_rate_score(src1, src2, src1_mask, src2_mask, l2r_hypos, direction="r2l")
 
         r2l_hypos = self._beam_search(src1, src2, src1_mask, src2_mask, "r2l", beam_size, max_len)

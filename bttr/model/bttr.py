@@ -24,8 +24,13 @@ class BTTR(pl.LightningModule):
         num_decoder_layers: int,
         dim_feedforward: int,
         dropout: float,
+        fusion: str = "dual_shared",
+        bidirectional: bool = True,
     ):
         super().__init__()
+
+        self.fusion = fusion
+        self.bidirectional = bidirectional
 
         self.encoder_img = ImgEncoder(
             d_model=d_model, growth_rate=growth_rate, num_layers=num_layers
@@ -39,7 +44,7 @@ class BTTR(pl.LightningModule):
             dim_feedforward=dim_feedforward,
             dropout=dropout,
         )
-        
+
         self.decoder = Decoder(
             vocab_size=vocab_size_dec,
             d_model=d_model,
@@ -47,6 +52,8 @@ class BTTR(pl.LightningModule):
             num_decoder_layers=num_decoder_layers,
             dim_feedforward=dim_feedforward,
             dropout=dropout,
+            fusion=fusion,
+            bidirectional=bidirectional,
         )
 
     def forward(
@@ -69,13 +76,19 @@ class BTTR(pl.LightningModule):
             [2b, l, vocab_size]
         """
         feature_offline, img_feature_mask = self.encoder_img(img, img_mask)  # [b, t, d]
-        feature_offline = torch.cat((feature_offline, feature_offline), dim=0)  # [2b, t, d]
+        feature_online = self.encoder_seq(sequence_feature, sequence_feature_mask)  # [b, l1, d]
 
-        feature_online = self.encoder_seq(sequence_feature, sequence_feature_mask) 
-        feature_online = torch.cat((feature_online, feature_online), dim=0)
-        sequence_feature_mask = torch.cat((sequence_feature_mask, sequence_feature_mask), 0)
+        if self.fusion == "concat":
+            # early fusion: concatenate the two memories (and their masks) along the token axis
+            feature_offline = torch.cat((feature_offline, feature_online), dim=1)
+            img_feature_mask = torch.cat((img_feature_mask, sequence_feature_mask), dim=1)
 
-        img_feature_mask = torch.cat((img_feature_mask, img_feature_mask), dim=0)
+        if self.bidirectional:
+            # duplicate features to match the bidirectional (2b) target batch
+            feature_offline = torch.cat((feature_offline, feature_offline), dim=0)
+            feature_online = torch.cat((feature_online, feature_online), dim=0)
+            img_feature_mask = torch.cat((img_feature_mask, img_feature_mask), dim=0)
+            sequence_feature_mask = torch.cat((sequence_feature_mask, sequence_feature_mask), dim=0)
 
         out = self.decoder(feature_offline, feature_online, img_feature_mask, sequence_feature_mask, tgt)
 
@@ -103,6 +116,10 @@ class BTTR(pl.LightningModule):
         """
         feature_offline, img_feature_mask = self.encoder_img(img, img_mask)  # [b, t, d]
 
-        feature_online = self.encoder_seq(sequence_feature, sequence_feature_mask) 
+        feature_online = self.encoder_seq(sequence_feature, sequence_feature_mask)
+
+        if self.fusion == "concat":
+            feature_offline = torch.cat((feature_offline, feature_online), dim=1)
+            img_feature_mask = torch.cat((img_feature_mask, sequence_feature_mask), dim=1)
 
         return self.decoder.beam_search(feature_offline, feature_online, img_feature_mask, sequence_feature_mask, beam_size, max_len)
