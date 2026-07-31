@@ -30,6 +30,8 @@ class BTTR(pl.LightningModule):
         traj_encoder: str = "transformer",   # "transformer" | "gru" (TAP-style)
         traj_stroke_pooling: bool = False,   # stroke-level units, SCAN-style [22]
         traj_aux_classes: int = 0,           # >0 enables the per-stroke symbol head
+        online_input: str = "traj",          # "traj" points | "srt" token sequence
+        vocab_size_enc: int = 0,             # encoder vocabulary, srt mode only
     ):
         super().__init__()
 
@@ -51,6 +53,8 @@ class BTTR(pl.LightningModule):
             encoder_type=traj_encoder,
             stroke_pooling=traj_stroke_pooling,
             aux_num_classes=traj_aux_classes,
+            input_mode=online_input,
+            vocab_size=vocab_size_enc,
         )
 
         self.decoder = Decoder(

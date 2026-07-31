@@ -146,6 +146,82 @@ Tất cả seed 7, 50 epoch, `EarlyStopping patience=15`, mẫu số 2014 = 985.
 | 4 | **offline** (đối chứng) | `min` (sai) | 0,5859 @ e39 | 96,18 / 84,46 | **35,63%** | `abl_offline_traj/version_0` |
 | 5 | online, **+encoder BiGRU theo TAP** | `max` | 2,4060 @ e45 | 76,35 / 47,69 | **0,30%** (3/985) | `abl_online_traj3/version_0` |
 
+## 🔷 ĐỢT 2026-07-31/08-01 — THỬ HƯỚNG SRT DỰ ĐOÁN (notebook của thầy) — KHÔNG THẮNG
+
+> **Kết luận: giữ hướng đặc trưng 8 chiều làm hệ chính.** Hướng SRT dự đoán đã được thử đầy đủ và công bằng, nhưng không vượt được cả nhánh chỉ-ảnh.
+
+### Nguồn
+
+Thầy gửi notebook `https://www.kaggle.com/code/ntcuong2103/math-online-inference/notebook` (CUONG NGUYEN, Apache-2.0): bộ nhận dạng **quỹ đạo → chuỗi SRT** dùng BiLSTM + CTC. Đặc trưng 4 chiều `(Δx/d, Δy/d, d, pen_up)`, toạ độ scale về chiều cao 256, bỏ bước `d=0`; mô hình `nn.LSTM(4,128,3,bidirectional)` → `Linear(256,109)`; `CTCLoss(blank=108)`; giải mã greedy.
+
+**Khớp hoàn hảo với luận văn:** từ vựng 108 token (101 ký hiệu + 7 quan hệ) **giống hệt `vocab/crohme_seq_vocab.txt` từng dòng, đã đối chiếu**. Nên chuỗi nó sinh ra là đúng thứ bộ mã hóa SRT của luận văn tiêu thụ, và kiến trúc luận văn **không phải sửa một dòng**.
+
+### Đã dựng lại và kiểm chứng
+
+`tools/train_srt_ctc.py` dựng lại theo notebook, huấn luyện trên **đúng 8.834 mẫu train của luận văn**.
+
+| Bộ nhận dạng | train | 2014 | 2016 | 2019 |
+|---|---|---|---|---|
+| Checkpoint của thầy (`srt_ckpt/`, user tải từ Kaggle) | 3,79% | 14,38% | 14,43% | 14,73% |
+| **Bản tự huấn luyện, 40 epoch** | 2,08% | **13,89%** | **13,54%** | **12,86%** |
+| Bản 8 chiều TAP + LSTM 4×256 | — | **77,25%** ❌ | 76,60% | 77,17% |
+
+- Nạp được checkpoint của thầy vào lớp tự dựng (bóc tiền tố `model.`, `strict=True`, 26 tensor khớp) và ra 14,4% — **bằng chứng bản dựng lại trung thực với notebook**.
+- **Kiểm nhiễm dữ liệu:** checkpoint của thầy sai 3,79% trên train nhưng ~14,4% trên ba tập test. Nếu test từng nằm trong dữ liệu huấn luyện thì hai số phải xấp xỉ nhau. `hparams.yaml` rỗng nên không có thông tin trực tiếp; đây là bằng chứng gián tiếp.
+- **Bản 8 chiều TAP thất bại** vì đặc trưng TAP không được chuẩn hóa (x tới 25, dx cỡ 0,03 — chênh ba bậc) còn bộ CTC không có bước chuẩn hóa nào. Sửa được nhưng chưa làm.
+
+### 🐞 Lỗi phương pháp tìm ra và cách chữa
+
+Lần chạy đầu: hệ luận văn + SRT dự đoán = **32,18%** trên 2014, thấp hơn cả chỉ-ảnh 49,95%.
+
+**Chẩn đoán, có số:** cho **cùng mô hình đã huấn luyện** ăn chuỗi SRT chuẩn lúc kiểm thử thì ra **72,59%**. Mô hình lành; vấn đề là chất lượng đầu vào. Cụ thể hơn, tách 985 mẫu 2014:
+
+| | Số mẫu | ExpRate với SRT dự đoán | Cùng mô hình với SRT chuẩn |
+|---|---|---|---|
+| SRT dự đoán đúng hoàn toàn | 272 (27,6%) | 89,71% | 89,71% |
+| SRT dự đoán có lỗi | 713 (72,4%) | **10,24%** | **66,06%** |
+
+Sai 13,89% ở mức token, nhưng chuỗi dài 19,2 token nên **72,4% biểu thức** nhận ít nhất một token sai (trung bình 7,6 token sai). Và khi chuỗi sai, mô hình **đi theo chuỗi sai thay vì quay sang nhánh ảnh** — dù nhánh ảnh một mình đạt ~50%. Nguyên nhân: lúc huấn luyện chuỗi chỉ sai 2,08% (mô hình CTC đã học thuộc tập train) nên nó học được rằng cứ tin là đúng.
+
+**Hai cách chữa, đã cài:**
+1. **k-fold** (`--kfold 5`): mỗi mẫu train được dự đoán bởi mô hình chưa từng thấy nó → sai **7,56%** thay vì 2,08%. Ba tập test giữ dự đoán của mô hình toàn dữ liệu (hợp lệ, chúng chưa bao giờ trong tập huấn luyện).
+2. **Bỏ ngẫu nhiên luồng online** (`--online-dropout 0.2`): che hẳn luồng SRT ở 20% số bước, buộc bộ giải mã giữ được khả năng giải bằng ảnh. Để lại 1 vị trí hợp lệ — che hết mọi khóa làm softmax chạy trên tập rỗng và trả NaN.
+
+⚠️ **Phát hiện phụ đáng ghi vào luận văn:** k-fold cho 7,56% chứ không phải ~13,9% như dự đoán. Tách được hai nguồn của khoảng cách train↔test: **2,08 → 7,56 là học thuộc**, còn **7,56 → 13,5 là khác biệt phân bố thật** — ba tập test CROHME khó hơn, khác người viết và điều kiện thu thập.
+
+### Kết quả sau khi chữa
+
+| Cấu hình | 2014 | 2016 | 2019 | micro | val_loss |
+|---|---|---|---|---|---|
+| SRT dự đoán, **chưa sửa** | 32,18% | — | — | — | 1,0773 |
+| SRT dự đoán, **đã sửa** | 51,07% | 44,64% | 47,21% | **47,46%** | 0,4313 |
+| chỉ ảnh | 49,95% | 47,60% | 46,54% | **47,91%** | 0,4458 |
+| **8 chiều `dual_shared`** | 52,59% | 48,30% | 51,96% | **50,89%** | 0,3622 |
+
+Cách chữa hiệu quả rõ rệt (32,18 → 51,07 trên 2014; val_loss 1,0773 → 0,4313). **Nhưng vẫn không đủ:**
+
+- **Không vượt nhánh chỉ-ảnh** (47,46 so với 47,91). McNemar: 2014 p=0,483, 2019 p=0,652 — không phân biệt được; **2016 p=0,021 nghiêng về chỉ-ảnh**.
+- **Thua hướng 8 chiều có ý nghĩa** ở 2016 (p=0,004) và 2019 (p=0,0001); 2014 p=0,316.
+
+⇒ **Dưới hướng SRT, luận điểm trung tâm của luận văn KHÔNG đứng vững** — hợp nhất không hơn đơn phương thức. Dưới hướng 8 chiều thì có (50,89 > 47,91 và > 36,36).
+
+### Hệ quả cho việc viết
+
+User muốn hướng SRT thắng vì nó giữ nguyên Chương 3, Hình 1/3/4 và Bảng 2. **Nó không thắng.** Nên phải chọn:
+
+- **Hướng 8 chiều làm hệ chính** — số mạnh hơn và luận điểm đứng vững, nhưng **phải sửa Chương 3, Bảng 2 và 4 file SVG** (Hình 3/4 EN+VI).
+- Hướng SRT thành một mục Chương 4: hệ hai tầng, kèm chẩn đoán lệch phân bố và phân rã 89,71/10,24 ở trên. Bản thân chẩn đoán này là đóng góp — nó định lượng cái giá của thiết kế hai tầng.
+
+### File và công tắc
+
+- `tools/train_srt_ctc.py` — huấn luyện/dự đoán/k-fold bộ nhận dạng SRT. `--lightning-ckpt` nạp checkpoint của thầy.
+- `online/srt_pred/` (mô hình toàn dữ liệu), `online/srt_pred_oof/` (k-fold), `online/srt_pred_thay/` (checkpoint của thầy), `online/srt_gt/` (chuỗi chuẩn, dùng chẩn đoán).
+- `srt_ckpt/` — vocab + 2 checkpoint bóc từ `crohme2019-train-pytorch-default-v1.tar.gz` (174,9 MB, đã thêm vào `.gitignore`).
+- Công tắc mới: `--online-input traj|srt`, `--srt-dir`, `--online-dropout`. Mặc định giữ nguyên hành vi cũ nên checkpoint cũ vẫn nạp đúng.
+- Kết quả: `results/traj_abl_srtpred_2014_results.txt`, `results/traj_abl_srtoof_{2014,2016,2019}_results.txt`, `results/_diag_srtpred_model_on_gt_2014.txt`.
+
+---
+
 ## 🤝 BÀN GIAO SANG COWORK — 2026-07-30
 
 > Phiên Claude Code kết thúc tại đây. **Mọi con số dưới đây đọc trực tiếp từ file trên đĩa, không có số nào ước lượng hay nhớ lại.** Đường dẫn ghi tương đối từ gốc dự án `C:\Users\Admin\lv\lvtn`.
@@ -442,6 +518,8 @@ git reset
 ```
 
 ## 📌 TÓM TẮT BÀN GIAO (2026-07-02 — user chuyển sang Cowork, kết nối CÙNG thư mục C:\Users\Admin\lv\lvtn)
+- **🚀 GIAI ĐOẠN MỚI 2026-07-31 — REAL TRAJECTORY (yêu cầu GVHD, ưu tiên đọc trước):** GVHD chốt (chat 29-30/07): GIỮ kết quả oracle + THÊM kết quả chạy từ dữ liệu online thật + THÊM bảng so sánh phương pháp (tập trung multi-modal). Kế hoạch kỹ thuật + nhật ký code: **`KE_HOACH_ONLINE_TRAJECTORY.md`** (khung Chương 4 mới ở mục 12). Code đã xong (nhánh online: BiGRU kiểu TAP + đặc trưng 8 chiều + giảm 4× + aux stroke loss 0,5 train-only; decoder KHÔNG đổi 1 dòng), 6 cấu hình đã chạy, kết quả trong `results/traj_*`. **SỐ CHỐT (đã verify từ raw + McNemar, phiên Cowork 31/07):** dual_shared_aux 52,59/48,30/51,96 micro **50,89** [CI 49,19–52,58], ≤1/≤2: 66,71/75,59; cascaded_aux 51,01 (vs shared p=0,89 — không phân biệt); concat_aux 48,69 (**KÉM decoder-level, p≈0,001** — thứ hạng LẬT so với oracle!); offline_lrmax 47,91 (khớp mốc cũ ✓); online_aux 36,36; uni_aux 41,91 (hai chiều +8,98, p≈2e-33). n=3331 (2019 nay 1199). Khoảng cách oracle↔thật: 74,17−50,89=23,28đ = dư địa nhánh online (nội dung mục 4.9). Scheduler mode="max" đã được giải mã thành step-decay có chủ đích (mode min làm offline tụt 12đ) — 3.10 viết thẳng được. Luận văn CHƯA sửa gì theo giai đoạn này — chờ soạn gói old→new.
+- **✅ CHỐT HƯỚNG TRÌNH BÀY 2026-07-31 (GVHD đồng ý "phương án C" — CỘNG THÊM, không tái cấu trúc, không phụ lục):** (a) Chương 4 GIỮ NGUYÊN 4.1–4.8 hiện có, THÊM sau đó các mục mới trong CHÍNH VĂN: kết quả trên dữ liệu online thật → bảng so sánh phương pháp (MAN/SCAN + dòng tham chiếu TAP/BTTR) → phân tích khoảng cách oracle↔thật (vị trí chèn so với 4.8 Discussion: quyết khi soạn gói); (b) Chương 3 giữ mô tả SRT làm chính, thêm tiểu mục "biến thể đầu vào quỹ đạo thật" (đặc trưng 8 chiều TAP [33], BiGRU, giảm 4×, aux stroke loss 0,5 train-only) + bổ sung Bảng 2; (c) Abstract/Mục 1/5.1–5.3 BỔ SUNG chứ không viết lại; câu 5.3 "lift the oracle" đã thành hiện thực → thay bằng cải thiện nhánh online. (d) ⚠️ GVHD cấp thêm PROJECT XỬ LÝ DỮ LIỆU ONLINE riêng — user sẽ chạy lại bằng project đó (phiên Claude Code) → **số traj_* hiện tại chỉ là bản tham chiếu, CHỜ SỐ CHỐT MỚI rồi mới soạn gói old→new**; khi có kết quả mới phải verify + chạy lại bộ thống kê y như đã làm 31/07. Yêu cầu cho phiên chạy: giữ ĐÚNG format kết quả hiện hành (TSV: Image/Status/Prediction/GroundTruth + 2 dòng header, đặt tên results/traj2_*_YYYY_results.txt hoặc tương tự, KHÔNG đè file cũ) và ghi nhật ký vào KE_HOACH_ONLINE_TRAJECTORY.md.
 - **⚡ CẬP NHẬT 2026-07-13 — 15 VIỆC ĐỢT ĐÁNH GIÁ HỘI ĐỒNG (A1–A4, B1–B4, C1–C3, D1, E1–E5) ĐÃ ÁP CHÍNH THỨC vào cả 2 docx + xuất lại 2 PDF (xem khối ✅ 2026-07-13 ngay dưới). Refs: user ĐÃ tải đủ 7 PDF mới, kho khớp [1]–[41]. **✅ Việc F1 (nhúng lại Hình 3 EN sửa `cross rescoring`) 2026-07-13 + đồng bộ ký hiệu KIEN_TRUC 2026-07-13 + Việc G1/G2 (reword attention 3.7 hai bản; "crucial"→"essential" EN) 2026-07-14 ĐỀU ĐÃ ÁP — hiện KHÔNG còn việc mở.** Lịch sử (đã xong):** User yêu cầu đánh giá kiểu hội đồng → `thesis/DANH_GIA_HOI_DONG.md`. Từ đó soạn **15 việc sửa (A1–A4, B1–B4, C1–C3, D1, E1–E5), user đã DUYỆT TOÀN BỘ, CHƯA ÁP** — nguyên văn old→new nằm ở mục "⏳ CHỜ ÁP MỘT LƯỢT — ĐỢT SỬA THEO ĐÁNH GIÁ HỘI ĐỒNG" + "📊 GÓI CHƯƠNG 4" bên dưới. Chờ user ra lệnh "sửa chính thức" mới áp. **Thứ tự áp khuyến nghị:** backup 2 docx → các phép text (A/B/D/E; BỎ QUA A3#7 vì D1a hấp thụ; C2 áp TRƯỚC C1 để công thức (19) là bản mới) → bảng (B3 xóa dòng GETD tables[0]; E2b thêm 2 cột tables[2], font 9,5pt) → C1 đánh số 21 công thức → kiểm docPr id duy nhất → References + references_ieee.txt + INDEX.txt → xuất 2 PDF (mẹo soffice outdir rỗng + cp -f). User cần tải 4 PDF refs mới ([5][6][8][9], link trong Việc A4) và tùy chọn abstract [39]–[41]. Bằng chứng thống kê gói E: `results/analysis_significance_editdist.{py,txt}`.
 - **File chuẩn DUY NHẤT ở `thesis\`**: 2 docx + 2 pdf (bản mới nhất 2026-07-02 18:49). KHÔNG sync Downloads (bản Downloads là snapshot cũ). `CLAUDE.md` ở gốc dự án (tạo 2026-07-02) tóm tắt cấu trúc + quy tắc + gotchas cho phiên mới.
 - **Luận văn hoàn chỉnh Phần 1–5, EN+VI đồng bộ**: Phần 2 có mục 2.1–2.7 (2.4 = Đa phương thức); refs [1]–[38] đều đã xác minh; 6 hình vector EN/VI; Bảng 1: 12 dòng, ô GETD = "—" (số cũ chưa truy được nguồn); Bảng 2: 14 dòng (đã có dòng "Số lớp bộ mã hóa chuỗi = 3"); câu scheduler 3.10 đã trung tính hóa (PA-C, không sửa code).

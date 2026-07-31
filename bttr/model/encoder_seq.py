@@ -169,8 +169,27 @@ class SeqEncoder(pl.LightningModule):
         encoder_type: str = "transformer",
         stroke_pooling: bool = False,
         aux_num_classes: int = 0,
+        input_mode: str = "traj",
+        vocab_size: int = 0,
     ):
         super().__init__()
+
+        # "traj": raw pen points, 8-D TAP features (the branch built for this thesis'
+        #   trajectory experiments).
+        # "srt" : a symbol-relation token sequence, embedded exactly as the original
+        #   encoder did. Feed it ground-truth SRT and you get the oracle variant;
+        #   feed it SRT predicted from the trajectory by a separate recogniser and
+        #   the system is oracle-free while the architecture stays untouched.
+        assert input_mode in ("traj", "srt")
+        self.input_mode = input_mode
+        if input_mode == "srt":
+            assert vocab_size > 0, "srt mode needs the encoder vocabulary size"
+            downsample = 1
+            stroke_pooling = False
+            encoder_type = "transformer"   # as the original SRT encoder was
+            self.word_embed = nn.Sequential(
+                nn.Embedding(vocab_size, d_model), nn.LayerNorm(d_model)
+            )
 
         assert downsample in (1, 2, 4, 8), "downsample must be a power of two up to 8"
         assert encoder_type in ("transformer", "gru")
@@ -278,6 +297,14 @@ class SeqEncoder(pl.LightningModule):
         Tuple[FloatTensor, BoolTensor]
             memory [b, l', d] and its padding mask [b, l'], l' = ceil(l / downsample)
         """
+        if self.input_mode == "srt":
+            # token ids [b, l] -> embeddings; no convolutions, the sequence is
+            # already short (19 tokens on average against 312 trace points)
+            x = self.pos_enc(self.word_embed(traj.long()))
+            x = rearrange(x, "b l d -> l b d")
+            memory = self.encoder(x, mask=None, src_key_padding_mask=traj_padding_mask)
+            return rearrange(memory, "l b d -> b l d"), traj_padding_mask
+
         x = (traj - self.feat_mean) / self.feat_std
         x = self.point_proj(x)
         # Zero the padded positions, and keep zeroing them after every conv

@@ -42,6 +42,14 @@ def parse_args():
                    help="SCAN-style stroke units; measured worse than point level")
     p.add_argument("--aux-stroke-weight", type=float, default=0.0,
                    help="weight of the per-stroke symbol loss from <traceGroup>")
+    p.add_argument("--online-input", default="traj", choices=["traj", "srt"],
+                   help="'srt' feeds the token sequence predicted from the "
+                        "trajectory, leaving the thesis architecture untouched")
+    p.add_argument("--online-dropout", type=float, default=0.0,
+                   help="chance of hiding the online stream during training, so "
+                        "the decoder stays able to fall back on the image")
+    p.add_argument("--srt-dir", default=None,
+                   help="folder of predicted SRT files, one per split")
     p.add_argument("--suffix", default="traj3",
                    help="checkpoint folder suffix, one per encoder revision")
     p.add_argument("--max-epochs", type=int, default=50)
@@ -85,10 +93,13 @@ if __name__ == "__main__":
     traj_stroke_pooling= args.stroke_pooling,
     # per-stroke symbol supervision from <traceGroup>, training only
     aux_stroke_weight= args.aux_stroke_weight,
+    online_input= args.online_input,
+    online_dropout= args.online_dropout,
     )
     # .load_from_checkpoint(r"lightning_logs\crohme\lightning_logs\version_14\checkpoints\epoch=19-step=22800-val_ExpRate=0.4355.ckpt")
 
-    dm = CROHMEDatamodule(batch_size=32, num_workers=5)
+    dm = CROHMEDatamodule(batch_size=32, num_workers=5,
+                          online_input=args.online_input, srt_dir=args.srt_dir)
 
 
     trainer = Trainer(

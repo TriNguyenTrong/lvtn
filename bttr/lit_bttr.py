@@ -42,12 +42,18 @@ class LitBTTR(pl.LightningModule):
         traj_encoder: str = "transformer",  # "transformer" | "gru" (TAP-style [33])
         traj_stroke_pooling: bool = False,  # stroke-level units, SCAN-style [22]
         aux_stroke_weight: float = 0.0,     # >0 adds the per-stroke symbol loss
+        online_input: str = "traj",         # "traj" points | "srt" token sequence
+        online_dropout: float = 0.0,        # chance of hiding the online stream
+
+        vocab_enc: str = "vocab/crohme_seq_vocab.txt",
         vocab_dec: str = "vocab/dictionary.txt",
     ):
         super().__init__()
         self.save_hyperparameters()
 
         self.vocab_dec = CROHMEVocab(vocab_dec)
+        # only loaded in srt mode; keeps the traj path free of a second vocabulary
+        self.vocab_enc = CROHMEVocab(vocab_enc) if online_input == "srt" else None
 
         self.bttr = BTTR(
             vocab_size_dec=len(self.vocab_dec),
@@ -66,6 +72,8 @@ class LitBTTR(pl.LightningModule):
             traj_encoder=traj_encoder,
             traj_stroke_pooling=traj_stroke_pooling,
             traj_aux_classes=len(self.vocab_dec) if aux_stroke_weight > 0 else 0,
+            online_input=online_input,
+            vocab_size_enc=len(self.vocab_enc) if self.vocab_enc else 0,
         )
 
         self.exprate_recorder = ExpRateRecorder()
@@ -130,18 +138,47 @@ class LitBTTR(pl.LightningModule):
         best_hyp = max(hyps, key=lambda h: h.score / (len(h) ** alpha))
         return self.vocab_dec.indices2label(best_hyp.seq)
 
+    def _drop_online(self, traj, traj_mask):
+        """Hide the online stream for a random share of the batch.
+
+        The predicted-SRT run showed the decoder following a wrong SRT sequence
+        instead of falling back on the image: 10.2% ExpRate on samples whose SRT
+        is imperfect, where the same model with correct SRT reaches 66.1%, and
+        the image branch alone reaches about 50%. It never learned that the
+        stream can be wrong. Removing it outright on some steps forces the
+        decoder to stay able to decode from the image.
+
+        One position is left visible: masking every key of a sample makes
+        softmax over an empty set and the attention returns NaN.
+        """
+        p = self.hparams.online_dropout
+        if not self.training or p <= 0:
+            return traj, traj_mask
+        drop = torch.rand(traj.size(0), device=traj.device) < p
+        if not drop.any():
+            return traj, traj_mask
+        traj, traj_mask = traj.clone(), traj_mask.clone()
+        traj_mask[drop] = True
+        traj_mask[drop, 0] = False
+        if traj.dim() == 3:                      # [b, l, 8] point features
+            traj[drop] = 0.0
+        else:                                    # [b, l] token ids
+            traj[drop] = self.vocab_enc.PAD_IDX if self.vocab_enc else 0
+        return traj, traj_mask
+
     def training_step(self, batch: Batch, _):
         if self.hparams.bidirectional:
             tgt, out = to_bi_tgt_out(batch.indices, self.device)
         else:
             tgt, out = to_tgt_output(batch.indices, "l2r", self.device)
+        traj, traj_mask = self._drop_online(batch.traj, batch.traj_mask)
         use_aux = self.hparams.aux_stroke_weight > 0 and batch.stroke_labels is not None
         if use_aux:
             out_hat, aux_logits = self.bttr(
-                batch.imgs, batch.mask, batch.traj, batch.traj_mask, tgt, return_aux=True
+                batch.imgs, batch.mask, traj, traj_mask, tgt, return_aux=True
             )
         else:
-            out_hat = self(batch.imgs, batch.mask, batch.traj, batch.traj_mask, tgt)
+            out_hat = self(batch.imgs, batch.mask, traj, traj_mask, tgt)
         loss = ce_loss(out_hat, out, self.vocab_dec.PAD_IDX)
         self.log("train_loss", loss, on_step=False, on_epoch=True, sync_dist=True, )
 

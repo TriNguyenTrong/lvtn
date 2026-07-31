@@ -156,6 +156,24 @@ def load_online(path: str) -> dict:
     }
 
 
+def load_srt(path: str, vocab_enc) -> dict:
+    """Read `name <TAB> token token ...` and encode with the encoder vocabulary.
+
+    The file is written by tools/train_srt_ctc.py, so the sequence is PREDICTED
+    from the pen trajectory, not read from the InkML annotation. Same format
+    either way, which is the point: the model cannot tell the difference, so the
+    two variants differ in exactly one thing, the quality of the sequence.
+    """
+    out = {}
+    for line in open(path, encoding="utf-8"):
+        parts = line.rstrip("\n").split("\t")
+        if len(parts) != 2 or not parts[1].strip():
+            continue
+        base = os.path.splitext(os.path.basename(parts[0]))[0]
+        out[base] = np.asarray(vocab_enc.words2indices(parts[1].split()), dtype=np.int64)
+    return out
+
+
 def load_stroke_labels(path: str) -> dict:
     """Per-stroke symbol ids written by tools/prep_stroke_labels.py (train only)."""
     npz = np.load(path, allow_pickle=False)
@@ -239,17 +257,27 @@ def collate_fn(batch, augment: bool = False):
         x[idx, :, : heights_x[idx], : widths_x[idx]] = s_x
         x_mask[idx, : heights_x[idx], : widths_x[idx]] = 0
 
-    # pad the trajectories of the batch to a common length
-    if augment:
-        rng = np.random.default_rng()
-        trajs_x = [augment_traj(t, rng) for t in trajs_x]
+    # srt mode carries 1-D integer token ids; traj mode carries [n, 8] point features
+    is_srt = np.asarray(trajs_x[0]).ndim == 1
     lens_t = [len(t) for t in trajs_x]
     max_len_t = max(lens_t)
-    t = torch.zeros(n_samples, max_len_t, TRAJ_DIM)
-    t_mask = torch.ones(n_samples, max_len_t, dtype=torch.bool)
-    for idx, s_t in enumerate(trajs_x):
-        t[idx, : lens_t[idx]] = torch.from_numpy(np.asarray(s_t, dtype=np.float32))
-        t_mask[idx, : lens_t[idx]] = False
+    if is_srt:
+        t = torch.zeros(n_samples, max_len_t, dtype=torch.long)
+        t_mask = torch.ones(n_samples, max_len_t, dtype=torch.bool)
+        for idx, s_t in enumerate(trajs_x):
+            t[idx, : lens_t[idx]] = torch.from_numpy(np.asarray(s_t, dtype=np.int64))
+            t_mask[idx, : lens_t[idx]] = False
+    else:
+        if augment:
+            rng = np.random.default_rng()
+            trajs_x = [augment_traj(t, rng) for t in trajs_x]
+            lens_t = [len(t) for t in trajs_x]
+            max_len_t = max(lens_t)
+        t = torch.zeros(n_samples, max_len_t, TRAJ_DIM)
+        t_mask = torch.ones(n_samples, max_len_t, dtype=torch.bool)
+        for idx, s_t in enumerate(trajs_x):
+            t[idx, : lens_t[idx]] = torch.from_numpy(np.asarray(s_t, dtype=np.float32))
+            t_mask[idx, : lens_t[idx]] = False
 
     # per-stroke symbol labels, present for the training split only
     labels = None
@@ -282,11 +310,19 @@ class CROHMEDatamodule(pl.LightningDataModule):
         test_year: str = "2014",
         batch_size: int = 8,
         num_workers: int = 5,
+        online_input: str = "traj",
+        srt_dir: str = None,
+        vocab_enc: str = "vocab/crohme_seq_vocab.txt",
     ) -> None:
         super().__init__()
         assert isinstance(test_year, str)
+        assert online_input in ("traj", "srt")
         self.zipfile_path = zipfile_path
         self.online_dir = online_dir
+        self.online_input = online_input
+        # default: SRT predicted from the trajectory by the BiLSTM-CTC recogniser
+        self.srt_dir = srt_dir or os.path.join(online_dir, "srt_pred_thay")
+        self.vocab_enc = CROHMEVocab(vocab_enc) if online_input == "srt" else None
         self.test_year = test_year
         self.batch_size = batch_size
         self.num_workers = num_workers
@@ -296,6 +332,15 @@ class CROHMEDatamodule(pl.LightningDataModule):
         print(f"Load online trajectories from: {self.online_dir}")
 
     def _traj(self, split: str) -> dict:
+        if self.online_input == "srt":
+            path = os.path.join(self.srt_dir, f"{split}.txt")
+            if not os.path.exists(path):
+                raise FileNotFoundError(
+                    f"{path} khong ton tai — chay `python tools/train_srt_ctc.py` truoc."
+                )
+            d = load_srt(path, self.vocab_enc)
+            print(f"Predicted SRT for {split}: {len(d)} samples  ({path})")
+            return d
         path = os.path.join(self.online_dir, f"{split}.npz")
         if not os.path.exists(path):
             raise FileNotFoundError(
