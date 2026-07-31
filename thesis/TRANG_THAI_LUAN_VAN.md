@@ -146,6 +146,68 @@ Tất cả seed 7, 50 epoch, `EarlyStopping patience=15`, mẫu số 2014 = 985.
 | 4 | **offline** (đối chứng) | `min` (sai) | 0,5859 @ e39 | 96,18 / 84,46 | **35,63%** | `abl_offline_traj/version_0` |
 | 5 | online, **+encoder BiGRU theo TAP** | `max` | 2,4060 @ e45 | 76,35 / 47,69 | **0,30%** (3/985) | `abl_online_traj3/version_0` |
 
+## 🤝 BÀN GIAO SANG COWORK — 2026-07-30
+
+> Phiên Claude Code kết thúc tại đây. **Mọi con số dưới đây đọc trực tiếp từ file trên đĩa, không có số nào ước lượng hay nhớ lại.** Đường dẫn ghi tương đối từ gốc dự án `C:\Users\Admin\lv\lvtn`.
+> Việc kế tiếp: **viết luận văn**. Chưa sửa một chữ nào trong 2 file docx.
+
+### Trạng thái mã nguồn
+
+- Nhánh git **`online-traj`**, đã commit **`cee0c45`** (nối tiếp `f6eef03`). **KHÔNG push, chưa từng chạy lệnh nào tới `origin`** — user yêu cầu tuyệt đối không push.
+- Diff `f6eef03..cee0c45`: 13 file, +1322 −154 dòng. Chi tiết: `datamodule.py` +194, `encoder_seq.py` +331, `lit_bttr.py` +67, `bttr.py` +51, `custom_train.py` +50, `test_component.py` +206, `utils.py` +6, `config.yaml` +4, `predict_test.py` +39, `test_all.py` +12, cộng 3 file mới trong `tools/`.
+- **`decoder.py`, `encoder_img.py`, `pos_enc.py` KHÔNG ĐỔI** — kiểm bằng `git diff --stat f6eef03 HEAD --` trên 3 file này, kết quả rỗng. Đóng góp kiến trúc của luận văn nguyên vẹn.
+- Không đưa vào commit: 2 docx luận văn, `references/`, `demo/`, `bao_ve/`, `inkml.zip` (29,4 MB, đã thêm vào `.gitignore`), `online/*.npz`.
+
+### Checkpoint của từng cấu hình (đường dẫn đã xác minh tồn tại)
+
+| Cấu hình | val_loss | Checkpoint |
+|---|---|---|
+| `offline` | 0,4458 | `lightning_logs/abl_offline_traj3/lightning_logs/version_0/checkpoints/epoch=47-step=54672-val_loss=0.4458.ckpt` |
+| `online`+phụ | 0,5446 | `lightning_logs/abl_online_aux/.../epoch=49-step=56950-val_loss=0.5446.ckpt` |
+| `dual_shared`+phụ | 0,3622 | `lightning_logs/abl_dual_shared_aux/.../epoch=39-step=45560-val_loss=0.3622.ckpt` |
+| `dual_shared_uni`+phụ | 0,3748 | `lightning_logs/abl_dual_shared_uni_aux/.../epoch=47-step=54672-val_loss=0.3748.ckpt` |
+| `concat`+phụ | 0,3731 | `lightning_logs/abl_concat_aux/.../epoch=29-step=34170-val_loss=0.3731.ckpt` |
+| `cascaded`+phụ | 0,3510 | `lightning_logs/abl_cascaded_aux/.../epoch=33-step=38726-val_loss=0.3510.ckpt` |
+
+⚠️ `lightning_logs/` nằm trong `.gitignore` nên checkpoint **chỉ có trên máy này**, không theo git.
+
+### Cách tái lập
+
+```
+python tools/prep_online.py                 # inkml.zip -> online/*.npz (~10 giây)
+python tools/prep_stroke_labels.py          # -> online/stroke_labels_train.npz
+python custom_train.py --fusion dual_shared --aux-stroke-weight 0.5 --suffix aux
+python tools/run_ablations.py               # chạy nối tiếp phần còn lại + đo 3 tập
+```
+`custom_train.py` nay nhận tham số dòng lệnh; mặc định = hệ chính. Mọi lệnh python cần `conda run -n bttr --no-capture-output python ...`.
+
+### Việc CHƯA làm
+
+1. **Chưa viết gì vào luận văn.** Danh sách thay đổi đề xuất ở mục "Kế hoạch viết" bên dưới.
+2. **Trần 50 epoch đã cắn** với `online`+phụ (val_loss tốt nhất rơi đúng epoch 49, lần kiểm cuối). Nới ngân sách có thể cải thiện nhưng **phải chạy lại cả 6 cấu hình** (~15 giờ). User chưa quyết.
+3. **Mẫu số 2014 vẫn là 985** (mẫu `505_em_51` nhãn > 200 token bị `data_iterator` loại). Nay số liệu đặt cạnh BTTR/TAP nên mẫu số lệch thành sai giao thức. User chưa chốt có sửa `test_all.py` tính trên đủ 986 hay không. **Tôi không tự sửa cách đếm.**
+4. **Chưa chạy `offline` kèm giám sát phụ.** Về nguyên tắc không đổi (bộ giải mã chế độ `offline` không dùng `memory2`), nhưng nếu muốn giao thức tuyệt đối đồng nhất thì chạy lại 2,5h.
+
+### Kế hoạch viết (đã trình bày với user, chưa duyệt)
+
+Ba ràng buộc của thầy ngày 2026-07-29 buộc số quỹ đạo thật phải **dẫn dắt**, nên khối lượng lớn hơn "thêm một mục phụ lục":
+
+| Vị trí | Thay đổi |
+|---|---|
+| Bảng 1 | dòng "Ours" → 52,59 / 48,30 / 51,96 (quỹ đạo thật), đặt cạnh BTTR 53,96 và TAP 50,41 |
+| Abstract | thay 77,06/74,17 → 52,59/50,89; ablation: hợp nhất +2,98đ so với chỉ-ảnh, hai chiều +8,98đ |
+| Mục 1 | câu trả lời nay khẳng định được dưới đầu vào thật |
+| Mục 3 | tiểu mục mới: đọc `<trace>`, đặc trưng 8 chiều TAP, resample 0,03, chuẩn hóa, conv, BiGRU, giám sát phụ. **Phải nêu rõ `traceGroup` chỉ đọc lúc huấn luyện** |
+| Bảng 2 | thêm bước resample, hệ số giảm, loại bộ mã hóa, trọng số phụ 0,5, tăng cường, 9,2M tham số; dòng vocab 111 đánh dấu chỉ áp cho biến thể oracle |
+| Hình 3, Hình 4 | nhãn "linearized SRT · token ids [b, l1]" → đặc trưng điểm 8 chiều. Sửa SVG EN+VI, render, duyệt, nhúng. **Rủi ro kỹ thuật cao nhất, cắt trước nếu thiếu thời gian** |
+| Chương 4 | viết mới phần lớn: kết quả chính, so công bố, 3 trục ablation kèm McNemar, mục cận trên oracle, mục khoảng cách oracle↔thật |
+| Mục 5 | kết luận mới; hướng phát triển: trần epoch, hệ hai tầng, hợp nhất mức encoder (MMSCAN-E) |
+| `bao_ve/` | slide + kịch bản làm lại số |
+
+**Deadline user nêu: chốt trước thứ Tư 5/8/2026.**
+
+---
+
 #### ✅✅ BỘ SỐ HOÀN CHỈNH VỚI QUỸ ĐẠO THẬT — 2026-07-30 (ĐỌC MỤC NÀY TRƯỚC)
 
 Sáu cấu hình, seed 7, 50 epoch, `mode="max"`, `patience=15`, **không oracle**. Mọi cấu hình dùng bộ mã hóa BiGRU + giám sát phụ mức nét (trừ `offline`, vốn không dùng nhánh online).
