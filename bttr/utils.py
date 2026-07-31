@@ -163,7 +163,11 @@ def to_src(
     tokens: List[List[int]], device: torch.device,
     PAD_IDX: int = 0,
 ) -> Tuple[LongTensor, LongTensor]:
-    """Generate bidirection tgt and out
+    """Pad a batch of token sequences into a source tensor plus its mask.
+
+    Kept only for the earlier oracle-SRT variant of the online branch.  The
+    branch now reads pen trajectories, which the datamodule pads directly, so
+    nothing in the training path calls this any more.
 
     Parameters
     ----------

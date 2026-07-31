@@ -145,3 +145,10 @@ thesis/_writetest.txt
 .~lock*
 command.txt
 result.zip
+
+# --- nhanh online (quy dao but) ---
+TC11_package_CROHME2019.zip
+online/*.npz
+# 29 MB, extracted from the TC-11 package; tools/prep_online.py rebuilds the
+# npz from it in about ten seconds, so it does not belong in history
+inkml.zip

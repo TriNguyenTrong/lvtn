@@ -29,18 +29,14 @@ def test_on_dataset(test_year="2014", ckpt_path="best.ckpt", output_file="test_r
     with torch.no_grad():
         for batch in tqdm(test_loader):
             batch = batch.to(device)
-            
-            # 1. Prepare offline sequence features
-            seq_indices = batch.seq_indices[0] # batch_size is 1
-            seq = torch.tensor([seq_indices], dtype=torch.long, device=device)
-            seq_mask = torch.zeros((1, len(seq_indices)), dtype=torch.bool, device=device)
 
-            # 2. Beam Search
+            # 1. Beam search over image + online trajectory (batch size is 1,
+            #    so the trajectory is already unpadded and its mask all-False)
             hyps = model.bttr.beam_search(
                 batch.imgs,
                 batch.mask,
-                seq,
-                seq_mask,
+                batch.traj,
+                batch.traj_mask,
                 model.hparams.beam_size,
                 model.hparams.max_len
             )

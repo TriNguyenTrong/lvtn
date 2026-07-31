@@ -2,13 +2,14 @@ import zipfile
 
 import pytorch_lightning as pl
 import torch
+import torch.nn.functional as F
 import torch.optim as optim
 from torch import FloatTensor, LongTensor
 
 from bttr.datamodule import Batch
 from bttr.datamodule.vocab import CROHMEVocab
 from bttr.model.bttr import BTTR
-from bttr.utils import ExpRateRecorder, Hypothesis, ce_loss, to_src, to_bi_tgt_out, to_tgt_output
+from bttr.utils import ExpRateRecorder, Hypothesis, ce_loss, to_bi_tgt_out, to_tgt_output
 from einops import rearrange, repeat
 
 
@@ -36,17 +37,19 @@ class LitBTTR(pl.LightningModule):
         # ablation switches
         fusion: str = "dual_shared",      # dual_shared | offline | online | concat | cascaded
         bidirectional: bool = True,       # True = L2R+R2L (Ours); False = L2R only
-        vocab_enc: str = "vocab/crohme_seq_vocab.txt",
+        traj_dim: int = 8,                # online point feature width (TAP-style)
+        traj_downsample: int = 4,         # length reduction inside the online encoder
+        traj_encoder: str = "transformer",  # "transformer" | "gru" (TAP-style [33])
+        traj_stroke_pooling: bool = False,  # stroke-level units, SCAN-style [22]
+        aux_stroke_weight: float = 0.0,     # >0 adds the per-stroke symbol loss
         vocab_dec: str = "vocab/dictionary.txt",
     ):
         super().__init__()
         self.save_hyperparameters()
 
-        self.vocab_enc = CROHMEVocab(vocab_enc)
         self.vocab_dec = CROHMEVocab(vocab_dec)
 
         self.bttr = BTTR(
-            vocab_size_enc=len(self.vocab_enc),
             vocab_size_dec=len(self.vocab_dec),
             d_model=d_model,
             growth_rate=growth_rate,
@@ -58,12 +61,17 @@ class LitBTTR(pl.LightningModule):
             dropout=dropout,
             fusion=fusion,
             bidirectional=bidirectional,
+            traj_dim=traj_dim,
+            traj_downsample=traj_downsample,
+            traj_encoder=traj_encoder,
+            traj_stroke_pooling=traj_stroke_pooling,
+            traj_aux_classes=len(self.vocab_dec) if aux_stroke_weight > 0 else 0,
         )
 
         self.exprate_recorder = ExpRateRecorder()
 
     def forward(
-        self, img: FloatTensor, img_mask: LongTensor, sequence_feature, sequence_feature_mask, tgt: LongTensor
+        self, img: FloatTensor, img_mask: LongTensor, traj: FloatTensor, traj_mask: LongTensor, tgt: LongTensor
     ) -> FloatTensor:
         """run img and bi-tgt
 
@@ -73,6 +81,10 @@ class LitBTTR(pl.LightningModule):
             [b, 1, h, w]
         img_mask: LongTensor
             [b, h, w]
+        traj : FloatTensor
+            [b, l1, 8]
+        traj_mask : BoolTensor
+            [b, l1]
         tgt : LongTensor
             [2b, l]
 
@@ -81,12 +93,12 @@ class LitBTTR(pl.LightningModule):
         FloatTensor
             [2b, l, vocab_size]
         """
-        return self.bttr(img, img_mask,sequence_feature, sequence_feature_mask, tgt)
+        return self.bttr(img, img_mask, traj, traj_mask, tgt)
 
     def beam_search(
         self,
         img: FloatTensor,
-        sequence_feature:FloatTensor,
+        traj: FloatTensor,
         beam_size: int = 10,
         max_len: int = 200,
         alpha: float = 1.0,
@@ -97,6 +109,8 @@ class LitBTTR(pl.LightningModule):
         ----------
         img : FloatTensor
             [1, h, w]
+        traj : FloatTensor
+            [1, l1, 8] online point features, unpadded
         beam_size : int, optional
             by default 10
         max_len : int, optional
@@ -110,8 +124,9 @@ class LitBTTR(pl.LightningModule):
             LaTex string
         """
         img_mask = torch.zeros_like(img, dtype=torch.bool)  # squeeze channel
-        seq_mask = torch.zeros_like(sequence_feature, dtype=torch.bool)
-        hyps = self.bttr.beam_search(img.unsqueeze(0), img_mask, sequence_feature, seq_mask, beam_size, max_len)
+        # a single unpadded trajectory: the mask is [1, l1], not the shape of traj
+        traj_mask = torch.zeros(traj.shape[:2], dtype=torch.bool, device=traj.device)
+        hyps = self.bttr.beam_search(img.unsqueeze(0), img_mask, traj, traj_mask, beam_size, max_len)
         best_hyp = max(hyps, key=lambda h: h.score / (len(h) ** alpha))
         return self.vocab_dec.indices2label(best_hyp.seq)
 
@@ -120,10 +135,27 @@ class LitBTTR(pl.LightningModule):
             tgt, out = to_bi_tgt_out(batch.indices, self.device)
         else:
             tgt, out = to_tgt_output(batch.indices, "l2r", self.device)
-        seq, seq_mask = to_src(batch.seq_indices, self.device)
-        out_hat = self(batch.imgs, batch.mask, seq, seq_mask, tgt)
+        use_aux = self.hparams.aux_stroke_weight > 0 and batch.stroke_labels is not None
+        if use_aux:
+            out_hat, aux_logits = self.bttr(
+                batch.imgs, batch.mask, batch.traj, batch.traj_mask, tgt, return_aux=True
+            )
+        else:
+            out_hat = self(batch.imgs, batch.mask, batch.traj, batch.traj_mask, tgt)
         loss = ce_loss(out_hat, out, self.vocab_dec.PAD_IDX)
         self.log("train_loss", loss, on_step=False, on_epoch=True, sync_dist=True, )
+
+        if use_aux:
+            # one symbol prediction per stroke; -100 marks padding and the few
+            # strokes whose traceGroup symbol is outside the decoder vocabulary
+            lab = batch.stroke_labels[:, : aux_logits.size(1)]
+            aux = F.cross_entropy(
+                rearrange(aux_logits, "b s c -> (b s) c"),
+                rearrange(lab, "b s -> (b s)"),
+                ignore_index=-100,
+            )
+            self.log("train_aux", aux, on_step=False, on_epoch=True, sync_dist=True)
+            loss = loss + self.hparams.aux_stroke_weight * aux
 
         return loss
 
@@ -132,8 +164,7 @@ class LitBTTR(pl.LightningModule):
             tgt, out = to_bi_tgt_out(batch.indices, self.device)
         else:
             tgt, out = to_tgt_output(batch.indices, "l2r", self.device)
-        seq, seq_mask = to_src(batch.seq_indices, self.device)
-        out_hat = self(batch.imgs, batch.mask, seq, seq_mask, tgt)
+        out_hat = self(batch.imgs, batch.mask, batch.traj, batch.traj_mask, tgt)
 
         loss = ce_loss(out_hat, out, self.vocab_dec.PAD_IDX)
         self.log(
@@ -160,10 +191,9 @@ class LitBTTR(pl.LightningModule):
         # )
 
     def test_step(self, batch: Batch, _):
-        seq, seq_mask = to_src(batch.seq_indices, self.device)
-
         hyps = self.bttr.beam_search(
-            batch.imgs, batch.mask, seq, seq_mask, self.hparams.beam_size, self.hparams.max_len
+            batch.imgs, batch.mask, batch.traj, batch.traj_mask,
+            self.hparams.beam_size, self.hparams.max_len
         )
 
         best_hyp = max(hyps, key=lambda h: h.score / (len(h) ** self.hparams.alpha))
@@ -192,6 +222,11 @@ class LitBTTR(pl.LightningModule):
 
         reduce_scheduler = optim.lr_scheduler.ReduceLROnPlateau(
             optimizer,
+            # Deliberately "max" against monitor="val_loss": a falling loss never
+            # sets a new best, so this acts as a step decay that cuts the lr every
+            # `patience` checks (epoch ~24 and ~46 of a 50-epoch run). Every
+            # published number in the thesis was trained under it -- switching to
+            # "min" cost the offline branch 12 ExpRate points (47.61 -> 35.63).
             mode="max",
             factor=0.1,
             patience=self.hparams.patience // self.trainer.check_val_every_n_epoch,

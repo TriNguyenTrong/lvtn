@@ -1,3 +1,5 @@
+from argparse import ArgumentParser
+
 from pytorch_lightning import Trainer, seed_everything
 from bttr.datamodule import CROHMEDatamodule
 from bttr.lit_bttr import LitBTTR
@@ -26,16 +28,41 @@ def test():
 
 # test()
 
+def parse_args():
+    """Switches are command-line options so a night of ablations can be chained
+    without editing this file between runs. The defaults are the configuration
+    of the thesis' main system."""
+    p = ArgumentParser()
+    p.add_argument("--fusion", default="dual_shared",
+                   choices=["dual_shared", "offline", "online", "concat", "cascaded"])
+    p.add_argument("--unidirectional", action="store_true",
+                   help="train L2R only instead of L2R+R2L")
+    p.add_argument("--traj-encoder", default="gru", choices=["gru", "transformer"])
+    p.add_argument("--stroke-pooling", action="store_true",
+                   help="SCAN-style stroke units; measured worse than point level")
+    p.add_argument("--aux-stroke-weight", type=float, default=0.0,
+                   help="weight of the per-stroke symbol loss from <traceGroup>")
+    p.add_argument("--suffix", default="traj3",
+                   help="checkpoint folder suffix, one per encoder revision")
+    p.add_argument("--max-epochs", type=int, default=50)
+    return p.parse_args()
+
+
 if __name__ == "__main__":
+    args = parse_args()
     # Fix the seed so every ablation variant trains under identical conditions (fair comparison)
     seed_everything(7)
 
-    # --- Ablation switches (Section 4): change these per run ---
-    FUSION = "dual_shared"        # dual_shared (Ours) | offline | online | concat | cascaded
-    BIDIRECTIONAL = True       # True (Ours, L2R+R2L) | False (L2R only)
+    FUSION = args.fusion
+    BIDIRECTIONAL = not args.unidirectional
     # Each variant is saved to its OWN folder so checkpoints never overwrite another model's.
     run_name = FUSION + ("" if BIDIRECTIONAL else "_uni")
-    out_dir = f"lightning_logs/abl_{run_name}"
+    # One folder per online-encoder revision so architectures never share
+    # checkpoints: _traj = original, _traj2 = deep conv front end + feature
+    # standardisation + distortion, _traj3 = the same plus a TAP-style BiGRU
+    # in place of the Transformer encoder, _aux = _traj3 plus the per-stroke
+    # symbol loss.
+    out_dir = f"lightning_logs/abl_{run_name}_{args.suffix}"
 
     model = LitBTTR(d_model=256,
     growth_rate=24,
@@ -52,6 +79,12 @@ if __name__ == "__main__":
     patience= 20,
     fusion= FUSION,
     bidirectional= BIDIRECTIONAL,
+    traj_encoder= args.traj_encoder,   # TAP-style [33] recurrent encoder
+    # stroke-level pooling [22] measured worse than point level (token 43.08 vs
+    # 47.69 on 2014), so the fusion runs use the point-level BiGRU
+    traj_stroke_pooling= args.stroke_pooling,
+    # per-stroke symbol supervision from <traceGroup>, training only
+    aux_stroke_weight= args.aux_stroke_weight,
     )
     # .load_from_checkpoint(r"lightning_logs\crohme\lightning_logs\version_14\checkpoints\epoch=19-step=22800-val_ExpRate=0.4355.ckpt")
 
@@ -62,7 +95,10 @@ if __name__ == "__main__":
         default_root_dir=out_dir,
         enable_checkpointing=True,
         callbacks = [
-            EarlyStopping(monitor="val_loss", mode="min"),
+            # patience=15 val checks (= 30 epochs). The default of 3 cut the
+            # trajectory runs off at epoch 7, while val_loss was still on the
+            # plateau that precedes the recognition signal.
+            EarlyStopping(monitor="val_loss", mode="min", patience=15),
             LearningRateMonitor(logging_interval='epoch'), 
             ModelCheckpoint(            
                 save_top_k=10,
@@ -73,8 +109,8 @@ if __name__ == "__main__":
             )
         ], 
         check_val_every_n_epoch=2,
-        max_epochs=50,
-        gpus=1, 
+        max_epochs=args.max_epochs,
+        gpus=1,
         fast_dev_run=False,
     )
     print(f"[ablation] variant = {run_name}  ->  saving checkpoints under {out_dir}")

@@ -4,15 +4,9 @@ import zipfile
 from PIL import Image
 from torchvision.transforms import transforms
 from bttr.lit_bttr import LitBTTR
-from bttr.datamodule.vocab import CROHMEVocab
+from bttr.datamodule.datamodule import load_online
 
 image_name = "2016/UN_101_em_0.bmp"
-
-def to_src(seq_indices, device):
-    # Tạo tensor seq và seq_mask cho logic beam search  
-    seq = torch.tensor([seq_indices], dtype=torch.long, device=device)
-    seq_mask = torch.zeros((1, len(seq_indices)), dtype=torch.bool, device=device)
-    return seq, seq_mask
 
 def predict(image_name="2014/18_em_1.bmp"):
     # 1. Load model từ file best.ckpt
@@ -36,29 +30,26 @@ def predict(image_name="2014/18_em_1.bmp"):
     img_tensor = transforms.ToTensor()(img).unsqueeze(0).to(model.device) # [1, 1, H, W]
     img_mask = torch.zeros((1, img_tensor.shape[2], img_tensor.shape[3]), dtype=torch.bool, device=model.device)
 
-    # 3. Lấy offline sequence features tương ứng từ annotation file
-    seq_dict = {
-        os.path.splitext(os.path.basename(line.strip().split('\t')[0]))[0]: line.strip().split('\t')[1]
-        for line in open("crohme_all.txt").readlines() if len(line.strip().split('\t')) == 2
-    }
-    
-    if img_name_only not in seq_dict:
-        print(f"Lỗi: Không tìm thấy sequence feature cho ảnh {img_name_only} trong crohme_all.txt")
+    # 3. Lấy quỹ đạo online tương ứng (do tools/prep_online.py sinh ra)
+    split = image_name.split("/")[0]
+    traj_dict = load_online(os.path.join("online", f"{split}.npz"))
+
+    if img_name_only not in traj_dict:
+        print(f"Lỗi: Không tìm thấy quỹ đạo cho ảnh {img_name_only} trong online/{split}.npz")
         return
 
-    vocab_enc = CROHMEVocab("vocab/crohme_seq_vocab.txt")
-    seq_indices = vocab_enc.words2indices(seq_dict[img_name_only].split())
-    seq, seq_mask = to_src(seq_indices, model.device)
-    
+    traj = torch.from_numpy(traj_dict[img_name_only]).unsqueeze(0).to(model.device)  # [1, l1, 8]
+    traj_mask = torch.zeros(traj.shape[:2], dtype=torch.bool, device=model.device)
+
     # 4. Tiến hành giải mã (Beam Search)
     print("Running Inference (Beam Search)...")
     with torch.no_grad():
         hyps = model.bttr.beam_search(
-            img_tensor, 
-            img_mask, 
-            seq, 
-            seq_mask, 
-            model.hparams.beam_size, 
+            img_tensor,
+            img_mask,
+            traj,
+            traj_mask,
+            model.hparams.beam_size,
             model.hparams.max_len
         )
     
