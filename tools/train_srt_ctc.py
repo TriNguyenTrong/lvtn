@@ -49,14 +49,52 @@ class Vocab:
 # --------------------------------------------------------------------------
 # traces and features, following the notebook exactly
 # --------------------------------------------------------------------------
-def get_traces(raw: bytes, height: int = 256):
+def rdp_simplify(points: np.ndarray, eps: float) -> np.ndarray:
+    """Ramer-Douglas-Peucker, matching the `rdp` package the notebook installs.
+
+    Version 4 of the supervisor's notebook simplifies every stroke with
+    eps=0.3 on the raw device coordinates, before the height-256 rescale, and
+    that halves the point count (476.7 -> 273.0 per expression on CROHME 2019).
+    A checkpoint trained that way must be fed the same thing: evaluating his
+    published weights without this step cost 3.6 points of token error.
+
+    Iterative rather than recursive: single strokes run to a few hundred
+    points, and a pathological one would otherwise blow the stack.
+    """
+    pts = np.asarray(points, dtype=float)
+    if len(pts) < 3:
+        return pts
+    keep = np.zeros(len(pts), dtype=bool)
+    keep[0] = keep[-1] = True
+    stack = [(0, len(pts) - 1)]
+    while stack:
+        lo, hi = stack.pop()
+        if hi <= lo + 1:
+            continue
+        seg = pts[hi] - pts[lo]
+        norm = np.hypot(*seg)
+        rel = pts[lo + 1:hi] - pts[lo]
+        if norm == 0:
+            dist = np.hypot(rel[:, 0], rel[:, 1])
+        else:
+            dist = np.abs(np.cross(seg, rel)) / norm
+        i = int(dist.argmax())
+        if dist[i] > eps:
+            split = lo + 1 + i
+            keep[split] = True
+            stack.append((lo, split))
+            stack.append((split, hi))
+    return pts[keep]
+
+
+def get_traces(raw: bytes, height: int = 256, rdp_eps: float = 0.0):
     root = ET.fromstring(raw)
     traces = []
     for strk in root.findall("ns:trace", namespaces=NS):
         pts = [p.strip().split()[:2] for p in strk.text.strip().split(",")]
         arr = np.array(pts, dtype="float")
         if len(arr):
-            traces.append(arr)
+            traces.append(rdp_simplify(arr, rdp_eps) if rdp_eps > 0 else arr)
     if not traces:
         return None
     allpts = np.concatenate(traces, 0)
@@ -86,6 +124,14 @@ def feature_extraction(traces):
     return feat.astype(np.float32)
 
 
+# Per-feature statistics of the training split, the same ones the trajectory
+# encoder uses. Without them the LSTM sees x at std 3.02 next to dx at std 0.107
+# and the stroke-shape channels contribute almost nothing: the unnormalised run
+# stalled at 77% token error against 13.9% for the notebook's 4-D vector.
+TAP_MEAN = (2.830163, 0.510638, 0.011059, 0.001062, 0.022132, 0.002129, 0.0, 0.0)
+TAP_STD = (3.018715, 0.245498, 0.107065, 0.069360, 0.152776, 0.101755, 1.0, 1.0)
+
+
 def load_tap_features(online_dir, split):
     """The 8-D TAP features already built by tools/prep_online.py.
 
@@ -96,15 +142,18 @@ def load_tap_features(online_dir, split):
     """
     npz = np.load(os.path.join(online_dir, f"{split}.npz"), allow_pickle=False)
     data, off, keys = npz["data"], npz["offsets"], npz["keys"]
-    return {str(k): np.asarray(data[off[i]:off[i + 1]], dtype=np.float32)
+    mean = np.asarray(TAP_MEAN, dtype=np.float32)
+    std = np.asarray(TAP_STD, dtype=np.float32)
+    return {str(k): (np.asarray(data[off[i]:off[i + 1]], dtype=np.float32) - mean) / std
             for i, k in enumerate(keys)}
 
 
 class InkmlSRT(Dataset):
     def __init__(self, zip_path, split, srt: dict, vocab: Vocab, tap: dict = None,
-                 keep: set = None):
+                 keep: set = None, rdp_eps: float = 0.0):
         self.tap = tap
         self.keep = keep
+        self.rdp_eps = rdp_eps
         self.zip_path, self.vocab = zip_path, vocab
         with zipfile.ZipFile(zip_path) as z:
             self.names = sorted(
@@ -130,7 +179,7 @@ class InkmlSRT(Dataset):
         if self.tap is not None:
             feat = self.tap.get(base)
         else:
-            traces = get_traces(self._zf.read(name))
+            traces = get_traces(self._zf.read(name), rdp_eps=self.rdp_eps)
             feat = feature_extraction(traces) if traces else None
         if feat is None or not len(feat):
             feat = np.zeros((1, 8 if self.tap is not None else 4), dtype=np.float32)
@@ -205,7 +254,10 @@ def run_kfold(args, vocab, srt, dev):
     """
     import random
 
-    full = InkmlSRT(args.inkml, "train", srt, vocab)
+    use_tap = args.features == "tap8"
+    tap = load_tap_features(args.online_dir, "train") if use_tap else None
+    in_dim = 8 if use_tap else 4
+    full = InkmlSRT(args.inkml, "train", srt, vocab, tap=tap, rdp_eps=args.rdp)
     bases = [os.path.splitext(os.path.basename(n))[0] for n in full.names]
     rng = random.Random(7)
     rng.shuffle(bases)
@@ -213,56 +265,96 @@ def run_kfold(args, vocab, srt, dev):
     folds = [set(bases[i::k]) for i in range(k)]
     print(f"{len(bases)} train samples -> {k} folds of ~{len(folds[0])}", flush=True)
 
+    def fit_fold(ds_tr, lr, seed):
+        torch.manual_seed(seed)
+        model = BiLSTMCTC(vocab.n_classes, input_size=in_dim,
+                          hidden=args.hidden, layers=args.layers).to(dev)
+        crit = nn.CTCLoss(blank=vocab.blank, zero_infinity=True)
+        opt = torch.optim.Adam(model.parameters(), lr=lr)
+        dl = DataLoader(ds_tr, batch_size=args.batch_size, shuffle=True,
+                        collate_fn=collate, num_workers=0)
+        for ep in range(args.epochs):
+            model.train()
+            tot = n = 0
+            for x, y, flens, llens, _ in dl:
+                logits = model(x.to(dev))
+                loss = crit(logits.log_softmax(-1).permute(1, 0, 2),
+                            y.to(dev), flens, llens)
+                opt.zero_grad()
+                loss.backward()
+                nn.utils.clip_grad_norm_(model.parameters(), 5.0)
+                opt.step()
+                tot += loss.item()
+                n += 1
+            if ep % 10 == 9 or ep == args.epochs - 1:
+                print(f"   epoch {ep:3d}  ctc_loss {tot / max(n, 1):.4f}", flush=True)
+        return model
+
+    def decode_fold(model, ds_ho):
+        model.eval()
+        dl_ho = DataLoader(ds_ho, batch_size=1, shuffle=False,
+                           collate_fn=collate, num_workers=0)
+        preds, err, ref, short = [], 0, 0, 0
+        with torch.no_grad():
+            for x, y, flens, llens, b in dl_ho:
+                pred = greedy_decode(model(x.to(dev))[0].cpu(), vocab)
+                gt = srt[b[0]].split()
+                err += levenshtein(pred, gt)
+                ref += len(gt)
+                short += len(pred) < 0.5 * len(gt)
+                preds.append((b[0], pred))
+        return preds, 100 * err / max(ref, 1), 100 * short / max(len(preds), 1)
+
     os.makedirs(args.out, exist_ok=True)
     out_path = os.path.join(args.out, "train.txt")
-    err = ref = 0
+    all_preds, err, ref = [], 0, 0
+    for i, held in enumerate(folds):
+        keep_train = set(bases) - held
+        ds_tr = InkmlSRT(args.inkml, "train", srt, vocab, tap=tap, keep=keep_train,
+                         rdp_eps=args.rdp)
+        ds_ho = InkmlSRT(args.inkml, "train", srt, vocab, tap=tap, keep=held,
+                         rdp_eps=args.rdp)
+        print(f"-- fold {i + 1}/{k}: train {len(ds_tr)}, held out {len(ds_ho)}", flush=True)
+
+        # A fold that collapses onto the CTC blank poisons a fifth of the
+        # training signal, and the first tap8 run lost two folds that way
+        # (fold 1 at 99.98% token error, fold 2 at 65.16%, against 5-15% for
+        # the rest): a 4x256 LSTM on the standardised 8-D features sits close
+        # to divergence at lr 1e-3. Halve the rate and retry rather than keep
+        # a fold whose predictions are blank.
+        lr, seed = args.lr, 1000 + i
+        for attempt in range(args.kfold_retries + 1):
+            model = fit_fold(ds_tr, lr, seed)
+            preds, fold_ter, fold_short = decode_fold(model, ds_ho)
+            print(f"   fold {i + 1} attempt {attempt + 1}: lr {lr:g}, "
+                  f"token error {fold_ter:.2f}%, short predictions {fold_short:.1f}%",
+                  flush=True)
+            if fold_ter <= args.kfold_max_ter and fold_short <= 10.0:
+                break
+            if attempt < args.kfold_retries:
+                lr, seed = lr / 2, seed + 500
+                print(f"   fold {i + 1} rejected, retrying at lr {lr:g}", flush=True)
+        else:
+            print(f"   !! fold {i + 1} still bad after "
+                  f"{args.kfold_retries + 1} attempts; keeping the last one", flush=True)
+
+        all_preds.extend(preds)
+        for base, pred in preds:
+            gt = srt[base].split()
+            err += levenshtein(pred, gt)
+            ref += len(gt)
+        print(f"   running out-of-fold token error {100 * err / max(ref, 1):.2f}%", flush=True)
+
     with open(out_path, "w", encoding="utf-8") as f_out:
-        for i, held in enumerate(folds):
-            keep_train = set(bases) - held
-            ds_tr = InkmlSRT(args.inkml, "train", srt, vocab, keep=keep_train)
-            ds_ho = InkmlSRT(args.inkml, "train", srt, vocab, keep=held)
-            print(f"-- fold {i + 1}/{k}: train {len(ds_tr)}, held out {len(ds_ho)}", flush=True)
-
-            model = BiLSTMCTC(vocab.n_classes).to(dev)
-            crit = nn.CTCLoss(blank=vocab.blank, zero_infinity=True)
-            opt = torch.optim.Adam(model.parameters(), lr=args.lr)
-            dl = DataLoader(ds_tr, batch_size=args.batch_size, shuffle=True,
-                            collate_fn=collate, num_workers=0)
-            for ep in range(args.epochs):
-                model.train()
-                tot = n = 0
-                for x, y, flens, llens, _ in dl:
-                    logits = model(x.to(dev))
-                    loss = crit(logits.log_softmax(-1).permute(1, 0, 2),
-                                y.to(dev), flens, llens)
-                    opt.zero_grad()
-                    loss.backward()
-                    nn.utils.clip_grad_norm_(model.parameters(), 5.0)
-                    opt.step()
-                    tot += loss.item()
-                    n += 1
-                if ep % 10 == 9 or ep == args.epochs - 1:
-                    print(f"   epoch {ep:3d}  ctc_loss {tot / max(n, 1):.4f}", flush=True)
-
-            model.eval()
-            dl_ho = DataLoader(ds_ho, batch_size=1, shuffle=False,
-                               collate_fn=collate, num_workers=0)
-            with torch.no_grad():
-                for x, y, flens, llens, b in dl_ho:
-                    pred = greedy_decode(model(x.to(dev))[0].cpu(), vocab)
-                    gt = srt[b[0]].split()
-                    err += levenshtein(pred, gt)
-                    ref += len(gt)
-                    f_out.write(f"{b[0]}\t{' '.join(pred)}\n")
-            print(f"   fold {i + 1} done, running token error "
-                  f"{100 * err / max(ref, 1):.2f}%", flush=True)
+        for base, pred in all_preds:
+            f_out.write(f"{base}\t{' '.join(pred)}\n")
 
     print(f"out-of-fold train SRT: token error rate {100 * err / max(ref, 1):.2f}%"
           f"  -> {out_path}")
     # the test splits keep the predictions of the all-data model: those samples
     # were never in its training set, so there is nothing to correct for
     for split in ("2014", "2016", "2019"):
-        src = os.path.join(ROOT, "online", "srt_pred", f"{split}.txt")
+        src = os.path.join(args.test_src, f"{split}.txt")
         dst = os.path.join(args.out, f"{split}.txt")
         if os.path.exists(src):
             open(dst, "w", encoding="utf-8").write(open(src, encoding="utf-8").read())
@@ -287,11 +379,21 @@ def main():
     p.add_argument("--features", default="notebook", choices=["notebook", "tap8"],
                    help="'notebook' = the 4-D vector of the supervisor's notebook; "
                         "'tap8' = the 8-D TAP features from tools/prep_online.py")
+    p.add_argument("--rdp", type=float, default=0.0,
+                   help="stroke simplification tolerance on raw coordinates; "
+                        "0.3 reproduces version 4 of the supervisor's notebook, "
+                        "0 the earlier versions and our own runs")
     p.add_argument("--hidden", type=int, default=128)
     p.add_argument("--layers", type=int, default=3)
     p.add_argument("--online-dir", default=os.path.join(ROOT, "online"))
+    p.add_argument("--test-src", default=os.path.join(ROOT, "online", "srt_pred"),
+                   help="folder whose test-split predictions the k-fold output reuses")
     p.add_argument("--kfold", type=int, default=0,
                    help=">0 writes out-of-fold predictions for the training split")
+    p.add_argument("--kfold-retries", type=int, default=2,
+                   help="times a collapsed fold is retrained at half the learning rate")
+    p.add_argument("--kfold-max-ter", type=float, default=40.0,
+                   help="token error above which a fold counts as collapsed")
     args = p.parse_args()
     if args.tag:
         args.out = args.out + "_" + args.tag
@@ -326,7 +428,8 @@ def main():
         args.predict_only = True
 
     if not args.predict_only:
-        train = InkmlSRT(args.inkml, "train", srt, vocab, tap=tap_for("train"))
+        train = InkmlSRT(args.inkml, "train", srt, vocab, tap=tap_for("train"),
+                         rdp_eps=args.rdp)
         print(f"train samples: {len(train)}")
         dl = DataLoader(train, batch_size=args.batch_size, shuffle=True,
                         collate_fn=collate, num_workers=0)
@@ -354,7 +457,8 @@ def main():
     # write predicted SRT for every split, and report token error rate
     model.eval()
     for split in ("train", "2014", "2016", "2019"):
-        ds = InkmlSRT(args.inkml, split, srt, vocab, tap=tap_for(split))
+        ds = InkmlSRT(args.inkml, split, srt, vocab, tap=tap_for(split),
+                      rdp_eps=args.rdp)
         if not len(ds):
             print(f"{split}: no files, skipped")
             continue

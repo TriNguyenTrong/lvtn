@@ -1,0 +1,76 @@
+== BANG 6 (kiem chung ExpRate voi mau so chinh thuc) ==
+traj_abl_offline_lrmax         49.90 47.60 46.54 micro=47.90
+traj_abl_online_aux            40.77 32.52 36.36 micro=36.34
+traj_abl_concat_aux            52.23 45.60 48.71 micro=48.68
+traj_abl_cascaded_aux          53.35 48.21 51.71 micro=50.99
+traj_abl_dual_shared_aux       52.54 48.30 51.96 micro=50.87
+traj_abl_dual_shared_uni_aux   45.54 39.49 41.20 micro=41.90
+
+== ExpRate <=1 / <=2 (he chinh) ==
+2014: exact 52.54 | <=1 68.26 | <=2 78.09
+2016: exact 48.30 | <=1 63.21 | <=2 73.15
+2019: exact 51.96 | <=1 68.72 | <=2 75.81
+micro (n=3332): exact 50.87 | <=1 66.69 | <=2 75.57
+
+== PHAN LOAI LOI [traj_abl_dual_shared_aux] (tren 1636 cau co dau ra) ==
+   structural     700   42.8%
+   symbol         541   33.1%
+   insdel         395   24.1%
+   ty le loi theo do dai (da tinh ca 505_em_51 vao nhom >30):
+     1-10  :  32.9% (415/1262)
+     11-20 :  45.8% (468/1022)
+     21-30 :  62.1% (383/617)
+     >30   :  86.1% (371/431)
+
+== PHAN LOAI LOI [traj_abl_offline_lrmax] (tren 1735 cau co dau ra) ==
+   structural     712   41.0%
+   symbol         627   36.1%
+   insdel         396   22.8%
+
+== PHAN LOAI LOI [traj_abl_online_aux] (tren 2120 cau co dau ra) ==
+   structural    1275   60.1%
+   symbol         467   22.0%
+   insdel         378   17.8%
+
+== THAY THE KY HIEU (he chinh) == tong edit=7393, thay the ky hieu thuan=2020
+   nham hoa-thuong: 291 (14.4% cua 2020)
+   x          -> X          68
+   C          -> c          37
+   P          -> p          30
+   c          -> C          30
+   X          -> x          30
+   1          -> 2          28
+   S          -> s          26
+   ]          -> )          25
+   z          -> 2          24
+   \ldots     -> \cdots     23
+
+== FUSION vs OFFLINE-ONLY == sua duoc 393, lam hong 294, rong 99
+
+== McNEMAR exact 2-sided ==
+   traj_abl_dual_shared_aux vs traj_abl_offline_lrmax: b=393 c=294 p=0.0001805
+   traj_abl_dual_shared_aux vs traj_abl_dual_shared_uni_aux: b=468 c=169 p=2.19e-33
+   traj_abl_dual_shared_aux vs traj_abl_cascaded_aux: b=240 c=244 p=0.8916
+   traj_abl_dual_shared_aux vs traj_abl_concat_aux: b=294 c=221 p=0.001486
+   traj_abl_cascaded_aux vs traj_abl_concat_aux: b=288 c=211 p=0.0006537
+   traj_abl_dual_shared_aux vs traj_abl_online_aux: b=623 c=139 p=6.35e-74
+   main vs offline 2014: b=120 c=94 p=0.08722
+   main vs offline 2016: b=116 c=108 p=0.6401
+   main vs offline 2019: b=157 c=92 p=4.556e-05
+   main vs uni 2014: b=131 c=62 p=7.591e-07
+   main vs uni 2016: b=155 c=54 p=1.683e-12
+   main vs uni 2019: b=182 c=53 p=9.565e-18
+
+== BO SUNG: THIET KE 1 (he hai tang) ==
+traj_abl_srtoof_better   (cau hinh tot nhat Bang 7) 49.59 46.38 47.71 micro=47.81
+  wrong=1739 (1738 co dau ra)  structural 745 (42.9%)  symbol 590 (33.9%)  insdel 403 (23.2%)
+  do dai: 1-10 37.8% | 11-20 48.3% | 21-30 64.2% | >30 86.3%
+  <=1 64.74%  <=2 72.54%   (mau so 3332)
+  vs offline-only: b=321 c=324 p=0.937   |   coord vs 2-stage: b=357 c=255 p=4.29e-05
+  overlap: ca hai dung 1338, chi toa do 357, chi hai tang 255, ca hai sai 1381
+
+traj_abl_srtoof_thayv4full (bo nhan dang cua thay) 49.70 47.34 46.54 micro=47.75
+  wrong=1741 (1740 co dau ra)  structural 732 (42.1%)  symbol 596 (34.3%)  insdel 412 (23.7%)
+  do dai: 1-10 38.0% | 11-20 48.9% | 21-30 63.5% | >30 85.8%
+  <=1 64.89%  <=2 72.90%
+  vs offline-only: b=313 c=318 p=0.873   |   coord vs 2-stage: b=359 c=255 p=3.10e-05
