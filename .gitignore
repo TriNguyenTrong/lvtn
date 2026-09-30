@@ -145,3 +145,48 @@ thesis/_writetest.txt
 .~lock*
 command.txt
 result.zip
+
+# --- nhanh online (quy dao but) ---
+TC11_package_CROHME2019.zip
+online/*.npz
+# 29 MB, extracted from the TC-11 package; tools/prep_online.py rebuilds the
+# npz from it in about ten seconds, so it does not belong in history
+inkml.zip
+# checkpoint mo hinh SRT-CTC (3.7-21 MB), tai tao duoc bang tools/train_srt_ctc.py
+online/*.pt
+
+# Kaggle model archive from the supervisor, 175 MB; srt_ckpt/ holds what is used
+crohme2019-train-pytorch-default-v1.tar.gz
+srt_ckpt/
+
+# --- keep the public tree to code, results and checkpoints ---
+thesis/
+bao_ve/
+skill/
+*outputs/
+demo/
+release_thesis-v1/
+# root-level notes and hand-over files (README.md stays)
+/*.md
+!/README.md
+/_*.txt
+/text.txt
+# CROHME 2023 (CC BY-NC-SA): not redistributed
+crohme2023_test/
+online/crohme2023_render/
+online/smoke_*/
+results/rev_smoke_*
+# run bookkeeping and large binaries (released separately)
+logs/
+results/*.md
+*.ckpt
+!best.ckpt
+*.zip
+!data.zip
+*.tar.gz
+tools/chain_*.py
+tools/switch_queue_*.py
+tools/watchdog_*.py
+tools/resume_overnight.py
+tools/pause_after.py
+tools/build_*preview*.py

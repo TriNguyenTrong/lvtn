@@ -1,0 +1,6 @@
+2014: test 986  name overlap 0  identical-image overlap 0
+2016: test 1147  name overlap 0  identical-image overlap 0
+2019: test 1199  name overlap 0  identical-image overlap 0
+held-out present in trajectories: 442/442; in stroke labels: 442/442
+train kept for training with trajectories: 8392
+RESULT: OK, no overlap with any test set

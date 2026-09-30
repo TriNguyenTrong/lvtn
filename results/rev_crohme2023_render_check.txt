@@ -1,0 +1,23 @@
+CROHME 2023 test -- step C checks (28/9/2026).
+Total InkML files: 2300
+Samples and coordinate-unit type per source (source name as in <annotation type="copyright">; '(none)' = tag missing):
+  (none): n=543  decimal-first-coord=536  integer-first-coord=7
+  LTU_2023: n=144  decimal-first-coord=142  integer-first-coord=2
+  Nakagawa_Lab_2023: n=771  decimal-first-coord=755  integer-first-coord=16
+  Nantes_Universite_2023: n=842  decimal-first-coord=831  integer-first-coord=11
+All 2300 samples use decimal coordinates: False (a few per source have an integer-valued first coordinate, e.g. '15 20.5' -- still the same small-magnitude native unit, not device-pixel scale; checked by inspection)
+
+Per-source scale factor (anchor = 2019's median expression CONTENT height, no margin, = 92.3px = 0.65 x median ink-bbox height over all 1,199 2019 InkML in inkml.zip; fallback to EXPRESSION height on both sides because inkml.zip's own InkML has no <traceGroup> to measure symbol height from):
+  (none): n=543  native median h=12.490 w=42.190  -> factor=7.3899 px/unit
+  LTU_2023: n=144  native median h=10.805 w=44.500  -> factor=8.5423 px/unit
+  Nakagawa_Lab_2023: n=771  native median h=11.130 w=36.280  -> factor=8.2929 px/unit
+  Nantes_Universite_2023: n=842  native median h=8.580 w=33.415  -> factor=10.7576 px/unit
+
+Rendered-image distribution, 2023 (n=2300) vs 2019/data.zip (n=1199):
+  height (px): 2023 median=119.0 p10=83.0 p90=169.0 | 2019 median=119.0 p10=80.0 p90=179.0
+  width  (px): 2023 median=354.0 p10=161.0 p90=694.0 | 2019 median=361.0 p10=153.0 p90=667.0
+  stroke thickness (median run length, px, 60 vs 60 sampled images): 2023 4.00 | 2019 4.00 (line_width=3px in the renderer)
+
+Comparison grid (left 4 columns = 24 random 2023 renders, right 4 columns = 24 random 2019 data.zip bitmaps, seed 0): results\rev_crohme2023_render_check.png
+
+Average resampled points per expression: 2023 314.9 (n=2300) vs 2019 329.9 (n=1199)

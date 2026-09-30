@@ -1,0 +1,17 @@
+Revision summary (official denominators 986 / 1147 / 1199, micro over 3332)
+tag	2014	2016	2019	micro
+abl_cascx	56.39	52.05	55.30	54.50
+abl_sares	56.39	51.87	53.79	53.90
+abl_sepcross	56.29	51.96	56.05	54.71
+cascaded_s7	57.40	52.31	54.30	54.53
+cascaded: 1 seed (no sd)
+concat_s7	56.19	48.47	51.21	51.74
+concat: 1 seed (no sd)
+long_offline	53.85	48.74	49.87	50.66
+offline_s13	51.42	49.69	50.38	50.45
+offline_s42	52.03	52.75	53.46	52.79
+offline mean±sd over 3 seeds	52.43 ± 1.27	50.39 ± 2.09	51.24 ± 1.94	51.30 ± 1.30
+long_shared	58.22	52.31	56.13	55.43
+shared_s13	57.00	51.70	56.21	54.89
+shared_s42	57.10	53.10	56.88	55.64
+shared mean±sd over 3 seeds	57.44 ± 0.68	52.37 ± 0.70	56.41 ± 0.41	55.32 ± 0.39

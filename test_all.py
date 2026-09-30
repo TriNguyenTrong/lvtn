@@ -4,7 +4,8 @@ from tqdm import tqdm
 from bttr.lit_bttr import LitBTTR
 from bttr.datamodule import CROHMEDatamodule
 
-def test_on_dataset(test_year="2014", ckpt_path="best.ckpt", output_file="test_results.txt"):
+def test_on_dataset(test_year="2014", ckpt_path="best.ckpt", output_file="test_results.txt",
+                    online_input="traj", srt_dir=None):
     # 1. Load model
     print(f"Loading model from {ckpt_path}...")
     model = LitBTTR.load_from_checkpoint(ckpt_path, strict=False)
@@ -16,7 +17,7 @@ def test_on_dataset(test_year="2014", ckpt_path="best.ckpt", output_file="test_r
 
     # 2. Setup DataModule
     print(f"Setting up dataset for year {test_year}...")
-    dm = CROHMEDatamodule(test_year=test_year)
+    dm = CROHMEDatamodule(test_year=test_year, online_input=online_input, srt_dir=srt_dir)
     dm.setup(stage="test")
     test_loader = dm.test_dataloader()
 
@@ -29,18 +30,14 @@ def test_on_dataset(test_year="2014", ckpt_path="best.ckpt", output_file="test_r
     with torch.no_grad():
         for batch in tqdm(test_loader):
             batch = batch.to(device)
-            
-            # 1. Prepare offline sequence features
-            seq_indices = batch.seq_indices[0] # batch_size is 1
-            seq = torch.tensor([seq_indices], dtype=torch.long, device=device)
-            seq_mask = torch.zeros((1, len(seq_indices)), dtype=torch.bool, device=device)
 
-            # 2. Beam Search
+            # 1. Beam search over image + online trajectory (batch size is 1,
+            #    so the trajectory is already unpadded and its mask all-False)
             hyps = model.bttr.beam_search(
                 batch.imgs,
                 batch.mask,
-                seq,
-                seq_mask,
+                batch.traj,
+                batch.traj_mask,
                 model.hparams.beam_size,
                 model.hparams.max_len
             )

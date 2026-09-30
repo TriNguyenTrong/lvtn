@@ -1,0 +1,8 @@
+CROHME 2023, inference only, six long-schedule checkpoints. Level (a): full 2,300 samples, a sample with any out-of-vocabulary token counts wrong. Level (b): only the 2134 samples whose reference is fully in-vocabulary.
+tag	n(a)	ExpRate(a)%	n(b)	ExpRate(b)%
+long_shared	2300	31.96	2134	34.44
+shared_s13	2300	31.61	2134	34.07
+shared_s42	2300	31.48	2134	33.93
+long_offline	2300	28.39	2134	30.60
+offline_s13	2300	29.91	2134	32.24
+offline_s42	2300	29.52	2134	31.82

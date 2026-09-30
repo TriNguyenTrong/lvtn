@@ -1,0 +1,42 @@
+torch 1.13.1, CUDA 11.7, cuDNN 8500, GPU NVIDIA GeForce RTX 4080, CPU 13th Gen Intel(R) Core(TM) i7-13700K, python 3.7.12, torch default threads 4
+Batch size 1, CROHME 2019, beam 10 unless greedy. Times in ms per expression: pre = InkML -> features (online systems), rec = CTC recogniser (two-stage), enc = image (+ online) encoder, dec = beam search incl. cross-scoring. 20 warm-up expressions per block are not counted.
+Mode a = bidirectional beam 10; b = unidirectional beam 10; c = greedy (beam 1, unidirectional).
+
+model	device	thr	mode	n	mean	median	p95	pre	rec	enc	dec	expr/s	ExpRate%	peakGPU_MB	mean ms by label length 1-10 | 11-20 | 21-30 | >30
+offline	cpu	4	a	200	4388.1	3104.0	11519.7	0.0	0.0	72.2	4315.8	0.23	48.00		1631 (n=82) | 3745 (n=61) | 6845 (n=26) | 10883 (n=31)
+offline	cpu	4	b	200	2210.0	1580.5	5714.5	0.0	0.0	71.4	2138.6	0.45	43.50		816 (n=82) | 1874 (n=61) | 3513 (n=26) | 5466 (n=31)
+offline	cpu	4	c	200	299.8	222.8	693.6	0.0	0.0	71.9	227.9	3.34	42.50		137 (n=82) | 258 (n=61) | 465 (n=26) | 675 (n=31)
+offline	cpu	16	a	200	4730.6	3383.6	12117.0	0.0	0.0	98.0	4632.6	0.21	48.00		1783 (n=82) | 4041 (n=61) | 7366 (n=26) | 11675 (n=31)
+offline	cpu	16	b	200	2407.0	1751.3	6083.3	0.0	0.0	97.8	2309.2	0.42	43.50		919 (n=82) | 2060 (n=61) | 3777 (n=26) | 5877 (n=31)
+offline	cpu	16	c	200	430.9	328.0	1025.8	0.0	0.0	97.8	333.1	2.32	42.50		201 (n=82) | 375 (n=61) | 659 (n=26) | 959 (n=31)
+offline	cuda	16	a	1199	293.3	262.7	602.5	0.0	0.0	23.5	269.8	3.41	46.54		149 (n=433) | 277 (n=406) | 405 (n=208) | 596 (n=152)
+offline	cuda	16	b	1199	148.7	133.8	307.8	0.0	0.0	19.1	129.7	6.72	40.87		76 (n=433) | 140 (n=406) | 207 (n=208) | 300 (n=152)
+offline	cuda	16	c	1199	98.3	86.8	199.6	0.0	0.0	19.7	78.6	10.17	40.12		50 (n=433) | 93 (n=406) | 137 (n=208) | 197 (n=152)
+shared_aux	cpu	4	a	200	5167.5	3519.0	13733.4	1.1	0.0	105.5	5060.9	0.19	54.50		1793 (n=82) | 4337 (n=61) | 8067 (n=26) | 13296 (n=31)
+shared_aux	cpu	4	b	200	2632.1	1869.4	6941.6	1.1	0.0	104.8	2526.1	0.38	46.50		920 (n=82) | 2222 (n=61) | 4025 (n=26) | 6798 (n=31)
+shared_aux	cpu	4	c	200	397.2	305.6	951.1	1.2	0.0	110.2	285.8	2.52	45.00		190 (n=82) | 353 (n=61) | 567 (n=26) | 891 (n=31)
+shared_aux	cpu	16	a	200	4362.7	2995.4	11646.0	1.2	0.0	115.2	4246.4	0.23	54.50		1578 (n=82) | 3730 (n=61) | 6745 (n=26) | 10977 (n=31)
+shared_aux	cpu	16	b	200	2273.5	1667.0	6082.6	1.2	0.0	117.3	2155.0	0.44	46.50		836 (n=82) | 1966 (n=61) | 3431 (n=26) | 5710 (n=31)
+shared_aux	cpu	16	c	200	393.6	300.9	950.3	1.2	0.0	116.4	276.0	2.54	45.00		188 (n=82) | 349 (n=61) | 564 (n=26) | 881 (n=31)
+shared_aux	cuda	16	a	1199	354.4	318.2	723.7	2.4	0.0	26.8	325.2	2.82	51.96		178 (n=433) | 337 (n=406) | 490 (n=208) | 717 (n=152)
+shared_aux	cuda	16	b	1199	185.2	164.0	375.4	2.4	0.0	26.6	156.2	5.40	45.04		95 (n=433) | 176 (n=406) | 256 (n=208) | 371 (n=152)
+shared_aux	cuda	16	c	1199	133.1	117.9	272.9	2.4	0.0	28.2	102.5	7.51	44.29		68 (n=433) | 127 (n=406) | 185 (n=208) | 264 (n=152)
+twostage	cpu	4	a	200	5047.3	3614.2	14176.6	5.6	110.6	73.4	4857.6	0.20	51.50		1802 (n=82) | 4233 (n=61) | 7861 (n=26) | 12875 (n=31)
+twostage	cpu	4	b	200	2571.2	1813.0	7497.8	5.6	108.5	69.4	2387.7	0.39	42.00		944 (n=82) | 2154 (n=61) | 3966 (n=26) | 6526 (n=31)
+twostage	cpu	4	c	200	442.9	353.2	1040.0	5.7	107.8	70.8	258.6	2.26	41.00		212 (n=82) | 395 (n=61) | 660 (n=26) | 966 (n=31)
+twostage	cpu	16	a	200	4397.9	3255.3	11980.0	5.6	180.8	84.3	4127.2	0.23	51.50		1652 (n=82) | 3765 (n=61) | 6744 (n=26) | 10938 (n=31)
+twostage	cpu	16	b	200	2292.9	1676.1	6425.9	5.6	180.4	83.4	2023.4	0.44	42.00		902 (n=82) | 1972 (n=61) | 3465 (n=26) | 5621 (n=31)
+twostage	cpu	16	c	200	541.6	446.2	1207.9	5.8	180.3	83.9	271.6	1.85	41.00		272 (n=82) | 491 (n=61) | 790 (n=26) | 1146 (n=31)
+twostage	cuda	16	a	1199	377.4	336.9	782.1	13.3	5.2	21.6	337.4	2.65	46.54		192 (n=433) | 355 (n=406) | 516 (n=208) | 775 (n=152)
+twostage	cuda	16	b	1199	199.8	181.6	404.2	13.2	5.2	21.3	160.1	5.01	40.45		105 (n=433) | 188 (n=406) | 271 (n=208) | 404 (n=152)
+twostage	cuda	16	c	1199	149.5	133.7	303.7	13.2	8.3	23.1	104.9	6.69	39.70		77 (n=433) | 143 (n=406) | 205 (n=208) | 299 (n=152)
+
+Check of mode (a) on GPU against the stored 2019 result file (per-expression status; must be identical, otherwise stop and report):
+  offline: 558/1199 = 46.54% now; stored file 558/1199; expressions whose status differs: 0
+  shared_aux: 623/1199 = 51.96% now; stored file 623/1199; expressions whose status differs: 0
+  twostage: 558/1199 = 46.54% now; stored file 558/1199; expressions whose status differs: 0
+
+McNemar exact, mode a vs b (same checkpoint, GPU): b = a right & b wrong, c = a wrong & b right
+  offline: b=97 c=29 p=9.245e-10
+  shared_aux: b=111 c=28 p=6.813e-13
+  twostage: b=104 c=31 p=2.056e-10

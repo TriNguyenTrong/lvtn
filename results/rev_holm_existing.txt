@@ -1,0 +1,25 @@
+== Table 4-5 (preliminary, ground-truth SRT)  (m = 5) ==
+abl_dual_shared                    vs abl_concat                         b= 132 c= 189  p=0.00173  p_Holm=0.00346  *
+abl_dual_shared                    vs abl_cascaded                       b= 175 c= 153  p=0.246  p_Holm=0.246  
+abl_concat                         vs abl_cascaded                       b= 232 c= 153  p=6.66e-05  p_Holm=0.0002  *
+abl_dual_shared                    vs abl_online                         b= 367 c=  85  p=8.31e-43  p_Holm=3.32e-42  *
+abl_dual_shared                    vs abl_uni                            b= 455 c= 100  p=4.65e-55  p_Holm=2.33e-54  *
+
+== Table 7 (two-stage, four recognizers)  (m = 6) ==
+traj_abl_srtoof_thayckpt           vs traj_abl_srtoof_thayv4full         b= 108 c= 138  p=0.0642  p_Holm=0.385  
+traj_abl_srtoof_thayckpt           vs traj_abl_srtoof                    b= 119 c= 139  p=0.237  p_Holm=0.947  
+traj_abl_srtoof_thayckpt           vs traj_abl_srtoof_better             b= 138 c= 170  p=0.0772  p_Holm=0.386  
+traj_abl_srtoof_thayv4full         vs traj_abl_srtoof                    b= 139 c= 129  p=0.583  p_Holm=1  
+traj_abl_srtoof_thayv4full         vs traj_abl_srtoof_better             b= 156 c= 158  p=0.955  p_Holm=1  
+traj_abl_srtoof                    vs traj_abl_srtoof_better             b= 139 c= 151  p=0.518  p_Holm=1  
+
+== Table 9 (decoder grid, predicted SRT)  (m = 8) ==
+traj_abl_srtoof_thayv4_concat      vs traj_abl_offline_lrmax             b= 300 c= 351  p=0.05  p_Holm=0.155  
+traj_abl_srtoof_thayv4_cascaded    vs traj_abl_offline_lrmax             b= 326 c= 282  p=0.0811  p_Holm=0.162  
+traj_abl_srtoof_thayv4full         vs traj_abl_offline_lrmax             b= 313 c= 318  p=0.873  p_Holm=0.873  
+traj_abl_srtoof_thayv4_cascaded    vs traj_abl_srtoof_thayv4full         b= 252 c= 203  p=0.0243  p_Holm=0.122  
+traj_abl_srtoof_thayv4_cascaded    vs traj_abl_srtoof_thayv4_concat      b= 297 c= 202  p=2.44e-05  p_Holm=0.000147  *
+traj_abl_srtoof_thayv4full         vs traj_abl_srtoof_thayv4_concat      b= 260 c= 214  p=0.0386  p_Holm=0.155  
+traj_abl_srtoof_thayv4full         vs traj_abl_srtoof_thayv4_online      b= 983 c=  73  p=2.62e-204  p_Holm=1.83e-203  *
+traj_abl_srtoof_thayv4_cascaded    vs traj_abl_srtoof_thayv4_online      b=1022 c=  63  p=7.06e-224  p_Holm=5.65e-223  *
+

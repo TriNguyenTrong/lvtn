@@ -14,9 +14,30 @@ class TransformerDecoderLayerMulti(nn.TransformerDecoderLayer):
     def __init__(self, d_model: int, nhead: int, dim_feedforward: int = 2048, dropout: float = 0.1,
                  activation: Union[str, Callable[[Tensor], Tensor]] = F.relu,
                  layer_norm_eps: float = 1e-5, batch_first: bool = False, norm_first: bool = False,
-                 device=None, dtype=None, fusion: str = "dual_shared") -> None:
+                 device=None, dtype=None, fusion: str = "dual_shared",
+                 sa_residual: bool = False, separate_cross: bool = False,
+                 cascaded_residual: str = "xq") -> None:
         super(TransformerDecoderLayerMulti, self).__init__(d_model, nhead, dim_feedforward, dropout, activation, layer_norm_eps, batch_first, norm_first, device, dtype)
         self.fusion = fusion
+        # Ablation switches; every default reproduces the layer the thesis was trained with.
+        self.sa_residual = sa_residual              # True: residual stream carries x_q
+        self.separate_cross = separate_cross        # True: own attention + norm for memory2
+        assert cascaded_residual in ("xq", "x")
+        self.cascaded_residual = cascaded_residual
+        if separate_cross:
+            # created only when asked for, so default checkpoints keep loading strict
+            self.multihead_attn2 = nn.MultiheadAttention(
+                d_model, nhead, dropout=dropout, batch_first=batch_first,
+                **{"device": device, "dtype": dtype})
+            self.norm2b = nn.LayerNorm(d_model, eps=layer_norm_eps, device=device, dtype=dtype)
+
+    def _cross2(self, q: Tensor, mem: Tensor, mask, pad_mask) -> Tensor:
+        """Second cross-attention block (memory2): shared weights unless separate_cross."""
+        if not self.separate_cross:
+            return self._mha_block(self.norm2(q), mem, mask, pad_mask)
+        out = self.multihead_attn2(self.norm2b(q), mem, mem, attn_mask=mask,
+                                   key_padding_mask=pad_mask, need_weights=False)[0]
+        return self.dropout2(out)
 
     def forward(self, tgt: Tensor, memory1: Tensor, memory2: Tensor, 
                 tgt_mask: Optional[Tensor] = None, 
@@ -42,6 +63,8 @@ class TransformerDecoderLayerMulti(nn.TransformerDecoderLayer):
         x = tgt
         fusion = getattr(self, "fusion", "dual_shared")
         x_q = x + self._sa_block(self.norm1(x), tgt_mask, tgt_key_padding_mask)
+        if self.sa_residual:
+            x = x_q
         if fusion == "offline":
             x = x + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
         elif fusion == "online":
@@ -50,11 +73,12 @@ class TransformerDecoderLayerMulti(nn.TransformerDecoderLayer):
             # memory1 already holds concat(offline, online); memory2 is ignored
             x = x + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
         elif fusion == "cascaded":
-            x1 = x_q + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
-            x = x1 + self._mha_block(self.norm2(x1), memory2, memory_mask, memory2_key_padding_mask)
+            base = x if self.cascaded_residual == "x" else x_q
+            x1 = base + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
+            x = x1 + self._cross2(x1, memory2, memory_mask, memory2_key_padding_mask)
         else:  # "dual_shared" (Ours): both cross-attentions share the query x_q
             x = x + self._mha_block(self.norm2(x_q), memory1, memory_mask, memory1_key_padding_mask)
-            x = x + self._mha_block(self.norm2(x_q), memory2, memory_mask, memory2_key_padding_mask)
+            x = x + self._cross2(x_q, memory2, memory_mask, memory2_key_padding_mask)
         x = x + self._ff_block(self.norm3(x))
 
         return x
@@ -102,6 +126,9 @@ def _build_transformer_decoder(
     dim_feedforward: int,
     dropout: float,
     fusion: str = "dual_shared",
+    sa_residual: bool = False,
+    separate_cross: bool = False,
+    cascaded_residual: str = "xq",
 ) -> TransformerDecoderMulti:
     """build transformer decoder with params
     Parameters
@@ -121,6 +148,9 @@ def _build_transformer_decoder(
         dim_feedforward=dim_feedforward,
         dropout=dropout,
         fusion=fusion,
+        sa_residual=sa_residual,
+        separate_cross=separate_cross,
+        cascaded_residual=cascaded_residual,
     )
 
     decoder = TransformerDecoderMulti(decoder_layer, num_decoder_layers)
@@ -138,6 +168,9 @@ class Decoder(pl.LightningModule):
         dropout: float,
         fusion: str = "dual_shared",
         bidirectional: bool = True,
+        sa_residual: bool = False,
+        separate_cross: bool = False,
+        cascaded_residual: str = "xq",
         sos_idx: int = 1,
         eos_idx: int = 2,
         pad_idx: int = 0,
@@ -159,6 +192,9 @@ class Decoder(pl.LightningModule):
             dim_feedforward=dim_feedforward,
             dropout=dropout,
             fusion=fusion,
+            sa_residual=sa_residual,
+            separate_cross=separate_cross,
+            cascaded_residual=cascaded_residual,
         )
 
         self.proj = nn.Linear(d_model, vocab_size)

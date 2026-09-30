@@ -1,0 +1,35 @@
+seed7_test
+  2014: n_file=985 correct=759 ExpRate=76.98 le1=84.18 le2=87.12 (/986)
+  2016: n_file=1147 correct=833 ExpRate=72.62 le1=79.16 le2=83.96 (/1147)
+  2019: n_file=1198 correct=878 ExpRate=73.23 le1=80.07 le2=85.24 (/1199)
+  micro(/3332): ExpRate=74.13 le1=80.97 le2=85.35 correct=2470
+abl_offline
+  2014: n_file=985 correct=469 ExpRate=47.57 le1=65.31 le2=73.63 (/986)
+  2016: n_file=1147 correct=548 ExpRate=47.78 le1=63.99 le2=72.80 (/1147)
+  2019: n_file=1198 correct=548 ExpRate=45.70 le1=63.47 le2=72.56 (/1199)
+  micro(/3332): ExpRate=46.97 le1=64.20 le2=72.96 correct=1565
+abl_online
+  2014: n_file=985 correct=667 ExpRate=67.65 le1=75.05 le2=80.22 (/986)
+  2016: n_file=1147 correct=742 ExpRate=64.69 le1=72.80 le2=77.59 (/1147)
+  2019: n_file=1198 correct=779 ExpRate=64.97 le1=73.89 le2=81.07 (/1199)
+  micro(/3332): ExpRate=65.67 le1=73.86 le2=79.62 correct=2188
+abl_concat
+  2014: n_file=985 correct=765 ExpRate=77.59 le1=84.79 le2=88.74 (/986)
+  2016: n_file=1147 correct=841 ExpRate=73.32 le1=81.43 le2=85.70 (/1147)
+  2019: n_file=1198 correct=921 ExpRate=76.81 le1=81.90 le2=86.57 (/1199)
+  micro(/3332): ExpRate=75.84 le1=82.59 le2=86.91 correct=2527
+abl_cascaded
+  2014: n_file=985 correct=735 ExpRate=74.54 le1=83.16 le2=85.90 (/986)
+  2016: n_file=1147 correct=816 ExpRate=71.14 le1=79.08 le2=85.09 (/1147)
+  2019: n_file=1198 correct=897 ExpRate=74.81 le1=81.07 le2=86.07 (/1199)
+  micro(/3332): ExpRate=73.47 le1=81.00 le2=85.68 correct=2448
+abl_dual_shared
+  2014: n_file=985 correct=759 ExpRate=76.98 le1=84.18 le2=87.12 (/986)
+  2016: n_file=1147 correct=833 ExpRate=72.62 le1=79.16 le2=83.96 (/1147)
+  2019: n_file=1198 correct=878 ExpRate=73.23 le1=80.07 le2=85.24 (/1199)
+  micro(/3332): ExpRate=74.13 le1=80.97 le2=85.35 correct=2470
+abl_uni
+  2014: n_file=985 correct=637 ExpRate=64.60 le1=72.82 le2=77.48 (/986)
+  2016: n_file=1147 correct=719 ExpRate=62.69 le1=69.92 le2=75.85 (/1147)
+  2019: n_file=1198 correct=759 ExpRate=63.30 le1=70.98 le2=76.73 (/1199)
+  micro(/3332): ExpRate=63.48 le1=71.16 le2=76.65 correct=2115

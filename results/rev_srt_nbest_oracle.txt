@@ -1,0 +1,11 @@
+CTC n-best ceiling (beam 10, no language model; posterior pruned below 1e-4). exact@K = share of expressions with at least one hypothesis equal to the reference SRT; oracle TER = token error of the best hypothesis among the top K.
+Denominators for exact@K are the official 986 / 1147 / 1199 (an expression the recogniser has no file for counts as a miss); TER is over the expressions evaluated.
+recogniser	set	n_eval	greedy exact	greedy TER	exact@1	exact@3	exact@5	exact@10	oracleTER@1	oracleTER@3	oracleTER@5	oracleTER@10
+thay4	2014	986	24.75	13.85	24.75	38.03	41.99	46.96	13.83	11.62	10.85	9.91
+thay4	2016	1147	24.24	12.97	24.24	35.57	40.10	46.12	12.98	10.90	10.13	9.11
+thay4	2019	1199	24.27	13.68	24.27	34.86	38.78	44.62	13.68	11.56	10.80	9.83
+tap8n	2014	986	33.77	10.75	33.77	48.88	53.96	57.61	10.77	8.61	7.89	7.15
+tap8n	2016	1147	31.82	11.10	31.82	45.16	50.04	55.36	11.10	9.08	8.38	7.48
+tap8n	2019	1199	34.78	9.85	34.78	47.37	51.29	56.05	9.84	8.03	7.38	6.62
+thay4	micro	-	24.40	-	24.40	36.04	40.19	45.83	-	-	-	-
+tap8n	micro	-	33.46	-	33.46	47.06	51.65	56.27	-	-	-	-

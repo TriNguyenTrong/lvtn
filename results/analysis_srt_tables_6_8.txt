@@ -1,0 +1,11 @@
+Bang 6 (CROHME 2019)                      TER      exact
+Four-dimensional, initial version         14.73%   20.3% (243/1199)
+Four-dimensional, improved version        13.68%   24.3% (291/1199)
+Four-dimensional, retrained               12.86%   26.9% (322/1199)
+Eight-dimensional, normalized              9.84%   34.8% (417/1199)
+
+Bang 8 (gop 3 tap, n=3.332)             exact SRT  ExpRate|SRT dung   ExpRate|SRT sai
+Four-dimensional, initial version         21.0    83.29 (583/700)    37.16 (978/2632)
+Four-dimensional, improved version        24.4    80.57 (655/813)    37.16 (936/2519)
+Four-dimensional, retrained               26.7    79.10 (704/890)    35.91 (877/2442)
+Eight-dimensional, normalized             33.5    79.37 (885/1115)    31.94 (708/2217)

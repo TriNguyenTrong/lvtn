@@ -1,0 +1,986 @@
+18_em_0	x Sub x NoRel x Right x Sub k NoRel + Right y Sub i NoRel y Right x Sub k
+18_em_1	\sqrt Inside 4 Right 8
+18_em_10	2 Right 6
+18_em_11	q Sub i NoRel = Right 2 Right a
+18_em_12	P Right e Sup t NoRel - Below H Right - Right ( Right x NoRel Above 1 Right - Right p Right ) Right e Sup t
+18_em_13	4 Sup 2 NoRel + Right 4 Sup 2 NoRel + NoRel 4 NoRel - Below 4
+18_em_14	a Right y NoRel - Below a Right x NoRel = NoRel k NoRel - Below a Right x NoRel - Below a Right y
+18_em_15	k Right = Right f Right 0 Right Right 0 Right 0 Right Right Right Right 0 Right 0
+18_em_16	m Right \geq Right 2
+18_em_17	u Right ( Right t Right ) Right = Right - Below a Right c Right 0 Right ) NoRel 1 Right - Right t Right u Right \cos
+18_em_18	\theta Sub 3 NoRel = Right \theta Sub ! Right + Right \theta Sub 2
+18_em_19	y Right \neq Right N
+18_em_2	( Right COMMA Right y Sub i NoRel ( Right n Right - Right 1 Right ) Right + Right ( Right 2 NoRel y Sub 2 NoRel ( Right n Right - Right 1 Right ) NoRel + Right . Right + Right ( Right n Right y Sub n NoRel ( Right x Right - Right 1 Right ) NoRel = Right 0
+18_em_20	k NoRel - Below p NoRel + NoRel + NoRel - Below q Right = Right 1
+18_em_21	1 Right 0 Right 1 Right 1 Right + Right 1 Right 1 Right 0 Right / Right 1 Right Right 0 Right 0 Right + Right 0 Right / Sub 2
+18_em_22	p Right + NoRel Sub 1 NoRel p Sub 2 NoRel x Sub 2 NoRel Right NoRel p Sub n NoRel \sqrt Sub n
+18_em_23	1 Right 8 Right - \pm . Right 6 NoRel - Below 2 Right 4 Right = Right 6 NoRel = NoRel 3 NoRel - Below 4
+18_em_24	7 Right 5 Right 2 Right 9 Right 5 Right 3 Right 6 NoRel - Below 1 Right 5 Right 6 Right 2 Right 5
+18_em_3	q Right x Right ) Right q Sub 2 NoRel COMMA NoRel . Right \rightarrow Right a Right m
+18_em_4	e Sup - Right n
+18_em_5	\int Right g Right = Right \lim Below n Right \rightarrow Right \infty NoRel \int Right g Sub n
+18_em_6	g Right ( Right b Right ) Right - Right g Right ( Right a Right ) Right = Right b Right - Right a
+18_em_7	S Sup NoRel Sup 2 NoRel \theta
+18_em_8	x Sub L NoRel Right 2 Right \leq Right x Sub L Right L
+18_em_9	a NoRel - Below b Right + Right - c
+20_em_25	\sin Right ( Right x Right + Right y Right ) Right = Right \sin Right x Right \cos Right y Right + NoRel \cos Right x Right \sin Right y
+20_em_26	9 NoRel - Below 9 Right + Right \sqrt Inside Sub
+20_em_27	n Sub 0 NoRel = Right - Below ( NoRel r Right + Right 1 NoRel - Below \beta Right ) Right x NoRel e Right + Right ( NoRel x Right + Right 2 Right + NoRel 2 NoRel - Below m NoRel ) NoRel 2 Right + NoRel 2 NoRel - Below p NoRel x NoRel 0
+20_em_28	1 Right . Right 3 Right 7 Right y Right / Right 9 Right 4 Right 1 Right 7 Right /
+20_em_29	G Right Right \infty Right 1 Right \infty Right 1
+20_em_30	I Sub s
+20_em_31	x Right x Right - 1 NoRel = Right x Right 1 Right x Right = Right y
+20_em_32	\pi NoRel - Below 3
+20_em_33	R Right a Right = Right - Below R Right COMMA Right R Sub 2 NoRel + Right R Right 2 NoRel R Sub 3 NoRel + Right R Right 3 Right R Sub 1 NoRel R Sub 2
+20_em_34	\sin Right ( Right a Right + Right 5 Right )
+20_em_35	\log Right \geq Right 0
+20_em_36	e Sub 5 NoRel - Right 5 Right e Sub 4
+20_em_37	3 Right Right 3 Sup 2 NoRel - Below 2 NoRel + NoRel 5 Right x Right ( Right - Right 5 Right ) Sup 2 NoRel - Below 2 NoRel = NoRel 3 Right x Right a NoRel 2 NoRel - Below 2 NoRel + NoRel 5 NoRel x Right q NoRel 2 NoRel - Below 2
+20_em_38	y Sub t Right + Right 1
+20_em_39	n Sup 2 NoRel + Right n Right - Right n
+20_em_40	4 Right x Sup 5 NoRel + Right x NoRel \sqrt
+20_em_41	9 Right / Right 5
+20_em_42	1 Right
+20_em_43	6 Right 4 Right 8 Right + Right 6 Right 4 Right 8 Right ) NoRel ( NoRel 1 NoRel - Below 4 NoRel + Right 8
+20_em_44	8 Right c Right m
+20_em_45	C Sub n NoRel \sqrt
+20_em_46	d Sub 1 NoRel - Right 2 NoRel - Below d Sub 1 NoRel - Above a Sub 2 NoRel d Sub 2 Right + Right 2
+20_em_47	5 Right 3 Right 9 Right 5
+20_em_48	5 Right ( Right 1 Right 9 Right 9 Right ) Right = Right 3 Right . Right 4 Right 9 Right 4 Right g Right 2 Right 0 NoRel |
+20_em_49	6 Right 5 Right t
+23_em_50	d Sup - Right 7
+23_em_51	n Right = Right p Right 1 NoRel e Right \prime NoRel p Sub 2 NoRel e Sup 2 NoRel . Right NoRel b Sub m NoRel e Right m
+23_em_52	4 Right p
+23_em_53	1 NoRel - Below 3 NoRel + NoRel 1 NoRel - Below 3
+23_em_54	\beta Sub 0 NoRel = Right 1 Right 0 Right 0 Right 0
+23_em_55	\sqrt Inside 1 Right 1 Right 3
+23_em_56	9 Right + Right 2
+23_em_57	\sqrt Inside 3 Sup 2 NoRel + Right 2 Sup 2 NoRel = Right \sqrt Inside 1 Right 3
+23_em_58	2 Sup d NoRel + Right z
+23_em_59	\sum Above n NoRel r Right = Right 1 NoRel a Right \infty NoRel b NoRel = Right a Right \sum Below n Right = Right 1 NoRel n NoRel r Sup b
+23_em_60	2 NoRel - Below 3 NoRel + NoRel 1 NoRel - Below 9 NoRel = Right ( NoRel 7 NoRel - Below 9 NoRel )
+23_em_61	\cos Right 2 Right \alpha
+23_em_62	t Sup 2 NoRel + Right E Right + Right x
+23_em_63	1 Right = Right \sqrt Inside E NoRel - Below x NoRel 2 NoRel + Right E Sub y NoRel 2
+23_em_64	\cos Sub e Sup x
+23_em_65	f Right ( Right n Right - Right 1 Right )
+23_em_66	z Sup 3 NoRel + Right z Right = Right z
+23_em_67	2 Right ( Right ( Right x Right + Right 2 Right ) Sup 2 NoRel - Right 4 Right + Right 1 Right )
+23_em_68	a Right - Right b NoRel - Below \sqrt Inside b Right q
+23_em_69	x Right \leq Right 1 Right 5
+23_em_70	\alpha Right + Right \beta Right = Right \beta Right + Right \alpha
+23_em_71	c Right Right
+23_em_72	\sum Below i Right = Right 1 NoRel n NoRel n Sub n Right = NoRel \sum Below i Right = Right 1 NoRel n NoRel y Sub n
+23_em_73	\beta Sub m Right + Right 1
+26_em_75	2 Right - Right 2 Right a Right + Right b Right - Right 2 Right a Right b Right = Right 1 Right - Right 2 Right b Right + Right a Right - Right 2 Right a Right b
+26_em_76	- Right m Right p
+26_em_77	x Sup p NoRel e Sub 1 8 NoRel = Right \sum Right x Sup 1 8 NoRel e Sub p NoRel p
+26_em_78	1 Right 6 Sup 9
+26_em_79	- Right a Right + Right b Right + Right C
+26_em_80	3 Right | Right 9 NoRel - Below 2 Right 8 NoRel = Right 1 Right . Right 3 Right g
+26_em_81	- Right 2 Right x Right + Right \sin Right ( Right 2 Right x Right + Right 2 Right ) Right - Right 2
+26_em_82	1 NoRel - Below 2 NoRel t Sup 2 NoRel u Right ( Right t Right )
+26_em_83	d Sub t Right = Right - Above a Right ( Right t Right ) Right - Right a Right ( Right t Right - Right 1 Right ) NoRel a Right ( Right t Right )
+26_em_84	s Sub N Right = NoRel \log NoRel m NoRel n Right \infty Right \infty NoRel a Right ( Right 1 Right - Right p Right n NoRel ) NoRel - Below 1 Right - Right p NoRel = NoRel a NoRel - Below 1 Right - Right p
+26_em_85	\log Sub u Right g
+26_em_86	\log Sub a Right x
+26_em_87	\int Right x Right \cos Right ( Right x Right ) Right d Right x Right = Right x Right \sin Right ( Right x Right ) Right - Right \int Right \sin Right ( Right k Right ) Right d Sub x
+26_em_88	v Sup 2 NoRel - Right v Sub v NoRel 2 NoRel = Right v Sup 2 NoRel v
+26_em_89	x Sup 2 NoRel + Right y Sup 2 NoRel = Right l Sub 1 NoRel 2 NoRel + Right l Sub 2 NoRel 2 NoRel + Right 2 Right l Right | Right t Sub 2 NoRel C Sub 2
+26_em_90	\int Right \tan Right 9 NoRel - Below \sqrt Inside a Right x Right - Right 3 Right 8 NoRel d Right x
+26_em_91	k Right [ Right a Right - Right 1 NoRel ]
+26_em_92	- Right 1 Right r NoRel - Below s
+26_em_93	4 Right \times Right 4 Right + Right 4 Right - Right 4
+26_em_94	[ NoRel 1 NoRel - Below 2 NoRel \sin Sup 2 NoRel ( Right 1 Right ) Right ] Right - Right [ NoRel 1 NoRel - Below 2 NoRel \sin Sup 2 NoRel ( Right 0 Right ) Right ]
+26_em_95	\sqrt Inside a Right \sqrt Inside b Right = Right \sqrt Inside a Right b
+26_em_96	4 Right + Right 4 Right + NoRel 4 NoRel - Below 4
+26_em_97	F Inside - Right 4 Right = Right \sqrt Inside Right 1 Right \sqrt Inside 4
+26_em_98	t Right \sqrt Inside 2 Right x Right + Right 2 Right ) Right ( Right x Right + Right 3 Right )
+26_em_99	1 Right 0 Right . Right 0 Right 0 Right 0 Right + Right 1 Right 0 Right 0 0 Right = Right 1 Right 1 Right COMMA Right 0 Right 0
+27_em_100	\sqrt Inside 4 Right 5
+27_em_101	1 Right + Right \sqrt Inside b NoRel = Right x Sub 1 Right + Right y Sub 1 Right \sqrt Inside Below b
+27_em_102	\lim Below a Right \rightarrow Right \infty NoRel f Right ( Right a Right )
+27_em_103	7 Right y NoRel ] Right x Right A
+27_em_104	w Right = Right 9 Sub COMMA Right + Right - Right q Right e
+27_em_105	a Right - Right 2 Right x NoRel ( NoRel x Right a Right + Right 2 Right x Right )
+27_em_106	\alpha Sup 2 NoRel + Right \beta Sup 2 NoRel = Right ( Right \alpha Right + Right \beta Right ) Sup 2 NoRel - Right 2 Right \alpha Right \beta
+27_em_107	\int Right i Sup n NoRel d Right x Right = Right k NoRel \int Right x Sup x NoRel d Right x
+27_em_108	0 Right + Right A
+27_em_109	f Sup ( Right i Right + Right k Right ) NoRel ( Right 0 Right ) Right = Right f Sup ( Right i Right ) NoRel ( Right 0 Right ) Right f Right ( Right | NoRel ( Right 0 Right )
+27_em_110	2 Right 9 NoRel ( NoRel ) Right - Right 2 Right ( Right 1 Right 6 Right ) Right + Right 3 Right ( Right ) Right = Right 2 Right 9 Right - Right 3 Right 2 Right + Right 3 Right = Right 0
+27_em_111	x Sup 2 NoRel - Right y Sup 2 NoRel = Right x Sup 2 NoRel + Right 2 Right x Right y Right + Right y Right 2 NoRel - Right 2 Right x Right y Right - Right 2 Right y Sup 2
+27_em_112	Sub 3
+27_em_113	x Right = NoRel a Right f Right ( Right b NoRel - Right b Right f Right ( Right a Right ) NoRel - Below f Right ( Right b Right ) Right - Right v Right ( Right a Right )
+27_em_114	\int Right \sin Right 2 Right \theta Right d Right \theta
+27_em_115	1 Right \sqrt Inside 2
+27_em_116	v Sub 1 NoRel + Right v Sub 3 NoRel + Right v Sub 4 Right - Right v Right 0 Right = Right 0
+27_em_117	\cos Right \theta Right \sin Right \theta Right + Right \theta Right + Right \theta Sup 2
+27_em_118	\sqrt Inside 3 Right 2 Right + Right \sqrt Inside 3 Right 2
+27_em_119	6 Right 7 Right 1 Right 8
+27_em_120	\sqrt Inside 1 Right 5
+27_em_121	1 Right - Right z Right + Right z Sup 2 Right - Right 2 Right 3 Right + Right 2 Sup 4 NoRel - Right 2 Sup 5 NoRel + Sub 0 NoRel 0 Sub 0
+27_em_122	F NoRel x NoRel \sqrt Inside b
+27_em_123	\int Right 2 Right x NoRel - Right 2 NoRel d Right x
+27_em_124	a NoRel NoRel - Below 0 NoRel b
+28_em_125	2 NoRel - Below \sqrt Inside 2 Right + Right \sqrt Inside 2
+28_em_126	\sum \sum NoRel N NoRel k Right = Right 1 NoRel 1 Sup 2 NoRel - Below a
+28_em_127	x Right COMMA Right x Sub t
+28_em_128	- Above x Sup 2 NoRel q NoRel - Right - Above y Sup 2 NoRel 4 Right 9 Right = Right \pm
+28_em_129	- Right - Above 1 NoRel \sqrt Inside 2 NoRel ( Right - Above b NoRel \sqrt Inside 2 NoRel - Right a Right )
+28_em_130	\log Right x NoRel + Right \log Right y Right = Right \cos Right x Right y
+28_em_131	z Right y Right + Right 2 Right z Right y Right + Right 2 Right z Right + Right 2 Right y
+28_em_132	s Right v
+28_em_133	3 Right = Right - Above 3 NoRel 2 NoRel ( Right 3 Sup ! NoRel - Right 1 Right ) Right = Right 3
+28_em_134	n Sub A NoRel - Below n
+28_em_135	e Sub 2 NoRel - Right 2 Right e Sub k
+28_em_136	A Inside t Right + Right 1
+28_em_137	3 Right COMMA Right 4 Right COMMA Right 5 Right COMMA Right 6 COMMA Right . Right .
+28_em_138	\beta Right a NoRel 0
+28_em_139	x Right y Right x Right + Right x Right y Right + Right y Right x Right + Right y Right = Right x Sup 2 NoRel y Right + Right x Right y Right + NoRel + Right y Inside n Right y
+28_em_140	3 Right t Right 5 Right ) Sup 2 NoRel + Right 3 Right ( Right - Right Right 5 Right - Right 2 Right ) Right - Right t Right - Right 5 Right ) Right ( Right 2 Right ) Sup 2
+28_em_141	2 Right A Right B NoRel - Below A Right + NoRel B
+28_em_142	4 Right 4 Right 4 Right 6 Right 7 NoRel - Below 3 Right 8 Right 9 Right 7 Right 3
+28_em_143	Right [ Right s Right ] Right ] Right = Right [ Right s Right ]
+28_em_144	\sum Below i NoRel \prime Right \lt Below i 0
+28_em_145	f Right ( Right x Right ) Right = Right - Above \leq NoRel \alpha
+28_em_146	1 Right 9 NoRel q NoRel - Below 1 Right 1
+28_em_147	[ Right B Right ]
+28_em_148	x Right ( Right t Right ) Right = Right x Sub 1 Right ( Right t Right ) Right + Right x Sub 2 NoRel ( Right t Right )
+28_em_149	- Above 1 NoRel x Right + Right y Right - Right - Above 1 NoRel x Right - Right y NoRel = Right - Above - Right 2 Right y NoRel x Sup 2 NoRel - Right y Sup 2
+29_em_150	6 Right 0 Sup 0
+29_em_151	p Sub a
+29_em_152	\sqrt Inside - Right n Right = Right i Right \sqrt Inside n
+29_em_153	( Right a Right - Right b Right ) Sup 2 NoRel = Right a Sup 2 NoRel - Right 2 Right a Right b Right + Right b Sup 2
+29_em_154	4 Right z Right - Right 5 NoRel - Below ( Right z Right - Right 1 Right ) Right ( Right z Right - Right 2 Right )
+29_em_155	3 Sup 5 NoRel + Right z Right = Right z
+29_em_156	( Right 2 Right COMMA Right 2 Sub 0 NoRel 2 Right COMMA Right 0 Right )
+29_em_157	y Right = Right y
+29_em_158	\alpha Sup 4 NoRel + Right \alpha Sup 6 Right + Right \alpha Sup 7 Right + Right \alpha Sup 9
+29_em_159	1 Right 8
+29_em_160	\sum Right a Sub \gamma Right x Sub j
+29_em_161	f Right ( Right \gamma Sub 0 NoRel ) Right = Right \lim NoRel z Right \rightarrow Right 3 Below 0 NoRel f Right ( Right z Right )
+29_em_162	f \prime NoRel ( Right x Right ) NoRel - Below q Sup 1 Right ( Right n Right )
+29_em_163	c Sub i NoRel = Right c Right + Right c Right = Right 2 Right c
+29_em_164	\cos Right A Right 3
+29_em_165	7 Right x NoRel 7 Right - Right 1 NoRel + Right 4 Right x Sup 4 Right - Right 1 NoRel + Right 1 Right x Sup 1 Right - Right 1
+29_em_166	\int NoRel 3 Right n Right + Right 1 NoRel - Below x Sup 2 NoRel + Right x NoRel d Right x
+29_em_167	\cos Right ( Right n Right x NoRel ) Right = Right 2 Right \cos Right ( Right x Right ) Right \cos NoRel ( Sup n Right - Right 1 NoRel ( NoRel ) Right x Right ] Right - Right \cos NoRel ( NoRel n Right - Right 2 NoRel ) NoRel ( NoRel x Right )
+29_em_169	d Right F NoRel - Below d Right x NoRel = NoRel - Above | NoRel d Sub n NoRel - Below d Right t
+29_em_170	E Right ( Right t Right ) Right \leq Right E Right ( Right 0 Right )
+29_em_171	\lim Below t Right \rightarrow Right c NoRel a Sub 1 NoRel ( Right t Right ) Right = Right a Sub 1
+29_em_172	n Right \geq Right 0
+29_em_173	x Sup 2 NoRel + Right \beta Right x Right + Right 4 Right 0 NoRel - Below 2 Right x Sup 3 NoRel + Right 2 Right 7 Right n Sup 2 NoRel + Right \pi Right Right | Right x Right + Right 1 Right 4 Right 0
+29_em_174	\lim Right | Right a Sub n Right + Right 1 NoRel x NoRel | NoRel - Below | a Right n Right | NoRel \lt Right 1
+31_em_175	\lim Right f Right ) Right = Right f Right ( Right a Right ) NoRel x Right \rightarrow Right c NoRel ( Right x
+31_em_176	( NoRel \pi NoRel - Below \sqrt Inside 2 NoRel )
+31_em_177	\alpha Sup - Right 1
+31_em_178	k Right + Right w
+31_em_180	x Sup Below b NoRel + Right y Sup 5 NoRel - NoRel Below b NoRel + Right 1 Right = Right 0 NoRel x Right y
+31_em_181	a Right z NoRel - Right 1 NoRel - Below C Sub 1 Right - Right a Right z Right - Right 1 NoRel ) Sup 2
+31_em_182	( Right y Right ) Right ( Right 1 Right ) Right = Right ( Right x Right ) Right ( Right - Above y NoRel y NoRel )
+31_em_183	\sqrt Inside a NoRel \times Right \sqrt Inside 5
+31_em_184	- Below \sqrt Inside 8 Right 1 NoRel x Right \sqrt Inside 2 NoRel \sqrt Inside 1 NoRel x Right \sqrt Inside 2 NoRel 0 Right 0
+31_em_185	- Right p Right ( Right v Sub 2 NoRel - Right v Sub 1 Right )
+31_em_187	b Right 0
+31_em_188	\tan NoRel a Right = Right - Below \sin Right a NoRel \cos Right a
+31_em_189	x Right . Right y
+31_em_190	1 NoRel - NoRel 2 Sup 5 NoRel y Sup 2 NoRel - NoRel 8 NoRel - Below 2 Right 5 NoRel y
+31_em_191	\sum Below j Right = Right 1 NoRel m NoRel a Sub j NoRel e Right j
+31_em_192	\int Below a NoRel x NoRel f Right ( Right x Right ) Right d Right x
+31_em_193	\gamma Sub i Right + Right d Sub r NoRel i Right s Right b Right i Right + Right d Right p Right i
+31_em_194	b Sup 2 Right x NoRel - Below b
+31_em_195	1 Right \times Right 2 Right \times Right 3 Right \times Right 4 Right \times Right 5 NoRel x Right 6 Right = Right 7 Right 2 Right 0
+31_em_196	3 Right + Right a Right + Right 7 Right + Right 3 Right + Right 6 Right + Right 1 Right 0 Right + Right 4 NoRel - Below 7 NoRel = Right 6
+31_em_197	x Sup 2 NoRel - Right + NoRel - Right y Sup 2 NoRel n Right y NoRel x Right y
+31_em_198	\lim Below x Right \rightarrow Right - Right \alpha NoRel b Sub 2 NoRel ( Right x Right ) Right \gt Right 0
+31_em_199	\log Right a Right + Right g Right b Right = Right g Right a Right b NoRel b Right 0 NoRel l Right 0
+32_em_200	i ! NoRel - Below 8
+32_em_201	\sum Below v Right = Right 1 NoRel n NoRel ( Right C Right a Right k NoRel ) Right = Right c NoRel \sum NoRel i Right = Right 1 NoRel n NoRel ( Right a Sub u Right ) NoRel
+32_em_202	3 Right N Right - Right 3 Right - Right 2 Right = Right 3 Right N Right - Right 5
+32_em_203	( Right - Right 1
+32_em_204	\pm Right \sqrt Inside 2
+32_em_205	( Right a Right + Right b Right i Right ) Right - Right ( Right c Right + Right d Right \pi ) Right = Right ( Right a Right - Right c Right ) Right + Right b Right - Right d Right ) NoRel ( NoRel i
+32_em_206	[ Right E Right s Right ] Right ]
+32_em_207	\int Right - Right \cos Right \phi Right d Right \phi
+32_em_208	b Right \mu
+32_em_209	F NoRel - Below a NoRel = NoRel b NoRel - Below f
+32_em_210	. Right - Right 2 Right p NoRel - Below \sqrt Inside n Right p Right - Right t Right 1 Right - Right b Right )
+32_em_211	H Right a Right l
+32_em_212	q Right Right \sqrt Inside 2
+32_em_213	\sqrt Inside a NoRel x NoRel \sqrt Inside b NoRel = Right \sqrt Inside a Right b
+32_em_214	\int Right c Right d Right x
+32_em_215	m Sup 3
+32_em_216	g Right ( Right y Right ) Right - Right y Right ( Right x Right )
+32_em_217	\sqrt Inside Right )
+32_em_218	g Sup 2 NoRel = Right g Right g Right = Right e
+32_em_219	E Sub 1 NoRel \lt Right E Right \lt Right E Sub 2
+32_em_220a	a Right = Right ( Sup 2 Right 4 NoRel 2 Sup 5 NoRel + Right 4 Right 8 Right ( Right t Sup 3 NoRel + Right 8 Right t Sup 3 NoRel + Right 2 Right 4 Right C Sup 2 NoRel z Right + Right 1 Right 6 Right c Right z Right )
+32_em_220b	8 Right t Sup 7 NoRel + Right 2 Right 4 Right c Right z Sup 5 NoRel + Right 2 Right 4 Right c Sup 2 NoRel z Sup 7
+32_em_220c	u Right c Sup 3 NoRel + Right 6 Right C Sup 2 NoRel + Right 2 Right c Right + Right 1
+32_em_221	n Right \geq NoRel COMMA Right N
+32_em_222	\lim Right a NoRel - Below d Right c Right = NoRel c NoRel - Below a
+32_em_223	\pi NoRel ( Right )
+32_em_224	z Right = Right \sqrt Inside 3 NoRel ( Right \sqrt Inside 2 Right + Right i Right )
+34_em_225	x Sup 3 NoRel + Right 3 Right x NoRel \sqrt Right y NoRel - Right 3 Right x Right y Sup 2 NoRel + Right y Sup 3 NoRel 1
+34_em_226	t Right - Right s
+34_em_227	6 Right 5 Right 8 Right 8
+34_em_228	- Right y Right - Right 5 Right ( Right ( Right ]
+34_em_229	\pi Sub t
+34_em_230	( Right a Right + Right b Right ) Sup x Right = Right a Sup n NoRel + Right 2 NoRel + Right 6 NoRel a Right 6 NoRel v
+34_em_231	3 Right e Right Right = Right 1 Right - Right p Right e c Right
+34_em_232	t Sub \theta NoRel - Right 1 NoRel = Right f Right - Right \theta
+34_em_233	f Right ( Right g Right ) Right = Right 2 Right 5 Right = Right f Right ( Right 5 Right )
+34_em_234	\int Below 0 NoRel \pi NoRel ( Right \sin Right ( Right t Right ) Right - Right t Right ) Right d Right t Right = Right 2 Right - NoRel 1 NoRel - Below 2 NoRel \pi Sup n
+34_em_235	1 Right - Right w
+34_em_236	1 NoRel - Below 2 Right 5 NoRel [ Right y Sup v NoRel - Right 8 Right y Right + Right 1 Right 6 Right Right + Right 6 Right ]
+34_em_237	m Right + Right 1 NoRel ( NoRel ) Right ( Right ( Right n Right + Right 1 Right ) Right + Right 1 NoRel ) NoRel - Below 2
+34_em_238	x Sub 1 NoRel + Right x Sub 2 Right t Right Right + Right x Sub n NoRel 1 Right 0
+34_em_239	A Sup x Right A Right k Right \geq Right y Sub 2
+34_em_240	\cos Right ( Right 3 Right x Right ) Right = Right 4 Right \cos Sup 3 NoRel ( Right n Right ) Right - Right 3 Right \cos Right ( Right x Right )
+34_em_241	\phi Right ( Right x Right ( Right n Right ) Right )
+34_em_242	x Sup v NoRel - Below x Sup 2 NoRel - Above x Right + Right 1 NoRel x Right + Right 2
+34_em_243	1 NoRel - Below \sqrt Inside \pi Right + NoRel \sqrt Inside \pi Right = Right 1
+34_em_244	1 Right 0 NoRel - Below 3 NoRel = Right 3 Right . Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right 3 Right . Right .
+34_em_245	p Right \sum Right \infty
+34_em_246	v Right = Right ( Right \theta Right x NoRel 8 Right y Right \theta Sub z NoRel )
+34_em_247	( Right \sum Below k Right = Right 1 NoRel n NoRel a Sub k NoRel ) NoRel 1 NoRel - Below 2 NoRel L Right \sum Below u Right - Right 1 NoRel n NoRel a Sub n NoRel 1 NoRel - Below 2
+34_em_248	R Sub i Right + Right a
+34_em_249	2 NoRel - Below m Right \pi Right ( Right 1 Right - Right \cos Right ( Right n Right \pi Right ) Right )
+35_em_0	2 Right 9 Right 9 Right 7 Right 9 Right 2 Right 4 Right 5 Right 8
+35_em_1	E Right p Right E
+35_em_10	g Sup - Right a Right p
+35_em_11	B Right = Right c Sub 1 NoRel + Right c Sub 2 NoRel + Right \ldots Right + Right e Sub n
+35_em_12	\sqrt NoRel 1 NoRel - Below p NoRel = Right \int NoRel z NoRel - Below a NoRel d Right p NoRel d Right t
+35_em_13	( Right x Right \times Right x Right \times Right x Right ) Right x Right ( Right x Right \times Right x Right )
+35_em_14	x Sup 3 NoRel ( Right x Right - Right ( Right 2 Right x Right + Right 3 Right ) Right ( Right 2 Right x Right - Right 3 Right ) Right )
+35_em_15	f Right x Right + Right + Right \lt Right \times Right 2 Right + Right 2 Right \times Right 2
+35_em_16	\sum Above \infty NoRel m Right = Right 1 NoRel \sum Below n Right = Right 1 NoRel \infty NoRel m Sup 2 Sub n NoRel - Below 3 Right m NoRel ( Right m Right 3 Sup n Right + Right n Right 3 Sup m NoRel )
+35_em_17	x Sup 2 NoRel + Right x Right + Right 1
+35_em_18	A Right \int Below 0 NoRel x Right d Right x
+35_em_19	2 Right . Right 3
+35_em_2	( Right x Right + Right 2 Right y Right ) Right ( Right x Sup 2 NoRel - Right 2 NoRel + Right 4 Right y Sup 2 NoRel ) NoRel y NoRel x
+35_em_20	\sqrt Inside 3 Right 8
+35_em_21	- Right \sin Right \theta
+35_em_22	x Right - Right A Right ( Right x Right )
+35_em_23	y Right = Right y Sub 0 NoRel + Right m Right ( Right x Right - Right x Sub 0 Right )
+35_em_24	\sqrt Inside ( NoRel \cos Right x NoRel - Below x NoRel ) Sup 2 NoRel + Right \tan y NoRel - Below y NoRel ) Sup 2
+35_em_3	\beta Right ( Right F Right )
+35_em_4	w Right 1 Right + Right w Sub 2
+35_em_5	E Right \int Right E Right E Sub 1 Right E Right ]
+35_em_6	1 Right 5 Right . Right 5 Right = Right 3
+35_em_7	\sin Right ( Right - Right 4 Right 5 Right ) Right = Right - Right \sin Right 4 Right 5
+35_em_8	\lim Below z Right \sum Right z Sub 0 NoRel f Right ( Right z Right ) Right = Right k Right
+35_em_9	\sin Right ( Right \theta Right ) Right = Right \sin Right \theta
+36_em_25	a Sup 2 NoRel - Below a Right + Right - Inside a
+36_em_26	\sum Below n Right = Right 1 NoRel 5 NoRel ( Right 2 Right n Right + Right y
+36_em_27	f Sub d NoRel = Right - NoRel A Sub m Right a Right x Right - Right A NoRel A Sub m Right a Right x Right - Right A Sub m
+36_em_28	1 Right 2 Right . Right . Right 3
+36_em_29	c Sub 1 NoRel y Sub 1 NoRel + Right c Sub 2 NoRel y Sub 2
+36_em_30	b Sup a Right r Sub i
+36_em_31	\sqrt Inside 1 Right 0 Sup 2 NoRel - Below \sqrt Inside 2 Right 8 Right 0
+36_em_32	\lim NoRel x Right \rightarrow Right 0 NoRel f NoRel ( Right x Right )
+36_em_33	\beta Sub 0 NoRel ( Right Right ) Right + Right \beta Sub 1 NoRel ( Right i Right ) Right + Right \beta Sub 2 NoRel ( Right j Right ) Right + Right \beta Sub 3 NoRel ( Right k Right )
+36_em_34	\sqrt Sub 2 NoRel \sqrt Inside 2 NoRel = Right 2
+36_em_35	7 Sub 1 Right 2 Sub 2
+36_em_36	L Sub t Right = Right L Right + Right L Right = Right 2 Right 6
+36_em_37	- Right f Right ( Right - Right x Right ]
+36_em_38	2 Right 4 Right \pi
+36_em_39	( Right 3 Right ) Right ( Right 3 Right + Right 1 Right ) NoRel - Below 2 NoRel = Right 6 Right = Right 1 Right + Right 2 Right + Right 3
+36_em_40	1 Right 5 Right ! NoRel - Below 1 Right 0 Right ! Right 5 Right !
+36_em_41	y Right = Right c Right y Sub 1 NoRel + Right C Sub 2 NoRel y Sub 2 NoRel + Right \ldots Right + Right ( Sub n NoRel y Sub n
+36_em_42	m Right \times Right p
+36_em_43	( Right x Sup \prime NoRel COMMA Right t 1 Right )
+36_em_44	p Right \geq Right 1
+36_em_45	x Right + Right ( Right - Right x Right ) Right x Right 0 Right + Right ( Right - Right x Right )
+36_em_46	x Right \neq Right 4
+36_em_47	7 Right 0 Sup 6
+36_em_48	\sum Below r NoRel j Right ( Right w Right ]
+36_em_49	1 Right . Right 6 Right 9 Right y Right 6 Right 9 Right 6 Right
+37_em_0	g Right \theta Right = Right g Right \sin Sub Right \theta
+37_em_1	P Sub i NoRel = Right - Right b Sub 2 NoRel + Right p Sub 5 NoRel - Right p Sub 6
+37_em_10	x NoRel - Below v
+37_em_11	w Right - Right 2
+37_em_12	u Right ( Right x Sub p NoRel ) Right = Right u Sub b NoRel ( Right x Sub b NoRel )
+37_em_13	8 Right 0 Right 0
+37_em_14	\lim Below x Right \rightarrow Right 0 NoRel f Right ( Right x Right ) Right = Right 0
+37_em_15	u Sub \geq Right 0
+37_em_16	8 Right \sqrt Inside 5
+37_em_17	a Right \sqrt Inside b Right \pm Right c Right \sqrt Inside b NoRel = Right ( Right a Right \pm Right c Right ) Right \sqrt Inside b
+37_em_18	x Right \times Right x Right \times Right x Right x Right x NoRel - Below x Right x Right x NoRel = Right x Right x Right x Right = Right x Sup 2
+37_em_19	- Right \sqrt Inside 2 Right - Right \sqrt Inside 2 NoRel - Below 2
+37_em_2	( NoRel 1 NoRel - NoRel n Right \pi Right - NoRel a Right ( Right n Right \pi Right 1 NoRel NoRel - NoRel n Right ! Right + Right ) Right + NoRel ( NoRel 1 NoRel - Below n Right \pi Right . Right \cos Right ( Right n Right \pi Right NoRel - NoRel n Right \pi + NoRel )
+37_em_20	0 Right . Right 9 Right - Right 0 Right . Right 9 Right = Right 0
+37_em_21	( Right I - Right - Right T Right ) Sup - Right 1 NoRel = Right f Right + Right T Right + Right T Sup 2 NoRel + Right T Right 3
+37_em_22	\int Right x Right ( Right x Right ) Right e Sup - Right a Right x NoRel a Sup x NoRel d Right x
+37_em_23	\sum Right p Sub i Right = Right \sum Right P Sub f
+37_em_24	\lim Below n Right \rightarrow Right \alpha NoRel 2 NoRel - Below n NoRel \sum Above n NoRel i Right = Right 1 NoRel - Above 4 Sup i Sup 2 NoRel n Sup 2
+37_em_25	\sqrt Inside b NoRel x
+37_em_26	\int Below a NoRel b NoRel f Right ( Right x Right ) Right d Right x Right = Right \int Below a NoRel b NoRel g Right ( Right x Right ) Right d Right x
+37_em_27	\alpha Right COMMA Right 3
+37_em_28	\sum Right F Sub 2 NoRel = Right 0
+37_em_29	\sum Right E Sub x
+37_em_3	t Right - Right 6
+37_em_30	f Right ( Right f Right ( Right x Right ) Right ) Right = Right g Right ( Right g Right ( Right x Right ) Right )
+37_em_31	M Right = Right E Right - Right e Right \sin Right E
+37_em_32	a Right + Right a Sub 1 NoRel x Right + Right a Sub 2 NoRel x Sup 2 NoRel + Right
+37_em_4	( Right a Right COMMA Right b Right 1 NoRel ) Right ( Right a Right 1 NoRel b Sub 2 NoRel ) Right = Right ( Right a Right COMMA Right b Sub 2 NoRel ) Right ( Right b Right COMMA NoRel b Sub 2 NoRel )
+37_em_5	- Below \sqrt Inside 2 Right + Right \sqrt Inside 2 NoRel 2
+37_em_6	y Sup \prime NoRel ( Right x Right )
+37_em_7	( Right Right 6 Right \theta
+37_em_8	\tan Right ( Right 3 Right x Right ) Right = Right - Above 3 Right \tan Right ( Right x Right ) Right - Right \tan Sup 3 NoRel ( Right x Right ) NoRel 1 Right - Right 3 Right \tan Sup 2 NoRel ( Right x Right )
+37_em_9	y Right \lt Right b
+500_em_108	s Right \geq COMMA Right 1
+500_em_109	b Sub L
+500_em_110	x Right = Right \sum Below i NoRel x Sub i
+501_em_0	\int NoRel 1 NoRel - Below ( Right a Right x Sup 2 NoRel + Right b Right k Right + Right c Right ) Sup n Right d Right x
+501_em_1	\sqrt Inside 5 NoRel 0
+501_em_10	P Sub E Right = NoRel R Sub + NoRel - Right F Right + Right = Right ( Right 1 Right + Right i Right ) Right P Right + Right - Right 1 Right + Right ( Right R Right + Right - Right R Right + Right - Right 1 NoRel )
+501_em_11	E Right = NoRel ( Right | Right L NoRel 1 Right COMMA Right 1 Right 1 Right Right \ldots + NoRel ( NoRel 1 Right COMMA Right n Sub 1 NoRel ) Right 1 Right 1 Right ( Right L NoRel k Sub COMMA Right 1 Right 1 Right \ldots Right ( NoRel k Right COMMA Right k NoRel ) Right )
+501_em_12	T Sub \pi NoRel 1 NoRel NoRel - Below 2 NoRel y Sub 2 NoRel - Below + NoRel 1 NoRel - Below 2 NoRel \pi Above u Sub 1 NoRel = NoRel + NoRel 1 NoRel - Below 2 NoRel c NoRel y Sub NoRel - Below + NoRel t NoRel - Below a NoRel c NoRel u Sub 4
+501_em_13	y Right \lt Right y
+501_em_14	2 Right \pi Sub n Right ! Right i Right NoRel 2 Right \pi Sub n Right ! Right + NoRel 2 Right \pi Sub n Right ! NoRel - Below 2 NoRel + NoRel 2 Right \pi Right n Right ! NoRel - Below 3 Right ! NoRel + NoRel 2 Right \pi Right n Right ! NoRel NoRel - Below n NoRel | Right ! NoRel + Right
+501_em_15	2 Right y Right \gt Right 0 Right 2 NoRel - Below x Right 7 Right 8 Right 0 Right ) NoRel = NoRel 7 Right x Right 7 Right \times Right B Right x Right 4 Right 6 NoRel - Below 1 Right x Right 7 Right \times Right B Right \times Right 1 Right 1 Right 9 NoRel = NoRel 4 Right b NoRel - Below n Right 1 Right y
+501_em_16	N Right x Right y
+501_em_17	b Right i Right 0
+501_em_18	2 9 Sub u NoRel - Right 2 Right n NoRel \pm Right \sqrt NoRel - Below 2 Right ( Right r Sup 2 NoRel - Right 9 Right n Right ) NoRel 4 Right 0 NoRel \pi Right - Right 8 a Right M Right r Sup 2 NoRel + Right 4 Right a Sup 2 NoRel COMMA Sup 2 NoRel - Right 4 Right r Sup Sub + Right 4 Sub i NoRel
+501_em_19	\tan Right ( Right 5 Right x Right ) Right = NoRel 5 Right \tan Right ( Right n Right ) Right - Right 1 Right 0 NoRel + Right Right n 3 NoRel ( Right n Right ) Right + NoRel \tan NoRel 5 NoRel ( Right n Right ) NoRel - Below 1 Right - Right \tan Sub n Sup 2 NoRel ( Right n Right ) NoRel 1 Right 0 NoRel + Right 5 Right \tan Sup Right ( Right n Right )
+501_em_2	n Right Sub i Right COMMA Right \theta Right i Right COMMA Right f Sub i
+501_em_20	4 Right = Right ( Right n Right y Right COMMA Right y Right 1 Right B Right 1 Right 1 Right y Right )
+501_em_21	a Right \rightarrow Right 0
+501_em_22	v Right r Right \in Right f
+501_em_23	\phi Right \gt Right 0
+501_em_24	\log Right \theta Right = Right b Right \log Sub 2
+501_em_3	k Right e
+501_em_4	\sin Right p Right E Right \leq Right \sin Right E
+501_em_5	\sqrt Inside 5 NoRel 0
+501_em_6	f Right ( Right 1 Right . Right 9 Right 9 Right 9 Right 9 Right 9 Right ) Right = Right 3 Right . Right 9 Right y Right y Right y Right 9
+501_em_7	s Right Right G Right + Right 6 Right A Right B Right + Right \sin Right B Right + Right \sin Right A
+501_em_8	\sin Right \alpha Right \sin Right \beta Right = NoRel 1 NoRel - Below 2 NoRel ( Right \cos Right ( Right \alpha Right - Right B Right ) Right - Right \cos Right ( Sup 2 Right + Right | Sup 3 Right ) Right )
+501_em_9	\int Right z - Below j Right = Right 0 NoRel \infty NoRel a Right p 3 Sup j NoRel d Sub 3 Right = NoRel 2 NoRel - Above \infty NoRel j Right = Right 1 NoRel a Sub j NoRel - Right 1 NoRel - Below j NoRel x Sup j
+502_em_0	6 Right 3
+502_em_1	x Sup 8 NoRel + Right x Sup 6 NoRel + Right x Sup 4 NoRel + Right x Sup 2 NoRel + Right 1
+502_em_10	\beta Right = Right 1
+502_em_11	1 Right - Right 2 Right . Right 1 NoRel ) NoRel ( NoRel 1 Right + Right 1 NoRel - Below 2 Sup 1 NoRel + Right 1 NoRel - Below 3 NoRel 1 NoRel + NoRel 1 NoRel - Below 4 NoRel 1 NoRel + NoRel 1 NoRel - Below 5 Sup 1 NoRel x Right \ldots Right ) NoRel (
+502_em_12	R Sub c
+502_em_13	e Sup x NoRel + Right 1 Right 8 Right x Right + Right 1 Right 2
+502_em_14	p Right ( Right \alpha Right ) Right = Right \alpha Sup m NoRel + Right \lim Sub m Right COMMA Right 2 NoRel \alpha Sup m Right Right 1 NoRel 1 Right . \ldots Right + Right b Sub 3 Right \alpha Sup 4 NoRel + Right b Sub 1 NoRel \alpha Right + Right b Sub 0
+502_em_15	\theta Sub i Right + Right 1 NoRel = Right \theta Sub i NoRel - Right \alpha Sub i
+502_em_16	v Sup 2 NoRel - Right v Sub v NoRel 2 NoRel \sqrt Right = NoRel v Sub n NoRel 2 NoRel - Below v Sup 2 NoRel - Right v Sub n NoRel 2 NoRel \sqrt
+502_em_17	a Sub - Below d Right \theta Sup e Sup i Right \theta NoRel = Right i Right e Sup i Right \theta
+502_em_18	g NoRel 2 NoRel \sqrt
+502_em_19	a NoRel - Below b NoRel + Right c NoRel - Below b NoRel = NoRel a Right + Right c NoRel - Below e
+502_em_2	4 Right 9 Right 2
+502_em_20	\int NoRel 1 NoRel - Below y NoRel d Right y NoRel - Below a Right x NoRel d Right x Right = Right \int Right a Right d Right x
+502_em_21	a Sub 0 NoRel + Right 3 Right a Sub 1 NoRel + NoRel y Right a Sub 2 NoRel + Right 2 Right 7 Right a Sub 3 Right = Right 0
+502_em_22	2 Right x NoRel g Sub x NoRel + Right 1 Right ) NoRel ( NoRel ( Right 3 Right x NoRel + Right 1 Right ) Sup 3
+502_em_23	0 Right + Right 0 Right + Right 0 Right + Right 0 Right + Right 0 Right + Right 0 Right = Right 0
+502_em_24	6 Right 1 Right \leq Right x Right \leq Right 6 Right 9
+502_em_3	x Right - Right 2 Right ) NoRel ( NoRel d Right ( Right x Sup 2 NoRel - Right x Right ) Right + Right 5 Right x Right - Right 5 Right ) NoRel ( NoRel ]
+502_em_4	6 Right NoRel - Below \infty
+502_em_5	\gamma Right = Right \cos Right \theta Right + Right j Right \sin Right \theta
+502_em_6	u Right ( Right x Right COMMA Right y Right ) Right = NoRel B Right \sin Right ( Right n Right \pi Right x Right ) Right e Sup n NoRel \pi Right y NoRel - NoRel ( NoRel \lim n Right \pi + Right y Right )
+502_em_7	\sum Below k Right - = Right 1 NoRel n NoRel a Sub k NoRel + Right \sum Below k Right = Right 1 NoRel n NoRel b Sub k
+502_em_8	\int Below - Right 0 NoRel \infty NoRel e - Right w Sup 2 NoRel d Right u Right = NoRel \pi NoRel \sqrt
+502_em_9	\beta Right = Right 1
+503_em_25	\sum Right Y Sub i
+503_em_26	\lim Below z Right \rightarrow Right 2 Sub 0 NoRel 8 Right ( Right 3 Right )
+503_em_27	( Right x Sub 2 NoRel - Right x Sub 1 NoRel ) Sup 2 NoRel + Right ( NoRel y Sub 2 NoRel - Right y Sub 3 NoRel ) Sup 2 NoRel \sqrt
+503_em_28	y NoRel 1 NoRel - Below b NoRel \leq NoRel x NoRel 1 NoRel - Below b
+503_em_29	\sin Right \phi Right + Right c
+503_em_30	- Right 6 Right x NoRel - Below - Right 0 NoRel \lt NoRel 1 Right j NoRel Below - Right 0
+503_em_31	1 Right s Right \pi NoRel - Below j
+503_em_32	F = NoRel + Right \pi
+503_em_33	\mu NoRel e Right 8 Right 8 Right = Right \mu M Sub 0 NoRel ) Right 4 Right r
+503_em_34	\sin Right ( Right k Right ) NoRel - Below n
+504_em_35	x c Right x Right x Right ) NoRel ( NoRel x Right ( Right x Right x Right x Right ) Right x Right ( Right x Sub + Right x Right ) Right = Right x Right x Right x Right x Right \gt Right Right x Right x Right \times Right x Right x Right x
+504_em_36	1 Right 1 Right 2 Right Right 2 NoRel - Below 1 Right 2 Right 6 Right Right 2 Right = Right s Right 0 NoRel - Below 6 Right 3
+504_em_37	| Right y Sub 2 NoRel - Right y Sub 1 NoRel 1
+504_em_38	- Right \sin Right ( Right n Right \pi Right ) NoRel - Below n Right \pi t NoRel + Right \sin Right ( Right n Right \pi Right ) NoRel - Below n Right \pi
+504_em_39	\sqrt Inside 2 Right 7 NoRel - Below \sqrt Inside 9 NoRel
+504_em_40	2 Sup n Right - Right 1 NoRel + Right 2 Sup n Right - Right 2 NoRel \ldots Right 2 Right + Right 1 Right = Right 2 Sup n NoRel - Right 1
+504_em_41	- Right j Right = Right - Right \sqrt Inside Right 1
+504_em_42	1 NoRel - Below 1 Right - Right z Right = Right 1 Right + Right x Right + Right 0 Sup 2 NoRel + Right 1 \ldots Right + Right x Sup n NoRel + Right Right
+504_em_43	2 Right \times Right 3 Right \times Right 4 Right x Right x Sup 2 NoRel x Right x Right x Right y Right x Right y Sup 3 NoRel \times Right 2 Right x Right z Sup 2
+504_em_44	8 Sub 1 Right 6
+504_em_45	3 Right x Sup 2 NoRel + Right 2 Right x Right + Right 3 Right x Right + Right s Right + Right 7
+504_em_46	e Sup 2 Right x
+505_em_47	Right + Right 3 Right = Right ( Right 1 Right + Right 1 Right + Right 1 Right + Right 1 Right + Right 1 Right ) Right + Right ( Right 1 Right + Right 1 Right + Right 1 Right ) Right = Right 2
+505_em_48	( Right a Right - Right x Right ) Right ( ( Right 1 Right - Right x Right ) Right - Right b Right c Right = Right x Sup 2 NoRel - Right ( Right a Right + Right c Right ) Right x Right + Right ( Right a Right c NoRel | Right - Right b Right c Right )
+505_em_49	1 Right \sqrt Inside 7 Right + Right 2 Right \sqrt Inside 7
+505_em_50	\tan Right ( Right - Right \theta Right ) Right = Right - Right t Right ( Right \theta Right )
+505_em_51	k Right x NoRel 1 NoRel - Below m NoRel - Right c NoRel NoRel - n Right F = NoRel | Right x NoRel 1 NoRel - Below m Right - Right c NoRel 1 NoRel - Below m NoRel | Right | Right x Sup n Right - Right 1 NoRel - Below n Right + Right x Sup n Right - Right 2 NoRel - Above n NoRel c NoRel 1 NoRel - Below n NoRel + Right \ldots Right + Sub x NoRel 1 NoRel - Below m NoRel c NoRel n Right - NoRel 1 NoRel - Below NoRel ) NoRel - Below n Right x Sup n Right - Right 1 NoRel - Below n Right + Right x NoRel n - NoRel 2 NoRel - Below n NoRel c NoRel 1 NoRel - m Sub + Right \ldots Right + NoRel 2 NoRel 1 NoRel - Below n Right c NoRel n NoRel 2 NoRel - Below n NoRel + Right c Sup n Right - Right 1 NoRel Right |
+505_em_52	0 Right r Right 1
+505_em_53	\sqrt Sub x NoRel = Right \sqrt Inside \sigma Sup 2 NoRel x
+505_em_54	\sum Above n NoRel n Right = Right 1 NoRel x Sub n NoRel z Sub n
+505_em_55	\int Sup 4 Sub 0 NoRel - Below v NoRel = Right \int Sup 2 Right a Right x
+505_em_56	1 NoRel - Below \sqrt Inside 2 NoRel + NoRel 1 NoRel - Below \sqrt Inside 2 NoRel i
+506_em_57	4 NoRel - Below 4 NoRel + NoRel 4 NoRel - Below 4
+506_em_58	\cos Right ( Right x Right - Right y Right ) Right = Right \cos Right x Right \cos Right y Right + Right \sin Right x Right \sin Right y
+506_em_59	y Right \in Right B
+506_em_60	b Sub u Right y Sub 1
+506_em_61	\sqrt Inside 4 NoRel 4 Right NoRel \sqrt NoRel \sqrt
+506_em_62	a Sup 2 NoRel + Right a Right = Right a Sup 2 NoRel + Right a Right + Right 1 Right - Right 1 Right = Right - Right 1
+506_em_63	\sqrt Inside x NoRel \sqrt Inside y NoRel = Right \lim Inside x Right y
+506_em_64	\sqrt Inside A NoRel + Right 2 Right \sqrt Inside
+506_em_65	x Right + NoRel \pi Right y Right + Right 6 Right \pi NoRel z Right = Right 3 Sub \pi
+506_em_66	2 Right x Right A Right \leq Right 4
+506_em_67	\lim Below n Right \rightarrow Right \infty NoRel 8 NoRel - Below n Sup 3 NoRel \sum Below i Right = Right 1 NoRel n NoRel i Sup 2
+507_em_68	3 Right x Sup 3 NoRel e Sup 3 Right x
+507_em_69	c Right = NoRel w NoRel - Below 2 NoRel - NoRel w Sup 2 NoRel - Below 4
+507_em_70	- Right \infty Right \leq Right x Right \leq Right \infty
+507_em_71	\log Below n Right = Right 1 NoRel ( Right \cos Sub 1 Right - Right n Right ) Right - Right 2
+507_em_72	1 NoRel - Below 3 NoRel ( Right b Right - Right a Right ) Right ( Right b Sup 2 NoRel + Right a Right b Right + Right a Sup 2 NoRel )
+507_em_73	a Right ( Right t Right ) Right = Right \int Right a NoRel ( n Right ) NoRel q Right t Right = Right \int Right 0 Right 0 Sup ( Right 1 Right ) Sub 0 NoRel / Right t
+507_em_74	\cos Right 4 Right \theta Right + Right 1 Right 4 Right \theta Right = Right ( Right \cos Right t Right + Right i Right \sin Right \theta Right ) Sup y
+507_em_75	[ Right i Right ]
+507_em_76	4 Right x Right 4 Right + Right 4 Right + Right 4
+507_em_77	3 NoRel \sqrt Inside 1 Right 2 Right ) Right ( Right y Right ) Right ( Right 1 Right 2 NoRel + Right = Right \sqrt Inside 3 NoRel 2 Right 1 Right 0 Right = Right 6
+508_em_78	2 Sup 2 NoRel b Sub 2 NoRel + Right 2 Right b Sub 1 NoRel + Right b Sub 0
+508_em_79	a Sup 2 NoRel - Right a Right \sqrt Inside a NoRel - Below a Right - Right 1
+508_em_80	M Sub 2
+508_em_81	( Right 1 NoRel + Right c Sub 2 Right + Right c Sub 3
+508_em_82	- Right a Right l Right x Right - Right b Sup 2 NoRel y Right + Right a Sup 2 NoRel y Right + Right a Right b Right y Right = Right 0
+508_em_83	( Right a Right COMMA Right b Sub 3 NoRel - Right a Sub 3 NoRel a Sub 1 NoRel )
+508_em_84	2 Right = Right a Right + Right b Sub j
+508_em_85	y Right . Right \gamma
+508_em_86	\sqrt Inside 4 Right S Right = Right \sqrt Inside 9 Right x Right 5 Right = Right 3 Right \sqrt Inside 5
+508_em_87	v Sub v NoRel = Right v Right \sin Right \theta
+508_em_88	b Right ( Right a Right ) Right b Right u NoRel ( Right ) Right = Right b Right ( Right a Right + Right b Right )
+509_em_89	( Right 2 Right 1 Right + Right 7 Right j Right ) Right + Right 7 Right = Right 2 Right 1 Right + Right 7 Right + Right 7 Right j Right Right 7 Right = Right 3 Right + Right j
+509_em_90	\pm Right \sqrt Inside 6
+509_em_91	\mu Right x Right 6
+509_em_92	\lim Below e Right c Right \rightarrow Right \infty NoRel P Right u NoRel ( Right e Right ) Right = Right \infty
+509_em_93	1 Right S Right 1
+509_em_94	b Sub 1 NoRel B Right Sub 1 NoRel + Right b Sub 2 NoRel B Sub 2 NoRel + Right b Sub 3 NoRel B Sub 3
+509_em_95	e Sub p Right v Right +
+509_em_96	x c Right COMMA Right y Right . Right 8 Right . Right t
+509_em_97	( Right d Right - Right 1 Right ) Right ( Right d Right + Right 1 Right )
+509_em_98	\sigma Sub p NoRel = Right \sqrt Inside \sigma Sup 2 NoRel p
+509_em_99	\int Right Right d Right e NoRel - Below s Sup 3 NoRel = Right - NoRel 1 NoRel - Below s
+510_em_100	\int Right a Right 0 Right 4 NoRel - Below 0 Right c NoRel + Right \int Right 2 NoRel - Below x Right + Right b NoRel d Right x
+510_em_101	6 NoRel - Right . Right 2 NoRel - Below 4 NoRel 0 Right Right 2 NoRel = NoRel 3 NoRel -
+510_em_102	m Right V
+510_em_103	\int Right \cos Right L Sub x
+510_em_104	v Sup 2 NoRel = Right v Sub 0 NoRel 2 NoRel + Right v Sub 2 NoRel 2 NoRel + Right v Sub 3 NoRel 2
+510_em_105	4 NoRel - Below 3
+510_em_106	\sqrt Inside a Right b Right = Right \sqrt Inside a NoRel \sqrt Inside b
+510_em_107	\sqrt Inside a Right b NoRel = Right \sqrt Inside a NoRel \sqrt Sub 0
+511_em_250	r Right 0 Right t
+511_em_251	3 NoRel - Below 7 NoRel - Right 2 NoRel - Below T NoRel = NoRel 1 NoRel - Below 7
+511_em_252	n Right ( Right - Right 1 Right ) Sup n
+511_em_253	x Sub f Right g
+511_em_254	( Right - Right 1 NoRel ) Sup 3 NoRel - Right 1 Right = Right - Right 1 Right - Right 1 Right = Right - Right 2
+511_em_255	Right 1 Right ] Right A
+511_em_256	( Right x Right x Right + Right + Right y Sup 2 NoRel + Right x Right ) Right - Right \sqrt Right \times Inside 2
+511_em_257	1 + Right z
+511_em_258	\sum Above n NoRel i Right = Right 1 NoRel \theta Sub i
+511_em_259	\sin Right y Right + Right \sin Right - Right 1 Right = Right 2 Right \sin Right ( Right x Right + Right - Right y NoRel - Below 2 NoRel ) Right \cos Right ( Right x Right - Right y Right 1 NoRel - Below 2 NoRel )
+511_em_260	\int Right E Right a | Right t
+511_em_262	\lim Below n Right - Right \rightarrow Right \infty NoRel x Right 3 NoRel - Below n Right 3 NoRel 2 Right n Sup 3 NoRel + Right 3 Right n Sup 2 NoRel + Right n NoRel - Below 6
+511_em_264	( Right e Sup 5 NoRel - Right 9 Right ) Right / Right q
+511_em_265	b Right R
+511_em_266	F Right 1 NoRel 0
+511_em_267	a NoRel \sqrt NoRel - Below b NoRel \sqrt NoRel = Right \sqrt Inside a NoRel - Below b
+511_em_268	\log Right ( NoRel 1 Right + Right x Right )
+511_em_269	\sum Above 1 Right 6 Right 0 NoRel k Right = Right 2 NoRel ( Right - Right 1 Right ) Right k NoRel 1 NoRel - Below k Sup 2
+511_em_270	1 NoRel - Below 2 NoRel \int Sup b NoRel 1 NoRel \cos Right \lt Right u Right ) Right d NoRel | Sub 0
+511_em_271	f Right + Right 8
+511_em_272	\tan Right ( Right - Right \theta Right ) Right = Right - Right t Right a Right u
+511_em_273	y Right = Right \beta
+511_em_274	x Sup 0 NoRel + NoRel x Right + Right + Right 1
+512_em_275	3 Right m
+512_em_276	y Sub i Right + Right 1 NoRel = Right y Sub i NoRel + Right \int Below x Sub i NoRel x Sub i Right + Right 1 NoRel f Right d Right n
+512_em_277	a Right b Sup 2 NoRel + Right a Right ( Right b Right - Right c Right ) Right - Right b Right c Sup 2
+512_em_278	\sqrt Inside 7 Right 5
+512_em_279	z Sup - Right 1 NoRel ( Right 1 Right + Right 4 Right z NoRel - Above - Right 1 NoRel + Right z Sup - Right 2 NoRel ) NoRel - Below ( Right 1 Right - Right z NoRel - Right 1 NoRel ) Sup 4
+512_em_280	3 Right . Right 0 Right Right 0 Right 0 Right 3
+512_em_281	p NoRel - Below t
+512_em_282	\sqrt Inside 3 NoRel x Sup 2
+512_em_283	x Sup 2 NoRel + Right 2 Right x Right y Right + Right 4 Sup 2 NoRel = Right ( Right x Right + Right y Right ) Sup 2
+512_em_284	( Right 6 Right ) Right ( Right 6 Right ) Right ( Right 6 Right ) Right = Right 2 Right 1 Right 6
+512_em_285	x Sub n NoRel 2
+512_em_286	e Sup a NoRel - Below e Sup b NoRel = Right e Sup a Right - Right b
+512_em_287	\sqrt Inside 1 Right 7 NoRel = Right \sqrt Inside 5
+512_em_288	2 Right m
+512_em_289	1 NoRel - Below 8
+512_em_290	2 Right \sum Below x Right = Right 1 NoRel n NoRel x Right - Right \sum Below x Right = Right 1 NoRel n NoRel 1
+512_em_291	2 Right . Right 9 Right 9 Right 9 Right g
+512_em_292	\int Right ( Right \sin Right ( Right t Right ) Right - Right t Right ) Right d Right t Right = Right - Right \cos Right ( Right t Right ) Right - NoRel 1 NoRel - Below 2 NoRel t Sup 2
+512_em_293	\lim Below r Right \rightarrow Right \infty NoRel 4 NoRel - Below 3 NoRel - Below 2 Right n Sup 2 NoRel + Right 3 Right n Right + Right 1 NoRel n Sup 2
+512_em_294	4 Right x Right = Right x Right + Right x Right + Right x Right + Right n
+512_em_295	a Sub j NoRel . Right . Right . Right COMMA Right f
+512_em_296	k Right g
+512_em_297	a Right 1 Right 1 Right z
+512_em_298	1 NoRel - Below 5 NoRel + NoRel 3 NoRel - Below 5 NoRel = NoRel 1 Right + Right 3 NoRel - Below 5 NoRel = NoRel 4 NoRel - Below 5
+512_em_299	P Right ( Right 1 Right - Right p Right )
+513_em_300	\log Sub a NoRel x Right y Right = Right \log Sub a NoRel x NoRel + Right \log Right 9 NoRel y
+513_em_301	\sin Right ( Right - Right B Right ) Right = Right - Right n Right B
+513_em_302	c Right x Right b
+513_em_303	2 NoRel - NoRel \sqrt Inside 3 Right - Right 1 NoRel \times NoRel \sqrt Inside 3 Right + Right 1 NoRel - Below \sqrt Inside 3 Right + Right 1 NoRel = NoRel 2 Right ( NoRel \sqrt Inside 3 Right + Right 1 Right ) NoRel - Below 3 NoRel NoRel = Right \sqrt Inside 3 Right + Right 1
+513_em_304	\pi Right k Right = Right 2 Right u Right r
+513_em_305	\cos Right ( Right B Right )
+513_em_306	R Sub b
+513_em_307	x Right ( Right \gamma NoRel 4 NoRel c NoRel - Right 2 Right x Right y Right + Right 4 Right y Sup 2 NoRel ) Right + NoRel 2 Right y Right ( Right r Sup 2 NoRel - Right 2 Right x Right y Right + Right 4 Right y Sup 2 NoRel )
+513_em_308	[ Right a Right ] Right [ Right b Right ] Right = Right [ Right a Right b Right ]
+513_em_309	c Right + Right i Right NoRel ) NoRel ( NoRel ( Right c Right - Right i Right d Right )
+513_em_310	0 Right + Right 7
+513_em_311	1 Right 0 NoRel 1 NoRel - Below 1 Right 0
+513_em_312	\cos Right \theta Right + Right \lim Right v Right ) NoRel ( NoRel n NoRel . Right \cos - NoRel n Right \theta Right + Right i Right \sin Right \theta
+513_em_313	p Sub 1
+513_em_314	\int Below Right 1 NoRel 1 NoRel f Right ( Right z Right ) Right - Right 1 Right / Right 2 Sup 2 NoRel d Right r NoRel ) NoRel 1
+513_em_316	\lim NoRel F Right x Sub n NoRel ( Right a Right ) Right - Right \sqrt NoRel x NoRel ( Right a Right )
+513_em_317	1 Right r NoRel - Below 7 NoRel = NoRel 1 Right 4 NoRel - Below 7
+513_em_318	z Right - Right w Right = Right \neq Right u Right 0 Right - Right z n NoRel 8
+513_em_319	x Right \gt Right A
+513_em_320	k Right N
+513_em_321	9 Sub 1 NoRel COMMA Right 9 Sub 2 NoRel 1 Right . Right . 1 Right q Sub m
+513_em_322	x Sub L NoRel \leq Right x Sub L
+513_em_323	\sum Right \pi Right r Sup 2 NoRel = Right \pi Right \sum Right r Sup 2
+513_em_324	\sqrt Inside q NoRel + Right \sqrt Inside b
+514_em_325	x Right x NoRel x Right x NoRel x Right x Right x Right x Right x Right C NoRel - Below x Right \times Right x Right x Right x
+514_em_326	1 NoRel - Below 6 NoRel \int NoRel u NoRel 6 NoRel - Below 2 NoRel d Sub n NoRel + NoRel 1 NoRel - Below 6 NoRel \int Right z Right u Sup s NoRel - Below 2
+514_em_327	n Right Right \rightarrow Right \infty
+514_em_328	a Sup p NoRel + Right b Sup p NoRel = Right c Sup x
+514_em_329	1 Right - Right 1 Right ) NoRel ( NoRel s NoRel + Right 1 Sup 3 NoRel \lt NoRel 1 NoRel - Below 4 NoRel 2 NoRel 4 NoRel \lt Right 1 Sup 3 NoRel + Right 2 Sup 3
+514_em_330	R Right g
+514_em_331	a Right + NoRel - Right b Right ) NoRel ( NoRel = Right - Right b Right ) NoRel ( NoRel + Right a
+514_em_332	2 Right 0 Right x Right . Right 8 Right y Right Right 2 Right 0
+514_em_333	\beta Sub n NoRel + Right 1
+514_em_334	\sum Below n Right = Right 1 NoRel \log 0 NoRel 2 Right n Right + Right 1 Right ) NoRel ( NoRel - Right \sum Below n Right = Right 1 NoRel 4 NoRel \lt Right n Right + Right 1 Right ) NoRel (
+514_em_335	2 Right - NoRel 2 NoRel \sqrt NoRel \sqrt Inside - Below 2
+514_em_336	d Sub s
+514_em_337	V Right V Right - Right 1
+514_em_338	8 Right z Sup 7 NoRel + Right 2 Right 4 Right c Right z Sup 5 NoRel + Right 2 Right 4 Right c Sup 2 NoRel z Sup 3 NoRel + Right 8 Right c Right z Sup 3 NoRel + Right 8 Right c Sup 3 NoRel z NoRel + Right 8 Right c NoRel 2 NoRel z
+514_em_339	f Right a Right ) NoRel ( NoRel - Right f Right b Right ) NoRel NoRel - Below a Right - Right b
+514_em_340	- Right 1 Right 0 0 Right 1 Right y Right = Right - Right 9 Right g Right S
+514_em_341	\lim Sub NoRel \alpha Sub c
+514_em_342	x NoRel \sqrt Right NoRel a NoRel - Below x NoRel \sqrt
+514_em_343	- NoRel e Sup x NoRel \cos Right x Right ) NoRel ( NoRel + Right \int Right e Sup x NoRel \cos Right x Right NoRel ( Right ) Right d Right x
+514_em_344	H Right = Right + Right | Sub 1 NoRel + Right \leq Right | Sub 2 NoRel + Right y Right 0
+514_em_345	\pm NoRel \infty NoRel - Below + Right \infty
+514_em_346	m Sup 2
+514_em_347	r Right . Right \log NoRel a Sub n NoRel a Sub n NoRel + Right 1 NoRel | NoRel 1 NoRel 1 NoRel 1 NoRel -
+514_em_348	- Right Right y NoRel - Below x Sup 2 NoRel - Right y Sup 2 NoRel = NoRel - Right 2 Right y NoRel - Below x Sup 2 NoRel - Right y Sup 2
+515_em_350	s Right i Right \pi Right ( Right \beta Right 3 Right )
+515_em_351	1 Right = NoRel 1 Right ( Right 1 Right | Right ( Right 1 Right )
+515_em_352	A Right A Sup + Right = Right A Sup + Right A
+515_em_353	a Right ( Right b Right + Right x Right n Right ) Right = Right a Right b Right + Right a Right ( Right 2
+515_em_354	4 Right \sqrt Inside 3
+515_em_355	1 NoRel Below 1 NoRel - NoRel 1 NoRel - Below n Right + Right 1 NoRel = NoRel n NoRel - Below n Right + Right 1
+515_em_356	x Right \rightarrow Right 0
+515_em_357	x Sub i Right \leq NoRel x Right \leq Right x Right i Right + Right 1
+515_em_358	f Right ( Right t Right ) Right g Right ( Right t Right )
+515_em_359	( Right 4 Right / Right 3 Right COMMA Right 2 Right / Right 3 Right COMMA Right 4 Right / Right 3 Right )
+515_em_360	c Sup \alpha
+515_em_361	\sqrt Inside 7 NoRel + Right 2 Right \sqrt Inside 7 NoRel = NoRel 1 Right \sqrt Inside 7 NoRel + Right 2 Right \sqrt Inside 7 NoRel = Right 3 Right \sqrt Inside 7
+515_em_362	V Right \geq Right 0
+515_em_363	a Sub 2 NoRel - Below a Sub 2 Right - Right 2
+515_em_364	\sin Right x Right - Right \sin Right y Right = Right 2 Right \cos Right ( Right x Right + Right y NoRel - Below 2 NoRel )
+515_em_365	1 Right 6 NoRel - Below 1 Right 6 NoRel - NoRel 1 NoRel - Below 1 Right 6
+515_em_366	a Sub 0 Right . Right a Sub n
+515_em_367	\tan Right x Right - Right 3 Right ) NoRel ( NoRel ( Right \tan Right x Right + Right 1 Right ) Right = Right 0
+515_em_368	F Right I Right m
+515_em_369	a Sup 2 NoRel + Right a Right b Right + Right b Sub a Right + Right b Sup 2 NoRel = Right a Right + Right b
+515_em_370	x Sub B Right 5
+515_em_371	1 NoRel - Below 4 Sub \pi NoRel E Sub 0
+515_em_372	\int Right - Right a Right e Sup - Right 3 Right x NoRel d Right x
+515_em_373	R Right A
+515_em_374	\sin Right ( Right \theta Right ) Right + Right i Right \cos Right ( Right \theta Right )
+516_em_376	2 Above \prime Right L
+516_em_377	1 NoRel - Below 2 NoRel x Right + NoRel 1 NoRel - Below 2 NoRel - NoRel 1 NoRel - Below 2 NoRel = NoRel 1 NoRel - Below 2 NoRel - Right 1 NoRel - Below 2
+516_em_378	5 Right j Right + Right 3 Right \alpha
+516_em_379	\lim Right \int Sub n NoRel ( Right y Right Right ) Right = Right 0 NoRel n Right \rightarrow Right \infty
+516_em_380	4 Sub 1 Right + Right 4 Right - Right 4 Right Right \sqrt Inside 4 NoRel 1
+516_em_382	0 Right = Right x Sup 3 NoRel + Right 2 Right 1 Sup 2 NoRel - Right 1 Right + Right 1
+516_em_383	\sqrt Right ( Right y Right )
+516_em_384	x Sub R NoRel \pi Right y Right k NoRel + Right y Sub R NoRel y Right y Sub k
+516_em_385	\int Right [ Right g Right ( Right x Right ) Right ] Sup n NoRel \alpha NoRel ( Right g Right ( Right 7 Right )
+516_em_386	\{ Right a Right \}
+516_em_387	5 Right - Right 3 Right = Right ( Right 1 Right Right 1 Right + Right 1 Right + + Right 1 Right + + Right 1 Right ) Right . Right ( Right 1 Right Right A Right Right 1 Right ) Right Right 2
+516_em_388	\sqrt Inside \alpha Sup 2 NoRel - Right \beta Sup 2 NoRel t
+516_em_389	g Right 2 Right . Right 0 Right 8 Right 5 Right 5 Right 3 Right 6 Right 9 Right 2 Right COMMA Right
+516_em_390	a Right - Below b
+516_em_392	- Right \sqrt Inside z NoRel - NoRel c NoRel COMMA Right \sqrt Inside z NoRel . Right c
+516_em_393	N Sub m
+516_em_394	\int Right f Right ( Right a Right x Right ) Right d Right x Right = NoRel 1 NoRel - Below a Right \int Right f Right ( Right n Right Right ) Right d Right x
+516_em_395	n Right - Right Right 0
+516_em_396	a NoRel - Below b NoRel ( NoRel ) Sup n NoRel = Right a Sup n NoRel - Below b Sup n
+516_em_397	v Sub n NoRel 2 NoRel + Right 2 Right v Sub n NoRel v Sub 2 NoRel + Right v Sub 1 NoRel 2 NoRel . Right v Sub 1 NoRel 2 NoRel + Right v Sub 2 NoRel 2
+516_em_398	\sin Right ( Right x Right COMMA Right y Right ) Right = Right \sin NoRel Right \cos Right y Right . Right \cos NoRel x Right a Right y
+516_em_399	3 NoRel - Below 8
+517_em_400	a Right + Right b NoRel - Below 2
+517_em_401	x Right ( Right t Right ) Right = Right x Sub 0 Right ( Right t Right )
+517_em_402	A NoRel - Below q
+517_em_403	i Sub 1 NoRel - Right i Sub 2 NoRel - Right i Sub 3 NoRel - Right i Right 0 NoRel = Right 0
+517_em_404	p Right a
+517_em_405	4 Right + Right 4 NoRel + NoRel 4 NoRel - Below \sqrt Inside 4
+517_em_406	\sum Right b Sub n
+517_em_407	\lim Sub n NoRel \theta Right = NoRel \log Sub c NoRel - Below \log 8 Right c NoRel b NoRel \theta
+517_em_408	\theta Sub 1 Right 1 Right . Right Right \theta Sub n
+517_em_409	1 Right ( Right 1 Right | Right = Right ( Right 1 Right ) Right ( NoRel 1 - Below i n NoRel )
+517_em_410	C Sup p
+517_em_411	B 3 Right + Right B Right - Right B
+517_em_412	x Sup 2 NoRel + Right 2 Right n Right + NoRel 2 Right ) NoRel ( NoRel ( Right r Sup 2 NoRel - Right 2 Right x Right + Right 2 Right )
+517_em_413	4 Right + Right 3 Right \sqrt Inside 6 NoRel - Below - Right 5 Right 6
+518_em_414	\lim Below z Right \rightarrow Right z Sub 0 NoRel f Right ( Right z Right ) Right = Right f Right ( Right z Sub 0 NoRel )
+518_em_415	( Right u Sub 1
+518_em_416	x Sup 3 NoRel + Right 8 Right y Sup 3
+518_em_417	d NoRel - Below d Right x NoRel \sqrt Inside x NoRel = NoRel 1 NoRel - Below 2 Right \sqrt Inside x
+518_em_418	r Right x Right n
+518_em_419	P Right \alpha NoRel - Right p Right \alpha Right - Right 1
+518_em_420	3 Right 5 0 NoRel 3 NoRel - Below g Right - Above 5 NoRel 0 NoRel 3 NoRel = NoRel 1 NoRel - Below 3
+518_em_421	\sum Right F Sub y
+518_em_422	a Sub n NoRel = Right a Sub n NoRel - Right 2 Right + Right a Sub n Right - Right 1 NoRel + Right 1
+518_em_423	u Sub m
+518_em_424	2 NoRel \tan Right a Right x
+518_em_425	( Right \sin Right ( Right x Right ) Right ) Sup 2 NoRel + Right ( Right \cos Right ( Right x Right ) Right ) Sup 2
+518_em_426	A Right \int - Right R NoRel R NoRel R Sup 2 NoRel d Right x Right - Right \pi Right \int Right - Right R NoRel k NoRel x Sup 2 NoRel d Right x
+518_em_427	\sqrt Inside 7 NoRel + Right \sqrt Inside 2 Right 8
+518_em_428	1 Right 1 Right 1 Right 0 Right 0 Right 0 Right 1 Right 1 Sub 2
+518_em_429	0 Right x Right \infty Right = Right 0
+518_em_430	4 Right + Right 4 Right + Right 4 NoRel - Below 4
+518_em_431	a Right x Right - Right b Right y Right = Right 5 Right t Right + Right b Right y Right - Right b Right y
+518_em_432	9 Right \geq Right 1
+518_em_433	\lim Sup n
+518_em_434	\sum Below E Right = Right 1 NoRel n NoRel r Sup 2 NoRel = NoRel 1 NoRel - Below 6 NoRel n Right ( Right 2 Right n Right + Right 1 Right ) Right ( Right n Right + Right 1 Right )
+518_em_435	e Sup \phi NoRel + NoRel 2 NoRel - Below a Sup 3 NoRel - Right 3 Right \phi
+518_em_436	E Right ( Right c Right )
+518_em_437	| Right x Right + Right y Right | Right \leq Right | Right x Right | Right + Right 1 Right y Right !
+518_em_438	2 NoRel - Below \sqrt Inside 2 Right - Right \sqrt Inside 2
+519_em_439	- Right k Right ( Right k Right a Sub i Right Right j Right + Right a Sub 1 Right NoRel Right j Right ) Right + Right k Right a Sub 1 Right NoRel Right j Right + Right a Sub 1 Right | NoRel Right j Sup
+519_em_440	\gt Right y Right b NoRel - Below 7 Right 8 Right 7 Right 3
+519_em_441	1 NoRel - Below \mu NoRel ( Right \theta Right ) NoRel = NoRel \cos Right ( Right \theta Right ) NoRel - Below m Right | Right \theta Right |
+519_em_442	1 Sup \prime NoRel = Right t
+519_em_443	1 Right 2 Right 1 Right = Right 1 Right x Right 1 Right 0 Sup 2 NoRel + Right 2 Right x Right 1 Right 0 Sup 1 NoRel + Right 1 Right x Right 1 Right 0 Sup 0 Right = Right 1 Right 0 Right 0 Right + Right 2 Right 0 Right + Right 1
+519_em_444	x NoRel a NoRel - Below b NoRel = Right \sqrt Inside 1 NoRel x Sup a NoRel = Right \sqrt Inside b NoRel x NoRel a
+519_em_445	N Sub S
+519_em_447	2 Right 5 Right 2 Right - Right 2 NoRel - Below 5
+519_em_448	( Right ( NoRel 1 NoRel - Below 4 NoRel ( Right 3 Right | Sup 4 NoRel - Right 3 Right ( Right 3 Right ) Sup 4 NoRel ) Right - Right ( NoRel 1 NoRel - Below 4 NoRel ( Right z Right ) Sup n NoRel - Right 3 Right ( Right 2 Right ) Sup 2 NoRel ) Right )
+519_em_450	z Right \rightarrow Right - Right z
+519_em_451	x Right = Right 2 Right x Right 3 Right \times Right 5 Right x Right . Right x Right n
+519_em_452	- NoRel 1 NoRel - Below 6 Right x Sup 6 NoRel + Right C
+519_em_454	\int Right f Right ( Right x Right ) Right - Right g Right ( Right x Right | Right d Right x Right = Right \int Right A Right ( Right x Right ) Right d Right x Right - Right \int Right y Right ( Right x Right ) Right d Right x
+519_em_456	\lim Right 2 Right a Right = Right 2 Right \sin Right a Right \cos Right a
+519_em_457	\sqrt Inside x Right - Right 1 Right 6 NoRel Right \sqrt Inside z Right - Right 1 Right 6 NoRel = Right \sqrt Inside - Right g
+519_em_458	a Right c Right + Right b NoRel - Below c
+519_em_459	1 Right = NoRel 1 NoRel - Below p
+519_em_460	2 Right x Right + Right 4 Right y Right + Right 8 Right z Right - Right 3 Right x Right - Right 7 Right y Right - Right 2 Right 1 Right + Right 4 Right x
+519_em_461	\alpha NoRel - Below 2 NoRel - Right \alpha Right + Right 1 NoRel - Below 2 NoRel = Right 1 NoRel - Below 2
+519_em_462	\sum Below i Right + Right 1 NoRel n NoRel r
+519_em_463	p Sub 0
+520_em_464	\forall Right x Right \in Right [ Right x Right 0 Right ) Right \times Right \infty NoRel ] Right COMMA NoRel 7 Right x Right i
+520_em_465	h Right ( Right s Right ) Right = Right - Above 1 NoRel | Right + Right s T
+520_em_466	h Right ( Right t Right ) Right = Right h Sub 0 NoRel ( Right 1 Right - Right e Sup - Right - Above t NoRel x NoRel )
+520_em_467	7 Right k Right COMMA Right h Sup 2 NoRel = Right a Sup 2 NoRel \pm + Right b Sup 2
+RIT_2014_1	k c Right \lt Right |
+RIT_2014_10	A Right + Right A Right + Right B Right + Right B Right Right + Right C
+RIT_2014_100	a Right \leq Right b
+RIT_2014_101	1 NoRel - Below 2 NoRel ( Right 1 Right - Right \sqrt Inside \gamma NoRel - Below \pi Right Right r Sub 0 NoRel )
+RIT_2014_102	m Sup \prime NoRel + Right N Right = Right ( Right m Right j Right
+RIT_2014_103	1 Right - Right 2 Right a NoRel - Below 1 Right + Right a Right = NoRel 1 Right - Right 2 Right b NoRel - Below 1 + Right b
+RIT_2014_104	- Right 2 Right \leq Right \times Right \leq Right 2
+RIT_2014_105	\sin Right \theta Sub COMMA Right \sin Right \theta Sub 2
+RIT_2014_106	\sin Right 6 Right \theta
+RIT_2014_107	\sum Below n Right = Right 1 NoRel \infty NoRel ( Right - Right 1 Right ) Sup n NoRel - Below \sin
+RIT_2014_108	2 Sup 2 NoRel + Right 7 NoRel - Below 2 Sup s NoRel Sup 2
+RIT_2014_109	e Sup z NoRel + Right z Sup \theta NoRel - Below 2 NoRel + NoRel \theta Below z Sup 3
+RIT_2014_11	n Sub i NoRel = Right 1 Right 0 Sub N
+RIT_2014_110	f Sup 3 NoRel a
+RIT_2014_111	p Right COMMA NoRel \beta Right 1 NoRel p Right 2 NoRel \beta Sub 2 NoRel 0 NoRel 0 Right 0 NoRel \beta Sub n NoRel \beta Sub n
+RIT_2014_112	s Sub 1
+RIT_2014_113	\int Right \sin Right ( Right x Right ) Right \sin Right ( Right 2 Right x Right ) Right d Right x
+RIT_2014_114	i Right \neq Right 1
+RIT_2014_115	G Sub e Right a
+RIT_2014_116	a NoRel - Below b Right + Right \sqrt Inside c NoRel = NoRel a NoRel - Below b Right + Right \sqrt Inside c NoRel \times Right b Right - Right b Inside c NoRel - Below b Right - Right b Right c
+RIT_2014_117	1 NoRel - Below c Right ( Right k Right + Right 1 Right ) Right x Right ]
+RIT_2014_118	a Right \neq Right b
+RIT_2014_119	n Sup 3 NoRel - Right n Right + Right 3
+RIT_2014_12	k Sub n Right + Right 1 NoRel = NoRel n Sup 2 NoRel + Right k Sub n NoRel z NoRel - Right k Right c Sub n Right 1
+RIT_2014_120	\sqrt Inside 6 Right 1
+RIT_2014_121	f Right ( Right z Right ) Right = Right 2
+RIT_2014_122	1 Right 8 Sub 2
+RIT_2014_123	\int Below n Sub i Right 1 NoRel x Sub i NoRel f Right ( Right x Right ) Right d Right x
+RIT_2014_124	1 + Right e Right Right x
+RIT_2014_125	7 Right + Right w
+RIT_2014_126	1 NoRel - Below 1 Right - Right z Sup - Right 1
+RIT_2014_127	q Right = Right q Right COMMA Right q Sub 2
+RIT_2014_128	F Sub 2 NoRel = Right 2 Sup 2 Sup 2 NoRel + Right 1 Right = Right 1 Right 7
+RIT_2014_129	\int Sub 2 NoRel b NoRel f Right d Right \alpha
+RIT_2014_13	[ Right P Right ]
+RIT_2014_130	8 Right - Right 1
+RIT_2014_131	\sqrt Inside 9 Right l
+RIT_2014_132	\lim - Right m
+RIT_2014_133	0 Right \leq Right X Right \leq Right 2 Right \pi
+RIT_2014_134	( Right a Right + Right x Right ) Right - Right ( Right b Right + Right y Right ) Right = Right ( Right 2 Right - Right b Right )
+RIT_2014_135	b Sup \log Sub b NoRel x NoRel = Right x
+RIT_2014_136	f Sub 1 NoRel COMMA Right . Right . Right . Right Right COMMA Right F Sub k 1
+RIT_2014_137	1 Right - Right d Right = Right ( Right 1 Right - Right d Right ( Right m Right ) NoRel - Below m NoRel ) Sup m
+RIT_2014_138	\sqrt Below 3 NoRel - NoRel 2 NoRel - NoRel 1 NoRel - Below 2 NoRel = Right \sqrt Inside 3
+RIT_2014_139	m Right 1
+RIT_2014_14	\sum Right f Sub x Right = Right 0
+RIT_2014_140	\sum Right a Sub n
+RIT_2014_141	v Right a Right u Right = Right - Right d Right y NoRel - Below 2 Right y Sup 2
+RIT_2014_142	1 NoRel - Below \sqrt Inside k Right + Right 1
+RIT_2014_143	\pi x Right | Right | Right y Right | Right = Right H Right x Right y Right |
+RIT_2014_144	y Sup 4 NoRel - Right 9 Right y Sup 2 NoRel - Right 1 Right 8 Right + Right e Sup y
+RIT_2014_145	\int Right d Right x NoRel - Below d Right x NoRel d Right x NoRel = Right \int Right ( Right x Sup 2 NoRel + Right 7 Right ) Right d Right x
+RIT_2014_146	2 Right 1 NoRel 8 Sub 2 Right 2 NoRel - Right a Right 1 Right 2 Right 2 Sub 2 Right 1
+RIT_2014_147	( Right a Right ( Right b Sup 2 NoRel ) Right ) Right + Right ( Right d Sup 3 NoRel )
+RIT_2014_148	5 NoRel - Below 6 NoRel \neq NoRel 4 NoRel - Below 3
+RIT_2014_149	\sin Right z NoRel - Below 2
+RIT_2014_15	\sum Below n Right = Right 1 NoRel \infty NoRel x Sub n
+RIT_2014_150	\cos Right \theta Right = Right e Sup t Right \theta NoRel + Right e Sup - Right i NoRel Right \theta NoRel - Below 2
+RIT_2014_151	1 Right \sin Right )
+RIT_2014_152	4 Right 4 Right - Right 4 NoRel - Below 4
+RIT_2014_153	\log Sub b NoRel b Sup n NoRel = Right x
+RIT_2014_154	1 NoRel - NoRel q
+RIT_2014_155	y Right - Right 2
+RIT_2014_156	- Right H
+RIT_2014_157	c Right H Sub 2 NoRel = Right 4 1 Right c Right n Right 2 NoRel c Sub 2 Sup c Right n Right 3
+RIT_2014_158	\sum NoRel 1 NoRel - Below 2 NoRel i Sup 0 Right = Right 1 NoRel \infty
+RIT_2014_159	x Right ) Right ( Right x Right ) Right ( Right x Right ) Right ( Right x Right ) Right ( Right x Right ) NoRel - Below x Right ) NoRel
+RIT_2014_16	\sqrt Inside 2 Right + Right \sqrt Inside 8
+RIT_2014_160	\sigma Sub a Right x Right \theta Sub m
+RIT_2014_161	r Right 3 y Sup 3 NoRel + Right 2 Right x Sup 2 NoRel y Right + Right y Right x Right y Sup 3 NoRel + Right 8 Right n Right y
+RIT_2014_162	\sum NoRel 0 NoRel m NoRel b Sup i NoRel s Sup 6 NoRel - Below \sum Sub i Right = Right 0 NoRel n NoRel a Sup t Sup 0 NoRel c Right =
+RIT_2014_163	4 Right x Sup 2 NoRel - Right q NoRel - Below 4 Right x + Sup 2 NoRel + Right ( Right 2 Right x Right + Right 9
+RIT_2014_164	n Right - Right n Sub 1 NoRel - Right n Sub p Right - Right 1 NoRel Right Right \infty
+RIT_2014_165	p Sub 1 NoRel \beta NoRel COMMA NoRel \beta 2 NoRel \beta NoRel 2 NoRel 0 NoRel 0 Right 0 NoRel p Sub n NoRel B Sub n
+RIT_2014_166	\tan Right ( Right Right a Right ) Right = NoRel 3 Right \tan Right a Right - Right \tan Right 9 NoRel - Below 1 Right - Right 3 Right t Right a Right Sup 2 NoRel a NoRel 3
+RIT_2014_167	\sqrt Inside c Sup 2 NoRel = Right 8 Right 0 Right 0 Right 0 Right 0 Right + Right 5 Right 6 Right 2 Right 5 Right 0 Right NoRel \sqrt
+RIT_2014_168	2 Right \pi Right n Right ! Right e Right = Right 2 Right \pi Right n Right ! Right + NoRel 2 Right \pi Right n Right ! NoRel - Below 2 NoRel + Sup 2 Right \pi Right n Right ! NoRel - Below 3 Right ! NoRel + NoRel 2 Right \pi Right n NoRel ! NoRel - Below 4 Right ! NoRel + Right .
+RIT_2014_169	\beta Right i + Right 1 NoRel - Above j
+RIT_2014_17	p Right COMMA NoRel p Sub 3
+RIT_2014_170	\sin Right x Right - Right \sin Right y Right = Right 2 Right \cos Right ( NoRel x Right + Right y NoRel - Below 2 NoRel ) Right \sin Right ( Right x Right - Right y NoRel - Below 2 NoRel )
+RIT_2014_171	( Right ( Right ) Right ) Right ( Right ( Right ) Right + Right 1 Right ) NoRel - Below 2 NoRel + Right ( Right j Right + Right 1 Right ) NoRel j NoRel j
+RIT_2014_172	\sin Right ( Right \pi Right ) Right - Right \sin Right ( Right 0 Right ) NoRel - Below \pi + Right - Right 0 NoRel = Right 0
+RIT_2014_173	p Right = NoRel q Right + Right a NoRel - Below \sum Right ( Right q Right + Right c Right ) i NoRel i i
+RIT_2014_174	7 NoRel - Below 0 NoRel y Sub n NoRel ( Right - Right y Sub n Right + Right 1 NoRel + Right 2 Right y Sub n NoRel - Right y Sub n Right - Right 1 NoRel )
+RIT_2014_175	\cos Right ( Right \theta Right ) Right \gt Right | Right - Right 2 Right ( NoRel \theta NoRel - Below 2 NoRel ) Sup 2 NoRel = Right 1 Right - NoRel \theta Sup 2 NoRel - Below z
+RIT_2014_176	L Right 8 Sub 2
+RIT_2014_177	Y Sub 1 NoRel + Right y Sub 2 NoRel + Right y Right ( Right 3 Right + NoRel + Right y Sub n NoRel . Right . Right 1
+RIT_2014_178	x Sup p NoRel - Below 4 Right = Right \sqrt Inside q NoRel x Sup p NoRel = Right \sqrt Inside a NoRel \times Sup p
+RIT_2014_179	y Right = Right 3 Right x Right + Right 7 Right + NoRel x Right + Right 8 NoRel - Below x
+RIT_2014_18	\int Below d Right x NoRel = Right \int Right g Right t Right d Right t
+RIT_2014_180	\sqrt Inside a Right \sqrt Inside - Right c Right = Right \sqrt Inside - Right a Sup 2 NoRel = Right \sqrt Inside a Sup 2 NoRel j
+RIT_2014_181	\lim Below b Right \rightarrow Right \infty NoRel f Right ( Right 6 Right )
+RIT_2014_182	\infty Below i Right = Right 1 NoRel ( Right a Sub i Right - Right b Right i Right ) Sup 2
+RIT_2014_183	\lim Below x Right \rightarrow Right \infty NoRel p Sub 2 NoRel ( Right x Right ) Right \gt Right 0
+RIT_2014_184	\lim Below 6 Right \rightarrow Right \infty NoRel f Right ( Right 6 Right ) Right = Right 0
+RIT_2014_185	i Right \rightarrow Right \infty NoRel n Right \sin Right ( NoRel 2 Right \pi NoRel - Below n Right + Right 1 NoRel ) Right - Right n Right \rightarrow Right 1 NoRel n Sup 2 Right \pi NoRel - Below n Right + - NoRel 2 Right \pi NoRel NoRel \lim NoRel \lim
+RIT_2014_186	\sin Right ( Right 3 Right x Right ) Right = Right - Right 4 Right \sin Sup 3 NoRel ( Right Right ( Right ) Right + Right 3 Right \sin Right ( Right x Right )
+RIT_2014_187	\lim - Right m
+RIT_2014_188	\cos Right ( Right x Right + Right y Right ) Right - Right \cos Right x Right \cos Right y Right - Right \sin NoRel x Right \sin Right y
+RIT_2014_189	\sqrt Inside 4 Right 6 Right 4 Right 8 Right x Right 6 Right 4 Right 8 Right + Right 8
+RIT_2014_19	2 Sup 2 Sup 2 Sup 6 Right 5 Right + Right 1 Right 6 NoRel - Right 3
+RIT_2014_190	B Right \sin Right ( Right n Right \pi Right y Right ) Right = Right \sin Right ( Right \pi Right y Right ) Right + Right d NoRel ( NoRel - Below b NoRel \sin Right B Right \pi Right y Right )
+RIT_2014_191	x Right ( Right \infty Right ] Right = Right \lim Sub NoRel z Right \rightarrow Right 1 NoRel z Right - Right ) NoRel NoRel x Right ( Right z Right ) |
+RIT_2014_192	\log Sub b NoRel x NoRel - Below \cos Sub b NoRel d
+RIT_2014_193	E Sub t Right 0 NoRel t NoRel = NoRel \sum n NoRel E Sub n
+RIT_2014_194	x Sup 2 NoRel ( Right x Right - Right y Right ) Right ( Right x Sup 2 NoRel + Right x Right + Right 1 Right ) Right + Right ( Right x Sup 2 NoRel + Right x Right + Right y
+RIT_2014_195	\sqrt Inside n NoRel \sqrt Inside n NoRel x
+RIT_2014_196	r Right \sin Right 7 Right \times Right d Right x NoRel 2
+RIT_2014_197	k Right = NoRel x NoRel - Below \sum Right x Sub i NoRel i NoRel i
+RIT_2014_198	\pi Right x Right | Right ( Right y Right | Right = Right + Right x Right y Right |
+RIT_2014_199	x Sub t Sub 2 NoRel - Right y Sub t Sub 1 NoRel 3 Right Right 0 Right . Right 0 NoRel x NoRel t Sub n NoRel - Right 4 NoRel t Sub p Right COMMA Right
+RIT_2014_2	\lim Right f Right ( Right x Right ) Right = Right L NoRel x Right \rightarrow Right c
+RIT_2014_20	[ Right e Sup ]
+RIT_2014_200	\lim Below n Right \rightarrow Right \infty NoRel y Sub n NoRel = Right 0
+RIT_2014_201	\cos Right 3 Right \theta Right = Right 4 Right \cos Sup 3 NoRel \theta Right - Right 3 Right \cos Right \theta
+RIT_2014_202	c Sub COMMA NoRel x Sub COMMA Right Right c Sub 2 NoRel 1 Right 0 Right Right \ldots Right 1 Right ( Right m NoRel x m NoRel x Sub 2
+RIT_2014_203	\pi Sub a Sup 2 NoRel - Below 2 Right 2 Right t
+RIT_2014_204	4 Right 1 Right 4 Right 7 Right 4 Right + Right 5 Right 2 Right 7 Right 2 Right = Right 2 Right 3 Right 4 Right 6 5
+RIT_2014_205	\sigma Sub a Right \gt Right \theta Sub m
+RIT_2014_206	( Right a Right - Right b Right ) Right - Right c Right = Right a Right - Right ( Right b Right + Right c Right ) Right = Right a Right + Right ( Right - Right b Right - Right c Right )
+RIT_2014_207	\sum Below i Right = Right 1 NoRel n NoRel \{ Right i Right k Right + Right ! - Right ( Right i Right - Right 1 Right ) Sup k Right + Right 1 Right Right = Right n Sup k Right + Right 1
+RIT_2014_208	\sum Below k Right = Right 1 NoRel 1 NoRel a Sub k Right = Right a Sub 1
+RIT_2014_209	\int Right 3 Right \sin Right x Right d Right x
+RIT_2014_21	\sum Below i Right = Right 1 NoRel n Right + Right 1 NoRel i
+RIT_2014_210	1 NoRel - Below 4 NoRel + NoRel 2 NoRel - Below 5 NoRel = NoRel | Right x Right 5 NoRel - Below 4 Right x Right S NoRel + Right 2 Right x Right 4 NoRel - Below S Right x Sup 4 NoRel = NoRel 5 NoRel - Below 2 Right 0 NoRel + Right 8 NoRel - Below 2 Right 0
+RIT_2014_211	\lim Below n Right \rightarrow Right \infty NoRel 2 NoRel - Below n NoRel \sum Below i Right = Right 1 NoRel n NoRel ( NoRel 2 Sub i NoRel - Below n NoRel ) Sup 2
+RIT_2014_212	t Right 0 Right \leq Right t Right \leq Right b
+RIT_2014_213	\tan Right x Right - Right \tan Right y Right = Right \sin Right ( Right x Right - Right y Right ) NoRel - Below \cos Right \times Right \cos
+RIT_2014_214	\sum Below i Right = Right 1 NoRel n Right + Right 1 NoRel i Right = Right \sum Below i Right = Right 1 NoRel n NoRel i Right + Right ( Right n Right + Right 1 Right ) Right = NoRel n Right ( Right n Right + Right 1 Right ) NoRel - Below 2 NoRel + Right n Right + Right 1
+RIT_2014_215	( - NoRel 1 NoRel - Below 2 NoRel - NoRel \sqrt Inside 3 NoRel - Below 2 NoRel i Right ) Right ( Right - NoRel 1 NoRel - Below 2 NoRel + NoRel \sqrt Inside 3 NoRel - Below 2 NoRel i Right )
+RIT_2014_216	\lim Below y Right \rightarrow Right x NoRel f Right ( Right y Right ) Right = Right f Right c Right x Right )
+RIT_2014_217	v Right \pm NoRel 1 NoRel x NoRel \pm Right 2 NoRel COMMA NoRel \pm Right 3
+RIT_2014_218	\sin Right A Right + Right \sin Right 3 Right A NoRel - Below \cos Right A Right + Right \cos Right 3 Right A NoRel = Right \tan Right 1 Right A
+RIT_2014_219	m Right + Right q
+RIT_2014_22	3 Right . Right 0 0 Right 0 Right 0 Right 0 Right 0 Right 0 Right |
+RIT_2014_220	x Sup n Right - Right 1 1 Right x Sup n Right - Right 2 NoRel + NoRel Right \ldots Right \ldots Right + Right x Sup 2 NoRel + Right x Right + Right 1
+RIT_2014_221	A Right + Right B Right + Right B Right = Right A Right + Right B
+RIT_2014_222	( Right x Right + Right 1 Right ) Right ( Right x Right + Right 2 Right ) Sup 2 NoRel 1 NoRel - Right = NoRel 1 NoRel - Below x Right + Right 1 NoRel 1 NoRel - Below x Right + Right 2 NoRel - NoRel 1 NoRel - Below ( Right x Right + Right 2 Right ) Sup 2
+RIT_2014_223	\sin Right ( Right 4 Right x Right ) Right = Right 4 Right \sin Right ( Right x Right ) Right \cos Sup 3 NoRel ( Right x Right ) Right - Right 4 Right \sin Sup 3 NoRel ( Right x Right 1 Right \cos Right ( Right x Right )
+RIT_2014_224	\pm . Right 0 Right . NoRel - Below \sin Right 0 NoRel = NoRel \pm Right 0 Right . Right 0 Right |
+RIT_2014_225	d Right ( Right x Right COMMA Right y Right ) Right + Right d Right ( Right y Right COMMA Right 2 Right ) Right \geq Right d Right ( Right x Right COMMA Right 2 Right )
+RIT_2014_226	b Sup - Right 1 NoRel c Sup - Right 1 NoRel = Right b Sup - Right 1 NoRel a Sup - Right 1
+RIT_2014_227	x Sup 3 NoRel - Right 2 Right n Sup 2 NoRel y Right + Right 4 Right x Right y NoRel 2 NoRel ) NoRel ( NoRel + Right ( Right 2 Right x Sup 2 NoRel y Right - Right 4 Right x Right y Sup 2 NoRel - Right 8 Right y Sup 3 NoRel )
+RIT_2014_228	\int u Sup 8 NoRel d Right u NoRel - Below T Right 2
+RIT_2014_229	d NoRel - Below d Right \theta NoRel \int Sub \theta Right = NoRel 1 NoRel - Below 2 Right / Sub \theta
+RIT_2014_23	1 Right s Sup 2 NoRel 2 Right s Sup 2 NoRel 2 NoRel p Right 1
+RIT_2014_230	r Sup 2 NoRel l Right 2 Right ) NoRel ( NoRel 2 NoRel - Right 2 Right x Right ) NoRel ( NoRel 2
+RIT_2014_231	3 Right f Right 7
+RIT_2014_232	\int Right a Right . Right 8 Right 1 NoRel - Below e NoRel = Right \pi
+RIT_2014_233	A Sup T
+RIT_2014_234	1 Right - Right Below 3 NoRel - Below 1 Right - Below 3
+RIT_2014_235	\lim Right f Right ( Right x Right ) NoRel x Sup \rightarrow Right c
+RIT_2014_236	n Right + Right a
+RIT_2014_237	y Sup 4 NoRel + Right y Sup 3 NoRel + Right y Sup 2 NoRel + Right 1 Right = Right 0
+RIT_2014_238	e Sup - Right k
+RIT_2014_239	z NoRel - Right \prime NoRel ( Right 1 Right + Right 2 Right ) Right ) NoRel - Below ( Right 1 Right - Right z Sup - Right 1 NoRel ) Sup 3
+RIT_2014_24	n Right + Right 1 Right - Right 1 NoRel - Below n Right + Right 1 NoRel = NoRel n NoRel - Below n Right 1 Right 1
+RIT_2014_240	1 Right 2 Right - Right z Sub COMMA Right 1 Right = Right | Right z Right - Right 2 Sub 2 NoRel |
+RIT_2014_241	\sqrt Inside a Right v NoRel Below a Right = Right c
+RIT_2014_242	\sum Sup a NoRel \pi NoRel a Sub 2 NoRel COMMA Right a Sub 3 NoRel COMMA Right a Sub 4 NoRel \} j
+RIT_2014_243	\sum Above \log Right 0 NoRel n Right = Right 5 NoRel ( Right 2 Sub n Right + Right 1 Right )
+RIT_2014_244	1 Right \times Sup 3 NoRel + Right 3 Right x NoRel 2 NoRel + Right 3 Right x Right + Right 1
+RIT_2014_245	5 Sup 3 NoRel - Right 3 Right / Right 2 Right b
+RIT_2014_246	7 Right 5 Right 8 Right 8
+RIT_2014_247	1 Right \pm Right - Right 2
+RIT_2014_248	2 Right - Right p NoRel - Below \sqrt Inside 1 Right - Right p
+RIT_2014_249	N Right - Right 1
+RIT_2014_25	m Right c Right t Right ) Right | \log Right c Right t Right ) Right = Right G Right ( Right t Right ) Right ( Right \cos Right ( Right t Right )
+RIT_2014_250	R Sub r Right l
+RIT_2014_251	\sqrt Inside b NoRel + Right \sqrt Inside 2 NoRel - Below 4
+RIT_2014_252	\cos Right \alpha Right + Right i NoRel \sin Right \alpha
+RIT_2014_253	y NoRel 1 NoRel - Below 3 NoRel ( NoRel ) NoRel b NoRel \leq NoRel x NoRel 1 NoRel - Below n NoRel ( NoRel ) Sup b 3
+RIT_2014_254	1 NoRel - Below 2 NoRel . Right . NoRel 3 NoRel - Below 4
+RIT_2014_255	m Sub k NoRel = Right p Sub k NoRel - Right p Sub k Right - Right |
+RIT_2014_256	c Sub 1 NoRel ) Right c Sub 2 NoRel ) Right . \ldots \ldots Right COMMA Right ( Sub n NoRel COMMA Right ( Sub m Right + Right 1
+RIT_2014_257	1 Right 1 NoRel - Below 3 NoRel \sqrt Inside 3
+RIT_2014_258	1 NoRel - Below 2 NoRel 1 NoRel - Below k NoRel 1 NoRel - Below 8 NoRel 1 NoRel - Below 1 Right 6
+RIT_2014_259	- Right \sum Below i NoRel p Sub 1 NoRel \log Right u Right p NoRel i
+RIT_2014_26	a Right - NoRel 3 NoRel - Below a NoRel + NoRel 1 NoRel - Below a Sup 2 NoRel + Right 1
+RIT_2014_260	\beta Right \neq Right 0
+RIT_2014_261	a Right \neq Right 0
+RIT_2014_262	2 Right x Sup 2 NoRel + Right 8 Right x Right + Right 8 Right - Right 6
+RIT_2014_263	x Sub 1 NoRel = Right a Sub 1 Right | Right y Sub 1 NoRel + Right a Sub 1 Right 2 NoRel y Sub 2
+RIT_2014_264	3 Right 8 Right - Below 1 Right g Right x Right - Right 3 Right 8 NoRel - Below g NoRel + Right C
+RIT_2014_265	\lim Right 4 Right x NoRel + Right u Right y NoRel + Right u Sub t NoRel = Right y
+RIT_2014_266	\sum Right \alpha Right = Right 3 Right p Right = Right - Right 2 Right !
+RIT_2014_267	\int Sub a NoRel c NoRel f Right + Right \int Below c NoRel n NoRel f Right = Right \int Below a NoRel b NoRel f
+RIT_2014_268	\int NoRel 1 NoRel - NoRel x Right \sqrt Inside 1 Right - Right x NoRel - Below x NoRel d Right x
+RIT_2014_269	B Right B Sup - Right 1
+RIT_2014_27	4 Sub b NoRel ( Right y Right a Right ) Right = Right a Right \log Sub b NoRel ( Right y Right )
+RIT_2014_270	c Right + Right 2
+RIT_2014_271	\log Sub u Right N
+RIT_2014_272	4 Right 0
+RIT_2014_273	1 NoRel - Below 3 NoRel + NoRel 2 NoRel - Below 3 NoRel = NoRel 3 NoRel - Below 3
+RIT_2014_274	\alpha Right ( Right a Right b Right ) Right = Right ( Right \alpha Right a Right ) Right b Right = Right a Right ( Right \alpha Right b Right )
+RIT_2014_275	s Right \neq Right 1
+RIT_2014_276	\sigma Right = NoRel 1 NoRel - Below 2 NoRel y Right n NoRel + NoRel 1 NoRel - Below 2 NoRel x Right / Below 2 Sup 2 NoRel - Right y Right | Right 2
+RIT_2014_277	m COMMA Right
+RIT_2014_278	\lim NoRel | Right a Sub Right + Right 1 NoRel x Right | NoRel - Below | Right a Sub n Right 1 NoRel \gt Right 1
+RIT_2014_279	4 Right - Right 4 Right + Right 4 Right - Right \sqrt Inside 4
+RIT_2014_28	\sqrt NoRel NoRel 5 NoRel - Below 4 NoRel = NoRel \sqrt Inside 5 NoRel - Below \sqrt Sub 4 NoRel = NoRel \sqrt Right 5 NoRel - Below 2
+RIT_2014_280	\int NoRel 9 Right + Right f Inside 1 Right 6
+RIT_2014_281	1 Right 0 Right 0 Right . Right 0 Right 0 Right 0
+RIT_2014_282	3 Right x NoRel - Below 3 NoRel + NoRel 1 NoRel - Below 3 NoRel = NoRel 4 NoRel - Below 3
+RIT_2014_283	s Right = Right 2 Right 5 Right 8 Right Right 7
+RIT_2014_284	- Right 3 Right 9
+RIT_2014_285	m Right i Right 1 Right 1 Right j
+RIT_2014_286	x Sup 2 NoRel - NoRel y Sup 2 NoRel = Right x Sup 2 NoRel + Right N Right y Right + Right y Sup 2 NoRel Right x Right y Right - Right 2 Right y Sup 2 NoRel + Right x Inside y Right - Right x Right y
+RIT_2014_287	\log Right x Right - Right \log Right y Right = Right \log Right ( NoRel x NoRel - Below y NoRel )
+RIT_2014_288	\log Right ( NoRel 4 NoRel - Below b NoRel ) Right = Right \log Right ( Right a Right ) Right - Right \log Right ( Right b Right )
+RIT_2014_289	- Right COMMA Right y Right | Right \leq Right y Right \leq Right | Right y Right )
+RIT_2014_29	- Right 1
+RIT_2014_290	\sum Below k Right Right + NoRel N Sub a Sub n Right \leq Right \sum Below k Right = Right 1 NoRel n NoRel b Sub n Right \leq Right \sum Right b Sub n NoRel n Right 1 NoRel \infty
+RIT_2014_291	\mu Right m
+RIT_2014_292	X Right . Right 8
+RIT_2014_293	\lim Right ( Right z Right + Right ) Right = NoRel 2 Right b Right ( Right x Right ) NoRel - Below 1 Right - Right \tan Right a Sub n Sup 2 NoRel ( Right + Right )
+RIT_2014_294	- Right + Right y Right | Right 4 NoRel Right y Right \leq Right | Right y Right |
+RIT_2014_295	\lim Below y Right \rightarrow Right x + NoRel f Right ( Right x Right )
+RIT_2014_296	\theta Right + Right e Right \alpha
+RIT_2014_297	( Right z Right + Right 7 Right ( Right z Right + Right 2 Right )
+RIT_2014_298	\Delta Right k Right \lt Right x
+RIT_2014_299	8 Right 9 Right 7
+RIT_2014_3	d Right = NoRel 2 Right r Right \tan Right Right a Right \tan Right b NoRel - Below t Right a n Right a Right + Right \tan Right b
+RIT_2014_30	a Right z Right - Right 1 NoRel ( Right 1 Right + Right a Right z - Right - Right 1 ) NoRel - Below ( Right 1 Right - Right a Right z Right - Right 1 NoRel ) Sup 3
+RIT_2014_300	\log Right a NoRel x Right - Right \log Right g Sub a Right y Right = Right \log Sub a NoRel NoRel - Below y
+RIT_2014_301	1 Right + Right 1 Right = Right 2 Right C Sup 1 Right ( Right 1 Right + NoRel 1 NoRel - Below 2 NoRel ] Sup k NoRel = Right 2
+RIT_2014_302	\pm Right \int Inside 1 Right s NoRel \pi Right 6
+RIT_2014_303	p Right \geq Right 3
+RIT_2014_304	\lim Below x Right \rightarrow Right - Right \infty NoRel p Sub k Right + Right 1 Right ( Right x Right ) Right \lt Right 0
+RIT_2014_305	\pi NoRel - Below \alpha
+RIT_2014_306	( Right a Right + Right b Right ) Right n Right = Right a Right 4 Right + Right b Sub L
+RIT_2014_307	\sqrt Inside 9 Right 8
+RIT_2014_308	1 Right = Right ( Right b Right ) Right - Right F Right ( Right a Right )
+RIT_2014_309	\sqrt Inside x NoRel - Below z NoRel - NoRel \sqrt Inside 3 NoRel - Below z Right \sqrt Inside x
+RIT_2014_31	y Sup 2 NoRel Right \sqrt Right y Right \cos Right y
+RIT_2014_310	y Right \leq Right 2
+RIT_2014_311	\int Right y Right d Right x
+RIT_2014_312	\sum Below i Right = Right 1 NoRel n NoRel a Sup 2 NoRel = Right a Sup 2 NoRel \sum Below i Right = Right 1 NoRel n NoRel 1 Right = Right n Right a Sup 2
+RIT_2014_32	\int Right m Right \geq Right d Right x
+RIT_2014_33	\lim Right 2 Right u Right = NoRel 2 Right \tan Right u NoRel - Below 1 Right - Right \lim Right a NoRel 2
+RIT_2014_34	B Right \pm Right F Right 8
+RIT_2014_35	\theta Right + Right c
+RIT_2014_36	A Right + Right A Right = Right A
+RIT_2014_37	\cos Right ( Right z Right ) Right + Right Right ( Right z Right )
+RIT_2014_38	- NoRel \pi 1 NoRel - NoRel ( Right 2 NoRel y Sub n Right + Right 1 NoRel + NoRel 5 NoRel - Below 3 NoRel y Sub n NoRel - NoRel | NoRel - Below 2 NoRel y Sub n Right - Right 1 NoRel - NoRel | NoRel - Below 3 Right y Sub n Right - Right 2 NoRel Above 1 NoRel | NoRel - Below | Right 2 NoRel y Sub n Right - Right 3
+RIT_2014_39	\sqrt Right - Right 4
+RIT_2014_4	\sin Right x Right - Right x Right \cos Right x
+RIT_2014_40	\cos Right
+RIT_2014_41	- Right Inside 3
+RIT_2014_42	\sum Right \alpha Right \beta Right = Right \alpha Right \beta Right + Right \alpha Right r Right + Right \beta Right r
+RIT_2014_43	z Sup a NoRel + Right z Right = Right z
+RIT_2014_44	m Right 3 Right x Right - Right \sqrt Right 3 Right \cos Right 3 Right x Right = Right \ldots Right \sqrt Right 3
+RIT_2014_45	( Right A Right |
+RIT_2014_46	a Right \leq Right w
+RIT_2014_47	f Right ( Right b Right \gt Right - Right f Right c Right Right ) NoRel - Below b Right - Right a
+RIT_2014_48	q Right - Right ( Right a Right \sqrt Inside 2 NoRel ) Right = Right \sqrt Inside 2
+RIT_2014_49	a Sub j NoRel \gamma Right j NoRel a Sub j 1 Right + Right p NoRel \infty Right j NoRel + Right 1
+RIT_2014_5	m NoRel - Below m Right n
+RIT_2014_50	\sqrt Inside x Sup s
+RIT_2014_51	1 Right 0 Right 0 Right 0 Right COMMA Right 0 Right 0 Right 0 Right COMMA Right 0 Right 0 Right 0
+RIT_2014_52	\int Right x Right + Right S Right 0 Right x
+RIT_2014_53	| Right a Right 6 Right | Right = Right | Right a Right / Right . Right | Right 0 NoRel |
+RIT_2014_54	2 Right \lt Right p
+RIT_2014_55	a Right = Right - Right 2 Right x Right y Right - Right 2 Right y Right Sup 2
+RIT_2014_56	a Sub 1 NoRel + Right 2 Right a Sub 2 NoRel n Right + Right 3 Right a Sub 3 Right x Sup 2
+RIT_2014_57	1 Right 9
+RIT_2014_58	1 Right + Right x Right + Right x Sup 2 NoRel COMMA Right Right + Right x Sup 2 NoRel COMMA Right x Sup 2
+RIT_2014_59	F Sup 3
+RIT_2014_6	e Sup m Right NoRel y Right = NoRel n NoRel - Below m NoRel e Sup n Right x NoRel + Right c
+RIT_2014_60	3 Right y Right + Right 1 Right = Right A Right ( Right x Right + Right 1 Right ) Right + Right B Right x
+RIT_2014_61	0 Right . Right 0 Right 8 Right 7 Right 8
+RIT_2014_62	\sin Right \theta Right + Right \sin Right \theta NoRel - Below \cos Right \phi Right + Right \cos Right \theta Right = NoRel \tan Right Right ( Right \phi Right + Right \theta Right ) NoRel - Below 2
+RIT_2014_63	c Sub x NoRel c Right x Right + Right 1
+RIT_2014_64	a Right 6 Right \sin n Right \alpha
+RIT_2014_65	6 Right \times Right H
+RIT_2014_66	\sum Below k Right = Right 1 NoRel n NoRel a Sub k NoRel = Right \sum Right a i NoRel n NoRel Right = Right 1 Right = Right \sum Below i j Right = Right 1 NoRel n NoRel a Right j
+RIT_2014_67	n Right + Right 2 Right + Right \sqrt Inside 3
+RIT_2014_68	e Sup 1 Right + Right \cos Right 2 Right +
+RIT_2014_69	1 Right + Right x NoRel - Below n Right - Right x NoRel \sqrt
+RIT_2014_7	4 Right x Sup 3 NoRel - Below 3 NoRel + NoRel 1 Right x Sup + NoRel - Below 4 NoRel + Right C
+RIT_2014_70	1 Right + Right 1 Right + Right 1 Right + Right 1 Right + Right 1 Right = Right 5
+RIT_2014_71	( Right - Right 7 Right x Right + Right 3 Right 8 Right ) Right \sin Right ( Right x Right ) Right 7 Right \cos Right ( Right x Right )
+RIT_2014_72	x Sup 2 NoRel + Right 5 Right / Right 6 Sup x Right + Right 4 Sub 6
+RIT_2014_73	\{ Right 7 Right COMMA Right 7 Right 3 Right = Right \sum Right 7 Right 3
+RIT_2014_74	- Right p Sub 1 NoRel ( Right p Sub 2
+RIT_2014_75	\sqrt Inside x NoRel - Below y NoRel = Right \sqrt Inside x NoRel - Below \sqrt Inside y
+RIT_2014_76	t Right \rightarrow Right \infty
+RIT_2014_77	v Sub 2 NoRel - Below v Right i NoRel = NoRel v Sub 3 NoRel - Below v NoRel 4
+RIT_2014_78	\pi Right \theta Right 0
+RIT_2014_79	a Sub 0 NoRel + Right a Right \alpha Right + Right 1 Right Right \ldots Right + Right a Sub n Right - Right 1 Right \alpha Sup n Right
+RIT_2014_8	4 Right x Sup 3 NoRel \sin Right x Right + Right x Sup k NoRel \cos Right x
+RIT_2014_80	4 Sup \prime NoRel NoRel x Right 4 Right ! NoRel - Right 4 Right k NoRel - Below 4
+RIT_2014_81	0 Right \lt Right x Right \lt Right \sqrt Inside 2
+RIT_2014_82	5 Sub 2
+RIT_2014_83	c Right = NoRel a Right 1 NoRel - Below 9 Sub i Right 9 Sub 2
+RIT_2014_84	x Right + Right 4 Right ) NoRel ( NoRel ( Right x Right + Right 3 Right ) NoRel - Below ( Right x Right + Right 3 Right )
+RIT_2014_85	5 Right 6 Right - Above \rightarrow NoRel 0 NoRel 7 NoRel - Below 4 Sup 3 Right Above 0 Sub 0 NoRel 7 Right = NoRel 8 NoRel - Below a
+RIT_2014_86	x Right ( Right ) Right - Right x Right ( Right 2 Right ) NoRel - Below 1 Right - Right 2
+RIT_2014_87	a Sup n NoRel x Right ( NoRel 1 NoRel - Below 4 NoRel ) Sup x
+RIT_2014_88	4 Right + Right 4 NoRel - Below 4 Right + Right 4
+RIT_2014_89	r Right 7 Right 1
+RIT_2014_9	\log
+RIT_2014_90	M Right z NoRel - Right 1
+RIT_2014_91	\sum Above NoRel r Right = Right 1 NoRel r Sup 3
+RIT_2014_92	d NoRel - Below \infty Right x NoRel d Sup x
+RIT_2014_93	Y Right \gt Right z
+RIT_2014_94	\sum Above \infty Below n Right = Right 1 NoRel \cos Right \pi Right COMMA Right y NoRel - Below n
+RIT_2014_95	2 Right 0
+RIT_2014_96	n Right + Right 2 Right 3 Right 3 Right = Right 2 Right 3 Right 6
+RIT_2014_97	1 Right 2
+RIT_2014_98	\gamma Sub 3 NoRel = Right g Right 8 Sub 9 NoRel y Right \ldots 1
+RIT_2014_99	1 NoRel - Below 9

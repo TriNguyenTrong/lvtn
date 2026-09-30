@@ -1,0 +1,7 @@
+Table 9 grid re-evaluated with the 8-D recognizer's SRT (online/srt_pred_tap8n) instead of the improved 4-D recognizer. Same checkpoints as Table 9 (inference only, no training). Denominators 986/1147/1199.
+config	2014	2016	2019	micro
+offline	49.95	47.60	46.54	47.91
+online	28.09	23.19	25.69	25.54
+concat	49.90	44.90	47.54	47.33
+cascaded	52.33	47.52	50.63	50.06
+shared	49.59	46.38	47.71	47.81

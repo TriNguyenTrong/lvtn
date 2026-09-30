@@ -35,8 +35,12 @@ model:
   fusion: dual_shared
   # bidirectional: true (Ours, L2R+R2L) | false (L2R only)
   bidirectional: true
+  # --- online branch (raw pen trajectory) ---
+  traj_dim: 8
+  traj_downsample: 4
 data:
   zipfile_path: data.zip
+  online_dir: online
   test_year: 2014
   batch_size: 8
   num_workers: 5

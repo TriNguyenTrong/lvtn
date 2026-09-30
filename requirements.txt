@@ -1,10 +1,16 @@
-pytorch-lightning==1.4.9
-einops==0.3.0
-# editdistance==0.6.2
-# for pytorch-lightning CLI
-jsonargparse[signatures]==3.9.0
-# dev-dependency
-flake8==3.9.0
-black==20.8b1
-isort==5.8.0
-jupyter==1.0.0
+# Package versions of the environment used for every run reported in the thesis
+# (conda env "bttr": Python 3.7.12, Windows 10, NVIDIA GeForce RTX 4080 16 GB; see Appendix A.1).
+# Install the CUDA 11.7 build of PyTorch 1.13.1 / torchvision 0.14.1 first, following
+# https://pytorch.org/get-started/previous-versions/ , then: pip install -r requirements.txt
+torch==1.13.1
+torchvision==0.14.1
+pytorch-lightning==1.9.5
+torchmetrics==0.11.4
+numpy==1.21.5
+einops==0.6.1
+editdistance==0.6.2
+Pillow==9.4.0
+tqdm==4.66.1
+# Optional, only for results/rev_holm_existing.py (scipy.stats.binomtest, SciPy >= 1.7);
+# not installed in the thesis environment:
+# scipy>=1.7

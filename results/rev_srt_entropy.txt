@@ -1,0 +1,8 @@
+Mean posterior entropy over non-blank frames (nats) vs. greedy-SRT exactness. AUC = P(wrong sample has higher entropy than a right one); 0.5 = no information.
+recogniser	set	n	SRT exact %	mean H (right)	mean H (wrong)	AUC
+thay4	2014	986	24.75	0.0779	0.1837	0.7963
+thay4	2016	1147	24.24	0.0700	0.1637	0.7908
+thay4	2019	1199	24.27	0.0665	0.1689	0.8199
+tap8n	2014	986	33.77	0.0701	0.1647	0.7982
+tap8n	2016	1147	31.82	0.0591	0.1579	0.8279
+tap8n	2019	1199	34.78	0.0688	0.1532	0.7867

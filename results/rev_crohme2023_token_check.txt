@@ -1,0 +1,6 @@
+vocab words: 110
+inkml files: 2300; with truth: 2300; without: 0
+max length 73, over 200 tokens: 0
+samples with an out-of-vocabulary token: 166/2300
+distinct OOV tokens: 49 (occurrences 319)
+most common OOV: [('\\left', 67), ('\\right', 67), ('&', 55), (';', 55), ('\\lt', 9), ('\\mbox', 7), ('\\mathrm', 5), ('\\leqy', 4), ('\\intd', 4), ('\\gt', 3), ('\\rightarrowx', 2), ('\\neqa', 2), ('\\logx', 2), ('\\pij', 2), ('\\pmiy', 1), ('\\timesX', 1), ('\\siny', 1), ('\\cosk', 1), ('\\ldotsd', 1), ('\\thetak', 1), ('\\intC', 1), ('\\inftyh', 1), ('\\sinnv', 1), ('\\sqrth', 1), ('\\mub', 1), ('\\intdz', 1), ('\\geqa', 1), ('\\inX', 1), ('\\leqb', 1), ('\\piE', 1), ('\\logf', 1), ('\\ldotsx', 1), ('\\geqd', 1), ('\\piB', 1), ('\\intb', 1), ('\\timesY', 1), ('\\gty', 1), ('\\rightarrowy', 1), ('\\sinxe', 1), ('\\rightarrowz', 1)]

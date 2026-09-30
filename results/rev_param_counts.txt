@@ -1,0 +1,21 @@
+Parameter counts -- checkpoint lightning_logs/rev_long_shared/lightning_logs/version_0/checkpoints/epoch=105-step=114904-val_ExpRate=0.8054.ckpt
+
+encoder_img (image, DenseNet):         3,156,624
+encoder_seq total (trajectory branch):  2,892,401
+  point_proj:                               2,816
+  reduce (downsample conv stages):      1,970,688
+  rnn (BiGRU):                            889,344
+  rnn_norm:                                   512
+  aux_head (per-stroke classifier):        29,041
+decoder total:                           3,218,801
+  word_embed:                               29,440
+  pos_enc:                                       0
+  transformer layers:                    3,160,320
+  proj (output vocab):                      29,041
+TOTAL model (bttr):                      9,267,826
+
+CTC recognisers (srt_ckpt/, online/srt_ctc*.pt):
+  srt_ckpt (Kaggle, 4-D):    955,757
+  online/srt_ctc.pt (ours, 4-D):    955,757
+  online/srt_ctc_tap8.pt (ours, 8-D):  5,331,565
+  online/srt_ctc_tap8n.pt (ours, 8-D norm.):  5,331,565
