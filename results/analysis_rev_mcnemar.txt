@@ -1,0 +1,24 @@
+== shared-query vs offline-only, cung seed
+  long_shared (55.43) vs long_offline (50.66): b=443 c=284 p=4.04e-09 Holm=1.21e-08
+  shared_s13 (54.89) vs offline_s13 (50.45): b=401 c=253 p=7.83e-09 Holm=1.57e-08
+  shared_s42 (55.64) vs offline_s42 (52.79): b=385 c=290 p=0.000291 Holm=0.000291
+== thiet ke hop nhat, seed 7
+  long_shared (55.43) vs cascaded_s7 (54.53): b=263 c=233 p=0.193 Holm=0.386
+  long_shared (55.43) vs concat_s7 (51.74): b=305 c=182 p=2.75e-08 Holm=1.37e-07
+  cascaded_s7 (54.53) vs concat_s7 (51.74): b=292 c=199 p=3.13e-05 Holm=9.4e-05
+  cascaded_s7 (54.53) vs long_offline (50.66): b=439 c=310 p=2.76e-06 Holm=1.1e-05
+  concat_s7 (51.74) vs long_offline (50.66): b=404 c=368 p=0.208 Holm=0.386
+== ablation lop giai ma, seed 7
+  long_shared (55.43) vs abl_sares (53.90): b=251 c=200 p=0.0185 Holm=0.0554
+  long_shared (55.43) vs abl_sepcross (54.71): b=263 c=239 p=0.305 Holm=0.609
+  cascaded_s7 (54.53) vs abl_cascx (54.50): b=218 c=217 p=1 Holm=1
+== CROHME 2023 (n=2300), shared-query vs offline-only, cung seed
+  long_shared (31.96) vs long_offline (28.39): b=179 c=97 p=9.1e-07 Holm=2.73e-06
+  shared_s13 (31.61) vs offline_s13 (29.91): b=143 c=104 p=0.0154 Holm=0.0154
+  shared_s42 (31.48) vs offline_s42 (29.52): b=149 c=104 p=0.00556 Holm=0.0111
+== so sanh don, seed 7 (khong hieu chinh)
+  long_shared (55.43) vs long_uni (45.44): b=488 c=155 p=4.99e-41
+  long_shared (55.43) vs long_online (48.41): b=424 c=190 p=1.72e-21
+  long_trfenc (49.70) vs long_shared (55.43): b=212 c=403 p=1.13e-14
+  long_trfenc (49.70) vs long_offline (50.66): b=288 c=320 p=0.209
+  long_trfenc (49.70) vs long_online (48.41): b=385 c=342 p=0.119

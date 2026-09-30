@@ -1,0 +1,29 @@
+rev_long_shared: correct [574, 600, 673], micro 55.43%, wrong 1485
+rev_long_offline: correct [531, 559, 598], micro 50.66%, wrong 1644
+
+== ExpRate, exact / <=1 / <=2 token edits (main system, micro over 3332) ==
+exact 55.43 | <=1 71.34 | <=2 79.50
+
+== Error classes (main system; expressions with an output) ==
+errors with output: 1484; without output: ['505_em_51']
+   structural     629   42.4%
+   symbol         529   35.6%
+   insdel         326   22.0%
+
+== Symbol substitutions (main system) == 1662; case confusions 267 (16.1%)
+   X          -> x          48
+   C          -> c          43
+   \ldots     -> \cdots     37
+   P          -> p          27
+   Y          -> y          26
+   x          -> X          26
+   c          -> C          25
+   z          -> 2          20
+   ]          -> )          20
+   |          -> )          19
+
+== Error rate by target length (all 3332 expressions) ==
+rev_long_shared 1-10: 28.7% (362/1262)  11-20: 42.5% (434/1022)  21-30: 55.8% (344/617)  >30: 80.0% (345/431)
+rev_long_offline 1-10: 34.3% (433/1262)  11-20: 47.1% (481/1022)  21-30: 61.4% (379/617)  >30: 81.4% (351/431)
+
+== Main system vs offline-only (seed 7) == main only correct 443, offline only correct 284
