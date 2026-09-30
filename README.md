@@ -66,13 +66,13 @@ python custom_train.py --fusion dual_shared --aux-stroke-weight 0.5 --suffix aux
 python tools/rev_eval.py <checkpoint.ckpt> 2019 results/shared_2019.txt
 ```
 
-Other options of `custom_train.py` select the decoder design (`--fusion dual_shared | cascaded | concat | offline | online`), unidirectional training (`--unidirectional`), the trajectory encoder (`--traj-encoder gru | transformer`), the seed and the decoder-layer ablations (`--sa-residual`, `--separate-cross`, `--cascaded-residual x`). `tools/run_revision_queue.py` lists the runs of Tables 10–12 and trains, selects and evaluates each of them.
+Other options of `custom_train.py` select the decoder design (`--fusion dual_shared | cascaded | concat | offline | online`), unidirectional training (`--unidirectional`), the trajectory encoder (`--traj-encoder gru | transformer`), the seed and the decoder-layer ablations (`--sa-residual`, `--separate-cross`, `--cascaded-residual x`). `tools/run_revision_queue.py` lists the runs of Tables 10 and 12 and of Section 4.7.3 and trains, selects and evaluates each of them.
 
 The preliminary experiments (ground-truth symbol-relation input, Tables 3–5) were trained under a 50-epoch schedule with an earlier version of the training script, before its options were kept under version control; their per-expression outputs are in `results/`. The 50-epoch training commands of the two-stage variant in Table 9 are listed in `tools/run_ablations.py` and `tools/run_srtpred_ablation.py`, and `tools/eval_srt_dir.py` evaluates one two-stage checkpoint with each recognizer of Table 7.
 
 ## Checkpoints
 
-The checkpoints of the runs in Tables 10–12 are attached to the release [`thesis-v1`](https://github.com/TriNguyenTrong/lvtn/releases/tag/thesis-v1), with a table (`CHECKPOINTS.md`) that maps each file to its row in the thesis, its epoch, its result files and its SHA-256. The release also holds the checkpoint of the preliminary experiment (Tables 3–5); it was saved by an earlier version of the code and needs the loading step described in `CHECKPOINTS.md`. To evaluate one of the main checkpoints:
+The checkpoints of the runs in Tables 10 and 12 and of the main-protocol runs of Section 4.7.3 (Table 11, upper part, and the Transformer trajectory encoder) are attached to the release [`thesis-v1`](https://github.com/TriNguyenTrong/lvtn/releases/tag/thesis-v1), with a table (`CHECKPOINTS.md`) that maps each file to its row in the thesis, its epoch, its result files and its SHA-256. The release also holds the checkpoint of the preliminary experiment (Tables 3–5); it was saved by an earlier version of the code and needs the loading step described in `CHECKPOINTS.md`. To evaluate one of the main checkpoints:
 
 ```bash
 sha256sum -c SHA256SUMS
