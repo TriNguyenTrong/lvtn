@@ -7,6 +7,9 @@ cascaded_s7	57.40	52.31	54.30	54.53
 cascaded: 1 seed (no sd)
 concat_s7	56.19	48.47	51.21	51.74
 concat: 1 seed (no sd)
+long_online	51.83	45.34	48.54	48.41
+long_trfenc	52.33	48.82	48.37	49.70
+long_uni	48.38	43.50	44.87	45.44
 long_offline	53.85	48.74	49.87	50.66
 offline_s13	51.42	49.69	50.38	50.45
 offline_s42	52.03	52.75	53.46	52.79
@@ -15,3 +18,8 @@ long_shared	58.22	52.31	56.13	55.43
 shared_s13	57.00	51.70	56.21	54.89
 shared_s42	57.10	53.10	56.88	55.64
 shared mean±sd over 3 seeds	57.44 ± 0.68	52.37 ± 0.70	56.41 ± 0.41	55.32 ± 0.39
+tab9_tap8n_cascaded	52.33	47.52	50.63	50.06
+tab9_tap8n_concat	49.90	44.90	47.54	47.33
+tab9_tap8n_offline	49.95	47.60	46.54	47.91
+tab9_tap8n_online	28.09	23.19	25.69	25.54
+tab9_tap8n_shared	49.59	46.38	47.71	47.81
