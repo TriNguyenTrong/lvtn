@@ -49,6 +49,11 @@ MODELS = {
                           "epoch=43-step=50116-val_loss=0.4313.ckpt",
                      ref="results/traj_abl_srtoof_thayv4full_2019_results.txt", kind="twostage"),
     "shared_s7": dict(ckpt=None, ref=None, kind="traj"),    # newest G2 checkpoint, if it exists
+    # main-protocol (plateau, up to 150 epochs) checkpoints, as released in release_thesis-v1/
+    "offline_long": dict(ckpt="release_thesis-v1/long_offline.ckpt",
+                         ref="results/rev_long_offline_2019_results.txt", kind="offline"),
+    "shared_long": dict(ckpt="release_thesis-v1/long_shared.ckpt",
+                        ref="results/rev_long_shared_2019_results.txt", kind="traj"),
 }
 FIELDS = ["model", "device", "threads", "mode", "name", "n_tokens", "t_pre_ms", "t_rec_ms",
           "t_enc_ms", "t_dec_ms", "t_total_ms", "correct", "pred"]
@@ -241,8 +246,9 @@ def main():
     ap.add_argument("--modes", default="a,b,c")
     ap.add_argument("--threads", default="0", help="comma list; 0 = torch default (CPU runs: use 0,4)")
     ap.add_argument("--limit", type=int, default=0, help="smoke test: first N expressions")
+    ap.add_argument("--prefix", default="rev_", help="output prefix of results/<prefix>latency.{csv,txt}")
     args = ap.parse_args()
-    prefix = "rev_smoke_" if args.limit else "rev_"
+    prefix = "rev_smoke_" if args.limit else args.prefix
     csv_path = os.path.join(ROOT, "results", prefix + "latency.csv")
     rows, done = [], set()
     if os.path.exists(csv_path):                    # resume: blocks already measured are kept

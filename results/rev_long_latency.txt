@@ -1,0 +1,27 @@
+torch 1.13.1, CUDA 11.7, cuDNN 8500, GPU NVIDIA GeForce RTX 4080, CPU 13th Gen Intel(R) Core(TM) i7-13700K, python 3.7.12, torch default threads 4
+Batch size 1, CROHME 2019, beam 10 unless greedy. Times in ms per expression: pre = InkML -> features (online systems), rec = CTC recogniser (two-stage), enc = image (+ online) encoder, dec = beam search incl. cross-scoring. 20 warm-up expressions per block are not counted.
+Mode a = bidirectional beam 10; b = unidirectional beam 10; c = greedy (beam 1, unidirectional).
+
+model	device	thr	mode	n	mean	median	p95	pre	rec	enc	dec	expr/s	ExpRate%	peakGPU_MB	mean ms by label length 1-10 | 11-20 | 21-30 | >30
+offline_long	cpu	4	a	200	3807.0	2678.7	10696.5	0.0	0.0	65.2	3741.8	0.26	50.50		1356 (n=82) | 3161 (n=61) | 5992 (n=26) | 9731 (n=31)
+offline_long	cpu	4	c	200	285.4	211.5	692.5	0.0	0.0	65.1	220.2	3.50	45.50		130 (n=82) | 244 (n=61) | 439 (n=26) | 648 (n=31)
+offline_long	cpu	16	a	200	5961.6	4332.4	16692.5	0.0	0.0	123.0	5838.6	0.17	50.50		2106 (n=82) | 5135 (n=61) | 9470 (n=26) | 14845 (n=31)
+offline_long	cpu	16	c	200	443.8	335.5	1063.7	0.0	0.0	100.3	343.6	2.25	45.50		207 (n=82) | 386 (n=61) | 670 (n=26) | 994 (n=31)
+offline_long	cuda	16	a	1199	224.7	192.7	504.8	0.0	0.0	17.0	207.7	4.45	49.87		104 (n=433) | 208 (n=406) | 315 (n=208) | 492 (n=152)
+offline_long	cuda	16	b	1199	134.2	120.6	261.3	0.0	0.0	18.1	116.1	7.45	44.95		73 (n=433) | 130 (n=406) | 184 (n=208) | 250 (n=152)
+offline_long	cuda	16	c	1199	56.1	49.1	116.6	0.0	0.0	11.8	44.4	17.82	44.29		28 (n=433) | 53 (n=406) | 78 (n=208) | 113 (n=152)
+shared_long	cpu	4	a	200	4531.2	3216.8	12695.3	1.1	0.0	99.2	4430.8	0.22	58.50		1596 (n=82) | 3736 (n=61) | 7143 (n=26) | 11670 (n=31)
+shared_long	cpu	4	c	200	369.6	285.8	922.2	1.2	0.0	99.2	269.3	2.71	50.00		171 (n=82) | 315 (n=61) | 555 (n=26) | 847 (n=31)
+shared_long	cpu	16	a	200	5764.3	4160.8	16009.4	2.7	0.0	152.4	5609.3	0.17	58.50		2091 (n=82) | 4790 (n=61) | 9018 (n=26) | 14670 (n=31)
+shared_long	cpu	16	c	200	574.3	437.8	1412.8	2.4	0.0	154.2	417.7	1.74	50.00		272 (n=82) | 492 (n=61) | 861 (n=26) | 1295 (n=31)
+shared_long	cuda	16	a	1199	226.3	198.6	478.6	1.2	0.0	17.0	208.1	4.42	56.13		112 (n=433) | 210 (n=406) | 313 (n=208) | 476 (n=152)
+shared_long	cuda	16	b	1199	118.1	101.6	249.5	1.2	0.0	16.7	100.1	8.47	51.13		59 (n=433) | 110 (n=406) | 164 (n=208) | 247 (n=152)
+shared_long	cuda	16	c	1199	77.2	67.5	159.9	1.2	0.0	16.8	59.2	12.95	51.04		39 (n=433) | 73 (n=406) | 107 (n=208) | 157 (n=152)
+
+Check of mode (a) on GPU against the stored 2019 result file (per-expression status; must be identical, otherwise stop and report):
+  offline_long: 598/1199 = 49.87% now; stored file 598/1199; expressions whose status differs: 0
+  shared_long: 673/1199 = 56.13% now; stored file 673/1199; expressions whose status differs: 0
+
+McNemar exact, mode a vs b (same checkpoint, GPU): b = a right & b wrong, c = a wrong & b right
+  offline_long: b=92 c=33 p=1.256e-07
+  shared_long: b=85 c=25 p=7.832e-09
